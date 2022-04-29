@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Setor {
+  id           String               @id @default(uuid())
+  nome         String
+  ramal        String
+  descricao    String
+  Funcionarios FuncionarioOnSetor[]
+  chamados     Chamado[]
+}
+
+model Funcionario {
+  id              String               @id @default(uuid())
+  nome            String
+  nivel_acesso    String
+  login           String
+  senha           String
+  primeiro_acesso Boolean
+  campus          String
+  chamados        Chamado[]
+  setores         FuncionarioOnSetor[]
+}
+
+model Chamado {
+  id            String      @id @default(uuid())
+  destinatario  String
+  area          String
+  descricao     String
+  tombo         String
+  status        String
+  avaliacao     String
+  setor         Setor       @relation(fields: [setorId], references: [id])
+  setorId       String
+  funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
+  funcionarioId String
+}
+
+model FuncionarioOnSetor {
+  setor         Setor       @relation(fields: [setorId], references: [id])
+  setorId       String
+  Funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
+  funcionarioId String
+
+  @@id([setorId, funcionarioId])
+}
