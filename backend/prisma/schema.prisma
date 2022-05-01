@@ -13,10 +13,10 @@ datasource db {
 model Setor {
   id           String               @id @default(uuid())
   nome         String
-  ramal        String
-  descricao    String
-  Funcionarios FuncionarioOnSetor[]
+  ramal        String?
+  descricao    String?
   chamados     Chamado[]
+  Funcionarios FuncionarioOnSetor[]
 }
 
 model Funcionario {
@@ -38,7 +38,7 @@ model Chamado {
   descricao     String
   tombo         String
   status        String
-  avaliacao     String
+  avaliacao     String?
   setor         Setor       @relation(fields: [setorId], references: [id])
   setorId       String
   funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
