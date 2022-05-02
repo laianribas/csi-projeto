@@ -2,8 +2,9 @@
 CREATE TABLE "Setor" (
     "id" TEXT NOT NULL,
     "nome" TEXT NOT NULL,
-    "ramal" TEXT NOT NULL,
-    "descricao" TEXT NOT NULL,
+    "ramal" TEXT,
+    "descricao" TEXT,
+    "ativo" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "Setor_pkey" PRIMARY KEY ("id")
 );
@@ -15,8 +16,9 @@ CREATE TABLE "Funcionario" (
     "nivel_acesso" TEXT NOT NULL,
     "login" TEXT NOT NULL,
     "senha" TEXT NOT NULL,
-    "primeiro_acesso" BOOLEAN NOT NULL,
+    "primeiro_acesso" BOOLEAN NOT NULL DEFAULT true,
     "campus" TEXT NOT NULL,
+    "ativo" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "Funcionario_pkey" PRIMARY KEY ("id")
 );
@@ -29,7 +31,7 @@ CREATE TABLE "Chamado" (
     "descricao" TEXT NOT NULL,
     "tombo" TEXT NOT NULL,
     "status" TEXT NOT NULL,
-    "avaliacao" TEXT NOT NULL,
+    "avaliacao" TEXT,
     "setorId" TEXT NOT NULL,
     "funcionarioId" TEXT NOT NULL,
 

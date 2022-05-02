@@ -15,6 +15,7 @@ model Setor {
   nome         String
   ramal        String?
   descricao    String?
+  ativo        Boolean              @default(true)
   chamados     Chamado[]
   Funcionarios FuncionarioOnSetor[]
 }
@@ -25,8 +26,9 @@ model Funcionario {
   nivel_acesso    String
   login           String
   senha           String
-  primeiro_acesso Boolean
+  primeiro_acesso Boolean              @default(true)
   campus          String
+  ativo           Boolean              @default(true)
   chamados        Chamado[]
   setores         FuncionarioOnSetor[]
 }
