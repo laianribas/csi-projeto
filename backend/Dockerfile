@@ -2,22 +2,22 @@ FROM node:alpine
 
 WORKDIR /app
 # COPY package.json and package-lock.json files
-COPY package*.json ./
+COPY package*.json /app
 
 # generated prisma files
-COPY prisma ./prisma/
+COPY prisma /app/prisma/
 
 # COPY ENV variable
-COPY .env ./
+COPY .env /app
 
 # COPY tsconfig.json file
-COPY tsconfig.json ./
+COPY tsconfig.json /app
 
 # COPY
-COPY . .
+COPY . /app
 
 RUN npm install
 
 RUN npx prisma generate
 
-RUN npx prisma generate
+CMD npm start
