@@ -25,7 +25,9 @@ services:
       - "3000:3000"
     restart: always
     volumes:
-      - "./backend:/app"
+      - type: bind
+        source: ./backend
+        target: /app
 
 volumes:
   postgres-data:
