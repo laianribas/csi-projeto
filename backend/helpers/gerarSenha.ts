@@ -1,13 +1,13 @@
 import crypto from 'crypto';
-
+import 'dotenv/config'
 interface INomeFuncionario {
   nome: string
 }
 
 function gerarSenha({ nome }: INomeFuncionario) {
-  var senhaESalt = SHA512(nome, 'secret');
-  console.log('Senha Hash: ' + senhaESalt.hash2);
-  console.log('Salt: ' + senhaESalt.salt);
+  const nomeSplit = nome.split(' ')
+  const senha = (nomeSplit[0] + '@' + nomeSplit[nomeSplit.length - 1]).toLowerCase()
+  var senhaESalt = SHA512(senha, process.env.SECRET_KEY as string);
   return senhaESalt.hash2
 }
 
@@ -20,8 +20,8 @@ function SHA512(senha: string, salt: string) {
   }
 }
 
-function loginFuncionario(senha: string, salt: string, hash: string) {
-  var senhaESalt = SHA512(senha, salt)
+function loginFuncionario(senha: string, hash: string) {
+  var senhaESalt = SHA512(senha, process.env.SECRET_KEY as string)
   return senhaESalt.hash2 === hash
 }
 

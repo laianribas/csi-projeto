@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { ServiceCadastroFuncionario } from '../../services/Funcionario/Service_Cadastro_Funcionario'
 import { gerarLogin } from '../../helpers/gerarLogin'
 import { gerarSenha, loginFuncionario } from '../../helpers/gerarSenha'
+import 'dotenv/config'
 
 class ControllerCadastroFuncionario {
   async handle(request: Request, response: Response) {
@@ -29,33 +30,22 @@ class ControllerCadastroFuncionario {
     }
 
     const login = gerarLogin({ nome })
-    const senha = gerarSenha({ nome: 'laian123' })
-    console.log(loginFuncionario('laian123', 'secret', '249ce452799ad6495234628713e319fe962756d4764fbe3ff9b86daf5844433b3bed409158e5c09effbbe10cac2d1dc56396565e3a15a55b49892a089bf33b6e'))
+    const senha = gerarSenha({ nome })
+    console.log(loginFuncionario('laian@santana', '904b6a38f9717dc558b11625e7086b982f0e411b2d88e81e9d1ade496eb4f2bd2d08752c1f4f418cae4e5b5f4c201f88a35b29452a5fd71a7dfd967a75a15b91'))
 
     console.log('login:', login)
     console.log('senha:', senha)
-    // senha = (auxiliarLogin[0] + '.' + auxiliarLogin[auxiliarLogin.length - 1]).toLowerCase();
-    // const algoritmo = 'aes-256-cbc';
-    // const vetorInicial = crypto.randomBytes(16)
-    // const chaveDeSeguranca = crypto.randomBytes(32)
-    // const cipher = crypto.createCipheriv(algoritmo, chaveDeSeguranca, vetorInicial)
-    // let senhaEncriptada = cipher.update(senha, "utf-8", "hex")
-    // senhaEncriptada += cipher.final("hex");
-    // console.log('senha criptografada:', senhaEncriptada)
-    // const decipher = crypto.createDecipheriv(algoritmo, chaveDeSeguranca, vetorInicial);
-    // let decryptedData = decipher.update(senhaEncriptada, "hex", "utf-8");
-    // decryptedData += decipher.final("utf8");
-    // console.log('senha descriptografada:', decryptedData)
+    console.log(Math.random().toString().substring(2, 6));
 
-    // const funcionario = await serviceCadastroFuncionario.execute({
-    //   campus,
-    //   login,
-    //   nivel_acesso,
-    //   nome,
-    //   senha,
-    //   setores
-    // })
-    // return response.status(201).json(funcionario)
+    const funcionario = await serviceCadastroFuncionario.execute({
+      campus,
+      login,
+      nivel_acesso,
+      nome,
+      senha,
+      setores
+    })
+    return response.status(201).json(funcionario)
   }
 }
 
