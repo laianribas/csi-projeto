@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import express from 'express'
 import { RotasFuncionario } from '../routes/Rotas_Funcionario'
 import { RotasSetor } from '../routes/Rotas_Setor'
+import { RotaLogin } from '../routes/Rota_login'
 
 const prisma = new PrismaClient()
 const app = express()
@@ -13,6 +14,8 @@ app.get('/', async (req, res) => {
   const funcionarios = await prisma.funcionario.findMany({ include: { setores: true } })
   res.status(201).json({ setores, funcionarios })
 })
+
+app.use('/', RotaLogin)
 app.use('/funcionario', RotasFuncionario)
 app.use('/setor', RotasSetor)
 

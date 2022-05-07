@@ -1,5 +1,5 @@
-import crypto from 'crypto';
 import 'dotenv/config'
+import { SHA512 } from './sha512';
 interface INomeFuncionario {
   nome: string
 }
@@ -11,18 +11,7 @@ function gerarSenha({ nome }: INomeFuncionario) {
   return senhaESalt.hash2
 }
 
-function SHA512(senha: string, salt: string) {
-  var hash = crypto.createHmac('sha512', salt)
-  hash.update(senha);
-  var hash2 = hash.digest('hex');
-  return {
-    salt, hash2
-  }
-}
 
-function loginFuncionario(senha: string, hash: string) {
-  var senhaESalt = SHA512(senha, process.env.SECRET_KEY as string)
-  return senhaESalt.hash2 === hash
-}
 
-export { gerarSenha, loginFuncionario }
+
+export { gerarSenha }
