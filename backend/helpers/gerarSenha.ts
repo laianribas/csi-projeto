@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import { SHA512 } from './sha512';
 interface INomeFuncionario {
   nome: string
@@ -14,4 +14,4 @@ function gerarSenha({ nome }: INomeFuncionario) {
 
 
 
-export { gerarSenha }
+export { gerarSenha };
