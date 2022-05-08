@@ -31,7 +31,6 @@ class ServiceCadastroFuncionario {
         }
       }
     })
-    console.log(funcionario)
     return funcionario
   }
 }

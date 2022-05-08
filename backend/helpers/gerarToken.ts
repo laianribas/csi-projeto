@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken'
-import 'dotenv/config'
+import jwt from 'jsonwebtoken';
 
 interface IJwt {
   funcionario: {
@@ -24,4 +24,4 @@ function gerarToken({ funcionario, request, response }: IJwt) {
   })
 }
 
-export { gerarToken }
+export { gerarToken };
