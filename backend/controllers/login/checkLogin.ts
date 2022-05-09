@@ -7,6 +7,7 @@ import { ServiceResgatarFuncionario } from '../../services/Funcionario/Service_R
 interface IDecoded {
   nome: string,
   id: string
+  iat: number
 }
 
 class CheckLogin {
@@ -18,12 +19,17 @@ class CheckLogin {
       const decoded = jwt.verify(token as string, process.env.JWT_KEY as string) as IDecoded
       usuarioAtual = await serviceResgatarFuncionario.execute(decoded.id)
       if (usuarioAtual) {
+        if (!usuarioAtual.ativo) {
+          return response.status(400).json({
+            message: 'O funcionario está inativo!'
+          })
+        }
         usuarioAtual.senha = ''
       }
     } else {
       usuarioAtual = null
     }
-    response.status(200).json(usuarioAtual)
+    return response.status(200).json(usuarioAtual)
   }
 }
 

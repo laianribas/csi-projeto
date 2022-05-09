@@ -11,9 +11,9 @@ class ServiceCadastroSetor {
     const setor = prisma.setor.create({
       data: {
         nome,
-        ativo: true,
+        ramal,
         descricao,
-        ramal
+        ativo: true,
       }
     })
     console.log(setor)

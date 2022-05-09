@@ -5,8 +5,15 @@ class ControllerCadastroSetor {
   async handle(request: Request, response: Response) {
     const serviceCadastroSetor = new ServiceCadastroSetor()
     const { nome, descricao, ramal } = request.body
-    const setor = await serviceCadastroSetor.execute({ nome, descricao, ramal })
-    return response.status(201).json(setor)
+    if (!nome) {
+      return response.status(400).json({ message: 'O nome do setor deve ser informado!' })
+    }
+    try {
+      const setor = await serviceCadastroSetor.execute({ nome, descricao, ramal })
+      return response.status(201).json(setor)
+    } catch (error) {
+      response.status(500).json({ Error: error })
+    }
 
   }
 }
