@@ -9,7 +9,7 @@ interface IFuncionario {
 }
 
 class ServiceCadastroFuncionario {
-  async execute({ nivel_acesso, login, campus, senha, nome, setores }: IFuncionario) {
+  async execute({ nivel_acesso, login, campus, senha, nome, setores }: IFuncionario): Promise<any> {
     const prisma = new PrismaClient();
     const funcionario = await prisma.funcionario.create({
       data: {

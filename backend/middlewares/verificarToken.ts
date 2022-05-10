@@ -22,7 +22,6 @@ function verificarToken(request: Request, response: Response, next: NextFunction
   try {
     const usuarioVerificado = jwt.verify(token as string, process.env.JWT_KEY as string)
     request.user = usuarioVerificado as IUsuario
-    console.log(request.user?.id)
     next()
   } catch (error) {
     return response.status(400).json({ message: 'Token inválido!' })
