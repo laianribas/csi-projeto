@@ -10,7 +10,7 @@ interface IChamado {
   setorId: string,
 }
 
-class ServiceCadastroChamado {
+class ServiceCadastrarChamado {
   async execute({ area, descricao, destinatario, status, tombo, avaliacao, funcionarioId, setorId }: IChamado): Promise<any> {
     const prisma = new PrismaClient()
     const chamado = prisma.chamado.create({
@@ -29,5 +29,5 @@ class ServiceCadastroChamado {
   }
 }
 
-export { ServiceCadastroChamado }
+export { ServiceCadastrarChamado }
 

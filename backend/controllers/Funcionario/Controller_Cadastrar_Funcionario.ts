@@ -4,7 +4,7 @@ import { gerarLogin } from '../../helpers/gerarLogin'
 import { gerarSenha } from '../../helpers/gerarSenha'
 import { ServiceCadastroFuncionario } from '../../services/Funcionario/Service_Cadastro_Funcionario'
 
-class ControllerCadastroFuncionario {
+class ControllerCadastrarFuncionario {
   async handle(request: Request, response: Response) {
     const serviceCadastroFuncionario = new ServiceCadastroFuncionario()
     const { campus, nivel_acesso, nome, setores } = request.body
@@ -44,4 +44,4 @@ class ControllerCadastroFuncionario {
   }
 }
 
-export { ControllerCadastroFuncionario }
+export { ControllerCadastrarFuncionario }
