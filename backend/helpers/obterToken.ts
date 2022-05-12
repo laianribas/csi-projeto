@@ -6,4 +6,4 @@ function obterToken(request: Request) {
   return token
 }
 
-export { obterToken }
+export { obterToken };

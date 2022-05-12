@@ -19,3 +19,4 @@ async function gerarLogin({ nome }: INomeFuncionario) {
 }
 
 export { gerarLogin };
+

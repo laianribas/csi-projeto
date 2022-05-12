@@ -8,4 +8,4 @@ class ServiceResgatarTodosChamados {
   }
 }
 
-export { ServiceResgatarTodosChamados }
+export { ServiceResgatarTodosChamados };

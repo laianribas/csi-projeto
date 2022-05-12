@@ -25,3 +25,4 @@ function gerarToken({ funcionario, request, response }: IJwt) {
 }
 
 export { gerarToken };
+

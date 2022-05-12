@@ -28,4 +28,4 @@ function verificarToken(request: Request, response: Response, next: NextFunction
   }
 }
 
-export { verificarToken }
+export { verificarToken };

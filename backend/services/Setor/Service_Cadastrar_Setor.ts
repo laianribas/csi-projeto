@@ -21,3 +21,4 @@ class ServiceCadastroSetor {
 }
 
 export { ServiceCadastroSetor }
+

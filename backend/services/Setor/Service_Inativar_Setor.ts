@@ -14,4 +14,4 @@ class ServiceInativarSetor {
   }
 }
 
-export { ServiceInativarSetor }
+export { ServiceInativarSetor };

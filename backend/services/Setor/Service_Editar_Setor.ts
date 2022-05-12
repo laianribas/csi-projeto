@@ -12,4 +12,4 @@ class ServiceEditarSetor {
   }
 }
 
-export { ServiceEditarSetor }
+export { ServiceEditarSetor };

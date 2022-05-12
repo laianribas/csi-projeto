@@ -8,4 +8,4 @@ class ServiceResgatarTodosSetores {
   }
 }
 
-export { ServiceResgatarTodosSetores }
+export { ServiceResgatarTodosSetores };

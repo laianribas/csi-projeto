@@ -8,4 +8,4 @@ class ServiceResgatarFuncionario {
   }
 }
 
-export { ServiceResgatarFuncionario }
+export { ServiceResgatarFuncionario };

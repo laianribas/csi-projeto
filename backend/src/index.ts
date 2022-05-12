@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
+import { RotasChamado } from '../routes/Rotas_Chamado'
 import { RotasFuncionario } from '../routes/Rotas_Funcionario'
 import { RotasSetor } from '../routes/Rotas_Setor'
 import { RotaLogin } from '../routes/Rota_login'
@@ -16,6 +17,7 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/', RotaLogin)
+app.use('/chamado', RotasChamado)
 app.use('/funcionario', RotasFuncionario)
 app.use('/setor', RotasSetor)
 

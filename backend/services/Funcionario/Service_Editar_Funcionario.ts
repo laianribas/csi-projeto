@@ -12,4 +12,4 @@ class ServiceEditarFuncionario {
   }
 }
 
-export { ServiceEditarFuncionario }
+export { ServiceEditarFuncionario };

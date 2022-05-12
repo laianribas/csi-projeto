@@ -29,4 +29,4 @@ class ControllerLogin {
   }
 }
 
-export { ControllerLogin }
+export { ControllerLogin };

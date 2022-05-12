@@ -35,5 +35,5 @@ class ServiceCadastroFuncionario {
   }
 }
 
-export { ServiceCadastroFuncionario }
+export { ServiceCadastroFuncionario };
 

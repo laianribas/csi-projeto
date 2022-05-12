@@ -14,8 +14,8 @@ class ControllerCadastroSetor {
     } catch (error) {
       response.status(500).json({ Error: error })
     }
-
   }
 }
 
 export { ControllerCadastroSetor }
+

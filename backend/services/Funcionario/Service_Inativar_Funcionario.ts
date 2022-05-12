@@ -14,4 +14,4 @@ class ServiceInativarFuncionario {
   }
 }
 
-export { ServiceInativarFuncionario }
+export { ServiceInativarFuncionario };

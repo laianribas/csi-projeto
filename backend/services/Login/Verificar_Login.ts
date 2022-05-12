@@ -12,4 +12,4 @@ class VerificarLogin {
   }
 }
 
-export { VerificarLogin }
+export { VerificarLogin };

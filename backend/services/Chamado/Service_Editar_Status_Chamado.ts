@@ -14,4 +14,4 @@ class ServiceEditarChamado {
   }
 }
 
-export { ServiceEditarChamado }
+export { ServiceEditarChamado };

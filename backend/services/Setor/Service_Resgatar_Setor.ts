@@ -8,4 +8,4 @@ class ServiceResgatarSetor {
   }
 }
 
-export { ServiceResgatarSetor }
+export { ServiceResgatarSetor };
