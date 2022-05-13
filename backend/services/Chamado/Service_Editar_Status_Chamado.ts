@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-class ServiceEditarChamado {
+class ServiceEditarStatusChamado {
   async execute(id: string, status: string): Promise<any> {
     const prisma = new PrismaClient()
     const chamado = await prisma.chamado.update({
@@ -14,4 +14,4 @@ class ServiceEditarChamado {
   }
 }
 
-export { ServiceEditarChamado };
+export { ServiceEditarStatusChamado };

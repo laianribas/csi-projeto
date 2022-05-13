@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { Request, Response } from 'express'
 import { gerarLogin } from '../../helpers/gerarLogin'
 import { gerarSenha } from '../../helpers/gerarSenha'
@@ -28,19 +27,23 @@ class ControllerCadastrarFuncionario {
         message: 'O funcionário deve fazer parte de ao menos um setor!'
       })
     }
+    try {
+      const login = await gerarLogin({ nome })
+      const senha = gerarSenha({ nome })
 
-    const login = await gerarLogin({ nome })
-    const senha = gerarSenha({ nome })
+      const funcionario = await serviceCadastroFuncionario.execute({
+        campus,
+        login,
+        nivel_acesso,
+        nome,
+        senha,
+        setores
+      })
+      return response.status(201).json(funcionario)
+    } catch (error) {
+      return response.status(500).json({ error: error })
+    }
 
-    const funcionario = await serviceCadastroFuncionario.execute({
-      campus,
-      login,
-      nivel_acesso,
-      nome,
-      senha,
-      setores
-    })
-    return response.status(201).json(funcionario)
   }
 }
 
