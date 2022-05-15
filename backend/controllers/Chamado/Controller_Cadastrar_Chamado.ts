@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { obterFuncionarioPorToken } from "../../helpers/obterFuncionarioPorToken";
 import { obterToken } from "../../helpers/obterToken";
 import { ServiceCadastrarChamado } from "../../services/Chamado/Service_Cadastrar_Chamado";
+import { ServiceResgatarSetor } from "../../services/Setor/Service_Resgatar_Setor";
 
 class ControllerCadastrarChamado {
   async handle(request: Request, response: Response) {
@@ -21,6 +22,11 @@ class ControllerCadastrarChamado {
     if (!setorId) {
       return response.status(400).json({ message: 'O setor do chamado deve ser informado!' })
     }
+    const serviceResgatarSetor = new ServiceResgatarSetor()
+    const setor = await serviceResgatarSetor.execute(setorId)
+    if (!setor) {
+      return response.status(400).json({ message: 'Setor não localizado!' })
+    }
     try {
       const token = obterToken(request)
       const funcionario = await obterFuncionarioPorToken(response, token as string)
@@ -34,4 +40,4 @@ class ControllerCadastrarChamado {
   }
 }
 
-export { ControllerCadastrarChamado }
+export { ControllerCadastrarChamado };
