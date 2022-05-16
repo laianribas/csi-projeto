@@ -1,0 +1,20 @@
+import { Request, Response } from "express";
+import { obterFuncionarioPorToken } from "../../helpers/obterFuncionarioPorToken";
+import { obterToken } from "../../helpers/obterToken";
+import { ServiceChamadoPorFuncionario } from "../../services/Chamado/service_Chamado_Por_Funcionario";
+
+class ControllerChamadoPorFuncionario {
+  async handle(request: Request, response: Response) {
+    try {
+      const token = obterToken(request)
+      const funcionario = await obterFuncionarioPorToken(response, token as string)
+      const serviceChamadoPorFuncionario = new ServiceChamadoPorFuncionario()
+      const chamado = await serviceChamadoPorFuncionario.execute(funcionario?.id)
+      return response.status(200).json(chamado)
+    } catch (error) {
+      return response.status(500).json({ error: error })
+    }
+  }
+}
+
+export { ControllerChamadoPorFuncionario }
