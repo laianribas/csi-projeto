@@ -7,16 +7,19 @@ interface ISetor {
 
 class ServiceCadastroSetor {
   async execute({ nome, descricao, ramal }: ISetor): Promise<any> {
-    const prisma = new PrismaClient()
-    const setor = prisma.setor.create({
-      data: {
-        nome,
-        ramal,
-        descricao,
-        ativo: true,
-      }
-    })
-    return setor
+    if (nome && descricao && ramal) {
+      const prisma = new PrismaClient()
+      const setor = prisma.setor.create({
+        data: {
+          nome,
+          ramal,
+          descricao,
+          ativo: true,
+        }
+      })
+      return setor
+    }
+    return null
   }
 }
 

@@ -10,7 +10,11 @@ class ControllerCadastroSetor {
     }
     try {
       const setor = await serviceCadastroSetor.execute({ nome, descricao, ramal })
-      return response.status(201).json(setor)
+      if (setor) {
+        return response.status(201).json(setor)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
       response.status(500).json({ Error: error })
     }

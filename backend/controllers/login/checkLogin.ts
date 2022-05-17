@@ -29,7 +29,11 @@ class CheckLogin {
     } else {
       usuarioAtual = null
     }
-    return response.status(200).json(usuarioAtual)
+    if (usuarioAtual) {
+      return response.status(201).json(usuarioAtual)
+    } else {
+      return response.status(400).json({ error: 'Sintaxe inválida!' })
+    }
   }
 }
 

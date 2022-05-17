@@ -39,7 +39,11 @@ class ControllerCadastrarFuncionario {
         senha,
         setores
       })
-      return response.status(201).json(funcionario)
+      if (funcionario) {
+        return response.status(201).json(funcionario)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
       return response.status(500).json({ error: error })
     }

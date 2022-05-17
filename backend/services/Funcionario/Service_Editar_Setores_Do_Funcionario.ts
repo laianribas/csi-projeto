@@ -6,29 +6,32 @@ interface ISetor {
 
 class ServiceEditarSetoresFuncionario {
   async execute(id: string, { setores }: ISetor): Promise<any> {
-    const prisma = new PrismaClient()
-    await prisma.funcionario.update({
-      where: { id: id },
-      data: {
-        setores: {
-          set: []
+    if (id && setores.length > 0) {
+      const prisma = new PrismaClient()
+      await prisma.funcionario.update({
+        where: { id: id },
+        data: {
+          setores: {
+            set: []
+          }
         }
-      }
-    })
-    const funcionario = await prisma.funcionario.update({
-      where: { id: id },
-      data: {
-        setores: {
-          set: setores.map(setor => ({
-            setorId_funcionarioId: {
-              funcionarioId: id,
-              setorId: setor.id
-            }
-          }))
+      })
+      const funcionario = await prisma.funcionario.update({
+        where: { id: id },
+        data: {
+          setores: {
+            set: setores.map(setor => ({
+              setorId_funcionarioId: {
+                funcionarioId: id,
+                setorId: setor.id
+              }
+            }))
+          }
         }
-      }
-    })
-    return funcionario
+      })
+      return funcionario
+    }
+    return null
   }
 }
 

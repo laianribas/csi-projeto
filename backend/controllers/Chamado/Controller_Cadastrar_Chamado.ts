@@ -32,7 +32,11 @@ class ControllerCadastrarChamado {
       const funcionario = await obterFuncionarioPorToken(response, token as string)
       const serviceCadastrarChamado = new ServiceCadastrarChamado()
       const chamado = await serviceCadastrarChamado.execute({ area, descricao, destinatario, status: 'Em aberto', tombo, avaliacao, funcionarioId: funcionario.id, setorId })
-      return response.status(201).json(chamado)
+      if (chamado) {
+        return response.status(201).json(chamado)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
       return response.status(500).json({ error: error })
     }

@@ -6,7 +6,11 @@ class ControllerResgatarTodosFuncionarios {
     try {
       const serviceResgatarTodosFuncionarios = new ServiceResgatarTodosFuncionarios()
       const funcionarios = await serviceResgatarTodosFuncionarios.execute()
-      return response.status(200).json(funcionarios)
+      if (funcionarios) {
+        return response.status(201).json(funcionarios)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
       return response.status(500).json({ error: error })
     }

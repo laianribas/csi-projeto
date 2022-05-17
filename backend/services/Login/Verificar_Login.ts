@@ -6,9 +6,12 @@ interface ILogin {
 
 class VerificarLogin {
   async execute({ login }: ILogin) {
-    const prisma = new PrismaClient()
-    const funcionario = await prisma.funcionario.findFirst({ where: { login: login } })
-    return funcionario
+    if (login) {
+      const prisma = new PrismaClient()
+      const funcionario = await prisma.funcionario.findFirst({ where: { login: login } })
+      return funcionario
+    }
+    return null
   }
 }
 

@@ -32,7 +32,11 @@ class ControllerEditarChamado {
     try {
       const serviceEditarChamado = new ServiceEditarChamado()
       const chamado = await serviceEditarChamado.execute(id, data)
-      return response.status(200).json(chamado)
+      if (chamado) {
+        return response.status(201).json(chamado)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
       return response.status(500).json({ error: error })
     }
