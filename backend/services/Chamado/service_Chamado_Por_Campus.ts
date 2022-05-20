@@ -4,9 +4,9 @@ class ServiceChamadoPorCampus {
   async execute(funcionarios: { id: string }[]) {
     if (funcionarios.length > 0) {
       const prisma = new PrismaClient()
-      const chamados = Promise.all(
+      const chamados = await Promise.all(
         funcionarios.map(async (funcionario) => {
-          return await prisma.chamado.findFirst({
+          return await prisma.chamado.findMany({
             where: {
               funcionarioId: funcionario.id
             }

@@ -33,6 +33,7 @@ model Funcionario {
   setores         FuncionarioOnSetor[]
 }
 
+//relatório
 model Chamado {
   id            String      @id @default(uuid())
   destinatario  String

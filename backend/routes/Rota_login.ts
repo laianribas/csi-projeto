@@ -10,4 +10,3 @@ RotaLogin.post('/', controllerLogin.handle)
 RotaLogin.get('/checkLogin', checkLogin.handle)
 
 export { RotaLogin };
-

@@ -12,9 +12,9 @@ interface IChamado {
 
 class ServiceCadastrarChamado {
   async execute({ area, descricao, destinatario, status, tombo, avaliacao, funcionarioId, setorId }: IChamado): Promise<any> {
-    if (area && descricao && destinatario && status && tombo && avaliacao && funcionarioId && setorId) {
+    if (area && descricao && destinatario && status && tombo && funcionarioId && setorId) {
       const prisma = new PrismaClient()
-      const chamado = prisma.chamado.create({
+      const chamado = await prisma.chamado.create({
         data: {
           area,
           descricao,
@@ -23,7 +23,7 @@ class ServiceCadastrarChamado {
           tombo,
           avaliacao,
           funcionarioId,
-          setorId,
+          setorId
         }
       })
       return chamado

@@ -11,8 +11,4 @@ function gerarSenha({ nome }: INomeFuncionario) {
   return senhaESalt.hash2
 }
 
-
-
-
 export { gerarSenha };
-
