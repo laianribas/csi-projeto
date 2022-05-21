@@ -35,17 +35,33 @@ model Funcionario {
 
 //relatório
 model Chamado {
-  id            String      @id @default(uuid())
+  id            String            @id @default(uuid())
   destinatario  String
   area          String
   descricao     String
   tombo         String
-  status        String
+  status        StatusOnChamado[]
   avaliacao     String?
-  setor         Setor       @relation(fields: [setorId], references: [id])
+  setor         Setor             @relation(fields: [setorId], references: [id])
   setorId       String
-  funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
+  funcionario   Funcionario       @relation(fields: [funcionarioId], references: [id])
   funcionarioId String
+}
+
+model Status {
+  id              String            @id
+  descricao       String
+  updatedAt       DateTime          @updatedAt
+  StatusOnChamado StatusOnChamado[]
+}
+
+model StatusOnChamado {
+  chamado   Chamado @relation(fields: [chamadoId], references: [id])
+  chamadoId String
+  status    Status  @relation(fields: [statusId], references: [id])
+  statusId  String
+
+  @@id([chamadoId, statusId])
 }
 
 model FuncionarioOnSetor {
