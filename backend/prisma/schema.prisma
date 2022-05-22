@@ -23,7 +23,8 @@ model Setor {
 model Funcionario {
   id              String               @id @default(uuid())
   nome            String
-  nivel_acesso    String
+  cargo           Cargo                @relation(fields: [cargoId], references: [id])
+  cargoId         String
   login           String
   senha           String
   primeiro_acesso Boolean              @default(true)
@@ -31,6 +32,19 @@ model Funcionario {
   ativo           Boolean              @default(true)
   chamados        Chamado[]
   setores         FuncionarioOnSetor[]
+}
+
+model Cargo {
+  id          String             @id
+  nome        String
+  permissao   PermissaoOnCargo[]
+  Funcionario Funcionario[]
+}
+
+model Permissao {
+  id               String             @id
+  descricao        String
+  PermissaoOnCargo PermissaoOnCargo[]
 }
 
 //relatório
@@ -71,4 +85,13 @@ model FuncionarioOnSetor {
   funcionarioId String
 
   @@id([setorId, funcionarioId])
+}
+
+model PermissaoOnCargo {
+  cargo       Cargo     @relation(fields: [cargoId], references: [id])
+  cargoId     String
+  permissao   Permissao @relation(fields: [permissaoId], references: [id])
+  permissaoId String
+
+  @@id([cargoId, permissaoId])
 }
