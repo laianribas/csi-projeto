@@ -23,8 +23,8 @@ model Setor {
 model Funcionario {
   id              String               @id @default(uuid())
   nome            String
-  cargo           Cargo                @relation(fields: [cargoId], references: [id])
-  cargoId         String
+  cargo           Cargo?               @relation(fields: [cargoId], references: [id])
+  cargoId         String?
   login           String
   senha           String
   primeiro_acesso Boolean              @default(true)
