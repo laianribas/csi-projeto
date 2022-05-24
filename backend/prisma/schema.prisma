@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Setor {
-  id           String               @id @default(uuid())
+  id           Int                  @id @default(autoincrement())
   nome         String
   ramal        String?
   descricao    String?
@@ -24,7 +24,7 @@ model Funcionario {
   id              String               @id @default(uuid())
   nome            String
   cargo           Cargo?               @relation(fields: [cargoId], references: [id])
-  cargoId         String?
+  cargoId         Int?
   login           String
   senha           String
   primeiro_acesso Boolean              @default(true)
@@ -35,14 +35,14 @@ model Funcionario {
 }
 
 model Cargo {
-  id          String             @id
+  id          Int                @id @default(autoincrement())
   nome        String
   permissao   PermissaoOnCargo[]
   Funcionario Funcionario[]
 }
 
 model Permissao {
-  id               String             @id
+  id               Int                @id @default(autoincrement())
   descricao        String
   PermissaoOnCargo PermissaoOnCargo[]
 }
@@ -57,13 +57,13 @@ model Chamado {
   status        StatusOnChamado[]
   avaliacao     String?
   setor         Setor             @relation(fields: [setorId], references: [id])
-  setorId       String
+  setorId       Int
   funcionario   Funcionario       @relation(fields: [funcionarioId], references: [id])
   funcionarioId String
 }
 
 model Status {
-  id              String            @id
+  id              Int               @id @default(autoincrement())
   descricao       String
   updatedAt       DateTime          @updatedAt
   StatusOnChamado StatusOnChamado[]
@@ -73,14 +73,14 @@ model StatusOnChamado {
   chamado   Chamado @relation(fields: [chamadoId], references: [id])
   chamadoId String
   status    Status  @relation(fields: [statusId], references: [id])
-  statusId  String
+  statusId  Int
 
   @@id([chamadoId, statusId])
 }
 
 model FuncionarioOnSetor {
   setor         Setor       @relation(fields: [setorId], references: [id])
-  setorId       String
+  setorId       Int
   Funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
   funcionarioId String
 
@@ -89,9 +89,9 @@ model FuncionarioOnSetor {
 
 model PermissaoOnCargo {
   cargo       Cargo     @relation(fields: [cargoId], references: [id])
-  cargoId     String
+  cargoId     Int
   permissao   Permissao @relation(fields: [permissaoId], references: [id])
-  permissaoId String
+  permissaoId Int
 
   @@id([cargoId, permissaoId])
 }
