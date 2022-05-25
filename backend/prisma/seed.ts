@@ -12,8 +12,7 @@ async function main() {
   })
   const status = await prisma.status.create({
     data: {
-      descricao: 'Em aberto',
-      updatedAt: new Date(),
+      descricao: 'Em aberto'
     }
   })
   console.log(setor, status)

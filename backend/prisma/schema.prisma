@@ -65,15 +65,15 @@ model Chamado {
 model Status {
   id              Int               @id @default(autoincrement())
   descricao       String
-  updatedAt       DateTime          @updatedAt
   StatusOnChamado StatusOnChamado[]
 }
 
 model StatusOnChamado {
-  chamado   Chamado @relation(fields: [chamadoId], references: [id])
+  chamado   Chamado  @relation(fields: [chamadoId], references: [id])
   chamadoId String
-  status    Status  @relation(fields: [statusId], references: [id])
+  status    Status   @relation(fields: [statusId], references: [id])
   statusId  Int
+  createdAt DateTime @default(now())
 
   @@id([chamadoId, statusId])
 }
