@@ -1,22 +1,22 @@
 import { PrismaClient } from "@prisma/client";
 interface IFuncionario {
-  nivel_acesso: string,
+  cargoId: number,
   login: string,
   campus: string,
   senha: string,
   nome: string
-  setores: { id: string }[]
+  setores: { id: number }[]
 }
 
 class ServiceCadastroFuncionario {
-  async execute({ nivel_acesso, login, campus, senha, nome, setores }: IFuncionario): Promise<any> {
-    if (nivel_acesso && login && campus && senha && nome && setores) {
+  async execute({ cargoId, login, campus, senha, nome, setores }: IFuncionario): Promise<any> {
+    if (cargoId && login && campus && senha && nome && setores) {
       const prisma = new PrismaClient();
       const funcionario = await prisma.funcionario.create({
         data: {
           primeiro_acesso: true,
           ativo: true,
-          nivel_acesso,
+          cargoId,
           login,
           campus,
           senha,

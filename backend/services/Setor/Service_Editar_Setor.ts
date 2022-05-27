@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 class ServiceEditarSetor {
-  async execute(id: string, data: object): Promise<any> {
+  async execute(id: number, data: object): Promise<any> {
     if (id && data) {
       const prisma = new PrismaClient()
       const setor = await prisma.setor.update({

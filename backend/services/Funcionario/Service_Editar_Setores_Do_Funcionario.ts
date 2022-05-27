@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 interface ISetor {
-  setores: { id: string }[]
+  setores: { id: number }[]
 }
 
 class ServiceEditarSetoresFuncionario {
