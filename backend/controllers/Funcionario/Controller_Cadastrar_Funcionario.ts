@@ -6,7 +6,7 @@ import { ServiceCadastroFuncionario } from '../../services/Funcionario/Service_C
 class ControllerCadastrarFuncionario {
   async handle(request: Request, response: Response) {
     const serviceCadastroFuncionario = new ServiceCadastroFuncionario()
-    const { campus, nivel_acesso, nome, setores } = request.body
+    const { campus, cargoId, nome, setores } = request.body
     if (!nome) {
       return response
         .status(400)
@@ -17,7 +17,7 @@ class ControllerCadastrarFuncionario {
         .status(400)
         .json({ message: 'O campus do funcionário deve ser informado!' })
     }
-    if (!nivel_acesso) {
+    if (!cargoId) {
       return response.status(400).json({
         message: 'O nível de acesso do funcionário deve ser informado!'
       })
@@ -34,7 +34,7 @@ class ControllerCadastrarFuncionario {
       const funcionario = await serviceCadastroFuncionario.execute({
         campus,
         login,
-        nivel_acesso,
+        cargoId,
         nome,
         senha,
         setores

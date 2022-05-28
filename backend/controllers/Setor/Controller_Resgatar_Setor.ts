@@ -6,7 +6,7 @@ class ControllerResgatarSetor {
     const { id } = request.params
     try {
       const serviceResgatarSetor = new ServiceResgatarSetor()
-      const setor = await serviceResgatarSetor.execute(id)
+      const setor = await serviceResgatarSetor.execute(parseInt(id))
       if (setor) {
         return response.status(201).json(setor)
       } else {

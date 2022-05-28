@@ -3,7 +3,7 @@ interface IChamado {
   area: string,
   descricao: string,
   destinatario: string,
-  statusIds: { id: string }[],
+  statusIds: { id: Number }[],
   tombo: string,
   avaliacao: string,
   funcionarioId: string,

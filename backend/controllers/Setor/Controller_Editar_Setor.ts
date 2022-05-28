@@ -22,7 +22,7 @@ class ControllerEditarSetor {
     }
     try {
       const serviceEditarSetor = new ServiceEditarSetor()
-      const setor = await serviceEditarSetor.execute(id, data)
+      const setor = await serviceEditarSetor.execute(parseInt(id), data)
       if (setor) {
         return response.status(201).json(setor)
       } else {
