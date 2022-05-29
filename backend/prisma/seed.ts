@@ -1,4 +1,6 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
+import 'dotenv/config';
+import { SHA512 } from "../helpers/sha512";
 
 const prisma = new PrismaClient()
 async function main() {
@@ -24,7 +26,19 @@ async function main() {
       }
     })
   }))
-  console.log(cargos_criados)
+  const senha = SHA512('admin', process.env.SECRET_KEY as string).hash2
+  const admin = await prisma.funcionario.create({
+    data: {
+      campus: 'jequié',
+      login: 'admin',
+      nome: 'admin',
+      senha: senha,
+      ativo: true,
+      cargoId: 3,
+      primeiro_acesso: true,
+    }
+  })
+  console.log(cargos_criados, admin)
 }
 
 main()

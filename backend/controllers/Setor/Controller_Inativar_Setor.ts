@@ -7,7 +7,7 @@ class ControllerInativarSetor {
     const { id } = request.params
     try {
       const serviceInativarSetor = new ServiceInativarSetor()
-      const setor = await serviceInativarSetor.execute(id)
+      const setor = await serviceInativarSetor.execute(parseInt(id))
       if (setor) {
         return response.status(201).json(setor)
       } else {
