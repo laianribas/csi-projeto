@@ -18,11 +18,14 @@ class ControllerChamadoPorCampus {
           }
         }
       })
-      console.log('funcionarios: ', funcionarios)
       const chamados = await serviceChamadoPorCampus.execute(funcionarios)
-      console.log('chamados: ', chamados)
+      if (chamados) {
+        return response.status(201).json(chamados)
+      } else {
+        return response.status(400).json({ error: 'Sintaxe inválida!' })
+      }
     } catch (error) {
-
+      return response.status(500).json({ error: error })
     }
   }
 }

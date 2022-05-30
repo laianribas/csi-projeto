@@ -31,7 +31,6 @@ class ControllerCadastrarChamado {
       const token = obterToken(request)
       const funcionario = await obterFuncionarioPorToken(response, token as string)
       const serviceCadastrarChamado = new ServiceCadastrarChamado()
-      console.log(area, descricao, destinatario, 'Em aberto', tombo, avaliacao, funcionario.id, setor.id)
       const chamado = await serviceCadastrarChamado.execute({ area, descricao, destinatario, statusIds: [{ id: 1 }], tombo, avaliacao, funcionarioId: funcionario.id, setorId: setor.id })
       if (chamado) {
         return response.status(201).json(chamado)

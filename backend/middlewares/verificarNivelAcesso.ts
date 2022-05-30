@@ -4,8 +4,8 @@ import { obterToken } from "../helpers/obterToken";
 
 async function verificarNivelAcesso(request: Request, response: Response, next: NextFunction) {
   const token = obterToken(request)
-  const funcionario = await obterFuncionarioPorToken(response, token as string);
-  if (funcionario?.nivel_acesso !== 'Administrador') {
+  const funcionario = await obterFuncionarioPorToken(response, token as string)
+  if (funcionario?.cargoId !== 3) {
     return response.status(403).json({ message: 'Nível de acesso insuficiente!' })
   }
   next()

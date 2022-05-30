@@ -20,11 +20,9 @@ class ServiceCadastrarChamado {
           descricao,
           destinatario,
           status: {
-            create: statusIds.map(statusId => ({
-              status: {
-                connect: statusId.id
-              }
-            }))
+            create: {
+              statusId: 1
+            }
           },
           tombo,
           avaliacao,
