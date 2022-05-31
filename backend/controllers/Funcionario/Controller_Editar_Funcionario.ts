@@ -5,7 +5,7 @@ import { ServiceEditarFuncionario } from '../../services/Funcionario/Service_Edi
 
 interface IData {
   nome: string,
-  nivel_acesso: string,
+  cargoId: string,
   senha: string,
   primeiro_acesso: string,
   campus: string,
@@ -14,13 +14,13 @@ interface IData {
 class ControllerEditarFuncionario {
   async handle(request: Request, response: Response) {
     const { id } = request.params
-    const { nome, nivel_acesso, senha, primeiro_acesso, campus } = request.body
+    const { nome, cargoId, senha, primeiro_acesso, campus } = request.body
     let data = {} as IData
     if (nome) {
       data.nome = nome
     }
-    if (nivel_acesso) {
-      data.nivel_acesso = nivel_acesso
+    if (cargoId) {
+      data.cargoId = cargoId
     }
     if (senha) {
       data.senha = SHA512(senha, process.env.SECRET_KEY as string).hash2
