@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Request, Response } from "express";
 import { SHA512 } from "../../helpers/sha512";
 import { ServiceEditarFuncionario } from '../../services/Funcionario/Service_Editar_Funcionario';
+import { ServiceEditarSetoresFuncionario } from '../../services/Funcionario/Service_Editar_Setores_Do_Funcionario';
 
 interface IData {
   nome: string,
@@ -14,7 +15,7 @@ interface IData {
 class ControllerEditarFuncionario {
   async handle(request: Request, response: Response) {
     const { id } = request.params
-    const { nome, cargoId, senha, primeiro_acesso, campus } = request.body
+    const { nome, cargoId, senha, primeiro_acesso, campus, setores } = request.body
     let data = {} as IData
     if (nome) {
       data.nome = nome
@@ -33,6 +34,10 @@ class ControllerEditarFuncionario {
     }
     try {
       const serviceEditarFuncionario = new ServiceEditarFuncionario()
+      if (setores) {
+        const serviceEditarSetoresFuncionario = new ServiceEditarSetoresFuncionario()
+        await serviceEditarSetoresFuncionario.execute(id, setores)
+      }
       const funcionario = await serviceEditarFuncionario.execute(id, data)
       if (funcionario) {
         return response.status(201).json(funcionario)

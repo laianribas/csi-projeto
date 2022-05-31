@@ -18,10 +18,11 @@ class ServiceEditarSetoresFuncionario {
         where: { id: id },
         data: {
           setores: {
-            set: setores.map(setor => ({
-              setorId_funcionarioId: {
-                funcionarioId: id,
-                setorId: setor.id
+            create: setores.map(setorId => ({
+              setor: {
+                connect: {
+                  id: setorId.id
+                }
               }
             }))
           }
