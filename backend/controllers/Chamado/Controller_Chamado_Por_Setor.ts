@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { obterFuncionarioPorToken } from "../../helpers/obterFuncionarioPorToken";
-import { ServiceChamadoPorSetor } from "../../services/Chamado/service_Chamado_Por_Setor";
 import { obterToken } from "../../helpers/obterToken";
+import { ServiceChamadoPorSetor } from "../../services/Chamado/service_Chamado_Por_Setor";
 
 class ControllerChamadoPorSetor {
   async handle(request: Request, response: Response) {
@@ -24,4 +24,4 @@ class ControllerChamadoPorSetor {
   }
 }
 
-export { ControllerChamadoPorSetor }
+export { ControllerChamadoPorSetor };

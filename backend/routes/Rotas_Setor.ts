@@ -21,3 +21,4 @@ RotasSetor.get('/:id', verificarToken, verificarNivelAcesso, controllerResgatarS
 RotasSetor.get('/', verificarToken, verificarNivelAcesso, controllerResgatarTodosSetores.handle)
 
 export { RotasSetor };
+

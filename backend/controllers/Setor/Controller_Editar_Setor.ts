@@ -34,4 +34,4 @@ class ControllerEditarSetor {
   }
 }
 
-export { ControllerEditarSetor }
+export { ControllerEditarSetor };

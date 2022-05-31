@@ -18,3 +18,4 @@ class ControllerResgatarTodosSetores {
 }
 
 export { ControllerResgatarTodosSetores };
+

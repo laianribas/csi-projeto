@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 class ServiceEditarStatusChamado {
   async execute(id: string, status: number): Promise<any> {
     if (id && status) {
-      const prisma = new PrismaClient()
       const chamado = await prisma.chamado.update({
         where: {
           id: id

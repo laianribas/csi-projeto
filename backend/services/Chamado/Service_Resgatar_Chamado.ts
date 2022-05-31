@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 class ServiceResgatarChamado {
   async execute(id: string): Promise<any> {
     if (id) {
-      const prisma = new PrismaClient()
       const chamado = await prisma.chamado.findUnique({ where: { id: id } })
       return chamado
     }

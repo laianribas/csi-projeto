@@ -45,4 +45,4 @@ class ControllerEditarFuncionario {
   }
 }
 
-export { ControllerEditarFuncionario }
+export { ControllerEditarFuncionario };

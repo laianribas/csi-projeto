@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../../utils/db.server'
+
 class ServiceChamadoPorFuncionario {
   async execute(id: string) {
     if (id) {
-      const prisma = new PrismaClient()
       const chamado = await prisma.chamado.findMany({ where: { funcionarioId: id } })
       return chamado
     }

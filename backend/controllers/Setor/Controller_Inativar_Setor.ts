@@ -19,4 +19,4 @@ class ControllerInativarSetor {
   }
 }
 
-export { ControllerInativarSetor }
+export { ControllerInativarSetor };

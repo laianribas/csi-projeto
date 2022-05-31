@@ -43,4 +43,4 @@ class ControllerEditarChamado {
   }
 }
 
-export { ControllerEditarChamado }
+export { ControllerEditarChamado };

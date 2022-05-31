@@ -18,4 +18,4 @@ class ControllerResgatarSetor {
   }
 }
 
-export { ControllerResgatarSetor }
+export { ControllerResgatarSetor };

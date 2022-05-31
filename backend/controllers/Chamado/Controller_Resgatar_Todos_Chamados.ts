@@ -18,3 +18,4 @@ class ControllerResgatarTodosChamados {
 }
 
 export { ControllerResgatarTodosChamados };
+

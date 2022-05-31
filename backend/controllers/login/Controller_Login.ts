@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import { Request, Response } from "express";
 import { gerarToken } from "../../helpers/gerarToken";
-import { SHA512 } from "../../helpers/sha512";
 import { verificarSenha } from "../../helpers/verificarSenha";
 import { VerificarLogin } from "../../services/Login/Verificar_Login";
 
@@ -32,3 +31,4 @@ class ControllerLogin {
 }
 
 export { ControllerLogin };
+

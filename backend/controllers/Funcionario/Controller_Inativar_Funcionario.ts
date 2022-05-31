@@ -19,4 +19,4 @@ class ControllerInativarFuncionario {
   }
 }
 
-export { ControllerInativarFuncionario }
+export { ControllerInativarFuncionario };

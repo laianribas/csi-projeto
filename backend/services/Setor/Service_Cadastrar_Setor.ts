@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from '../../utils/db.server'
 interface ISetor {
   nome: string,
   descricao: string,
@@ -8,7 +8,6 @@ interface ISetor {
 class ServiceCadastroSetor {
   async execute({ nome, descricao, ramal }: ISetor): Promise<any> {
     if (nome && descricao && ramal) {
-      const prisma = new PrismaClient()
       const setor = prisma.setor.create({
         data: {
           nome,

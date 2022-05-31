@@ -21,4 +21,4 @@ class ControllerChamadoPorFuncionario {
   }
 }
 
-export { ControllerChamadoPorFuncionario }
+export { ControllerChamadoPorFuncionario };

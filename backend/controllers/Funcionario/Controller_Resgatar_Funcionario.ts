@@ -18,4 +18,4 @@ class ControllerResgatarFuncionario {
   }
 }
 
-export { ControllerResgatarFuncionario }
+export { ControllerResgatarFuncionario };

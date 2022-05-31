@@ -18,3 +18,4 @@ class ControllerResgatarTodosFuncionarios {
 }
 
 export { ControllerResgatarTodosFuncionarios };
+

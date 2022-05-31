@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 interface ILogin {
   login: string;
 }
@@ -7,7 +6,6 @@ interface ILogin {
 class VerificarLogin {
   async execute({ login }: ILogin) {
     if (login) {
-      const prisma = new PrismaClient()
       const funcionario = await prisma.funcionario.findFirst({ where: { login: login } })
       return funcionario
     }

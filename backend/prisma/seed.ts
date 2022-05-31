@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import 'dotenv/config';
 import { SHA512 } from "../helpers/sha512";
+import { prisma } from '../utils/db.server';
 
-const prisma = new PrismaClient()
 async function main() {
   const cargos = ['Coordenador', 'Suporte', 'Secretario', 'Redes', 'Manutenção']
   const cargos_criados = await Promise.all(cargos.map(async cargo => {

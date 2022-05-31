@@ -12,3 +12,4 @@ function gerarSenha({ nome }: INomeFuncionario) {
 }
 
 export { gerarSenha };
+

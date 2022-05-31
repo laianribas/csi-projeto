@@ -10,3 +10,4 @@ function SHA512(senha: string, salt: string) {
 }
 
 export { SHA512 };
+

@@ -7,3 +7,4 @@ function obterToken(request: Request) {
 }
 
 export { obterToken };
+

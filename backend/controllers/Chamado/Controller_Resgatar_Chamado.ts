@@ -18,4 +18,4 @@ class ControllerResgatarChamado {
   }
 }
 
-export { ControllerResgatarChamado }
+export { ControllerResgatarChamado };

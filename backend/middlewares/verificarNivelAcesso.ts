@@ -11,4 +11,4 @@ async function verificarNivelAcesso(request: Request, response: Response, next: 
   next()
 }
 
-export { verificarNivelAcesso }
+export { verificarNivelAcesso };

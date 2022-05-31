@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 class ServiceResgatarTodosChamados {
   async execute(): Promise<any> {
-    const prisma = new PrismaClient()
     const chamados = await prisma.chamado.findMany({
       include: {
         status: {

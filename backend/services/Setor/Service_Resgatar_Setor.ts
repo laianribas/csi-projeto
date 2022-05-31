@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 class ServiceResgatarSetor {
   async execute(id: number): Promise<any> {
     if (id) {
-      const prisma = new PrismaClient()
       const setor = await prisma.setor.findUnique({ where: { id: id } })
       return setor
     }

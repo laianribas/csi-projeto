@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from '../../utils/db.server'
+
 interface IFuncionario {
   cargoId: number,
   login: string,
@@ -11,7 +12,6 @@ interface IFuncionario {
 class ServiceCadastroFuncionario {
   async execute({ cargoId, login, campus, senha, nome, setores }: IFuncionario): Promise<any> {
     if (cargoId && login && campus && senha && nome && setores) {
-      const prisma = new PrismaClient();
       const funcionario = await prisma.funcionario.create({
         data: {
           primeiro_acesso: true,

@@ -1,13 +1,11 @@
-import { PrismaClient } from "@prisma/client"
-
-class FuncionarioPorCampus {
+import { prisma } from '../../utils/db.server'
+class ServiceFuncionarioPorCampus {
   async execute(campus: string): Promise<any> {
     if (campus) {
-      const prisma = new PrismaClient()
       const funcionarios = await prisma.funcionario.findMany({
         where: {
           campus: {
-            contains: campus
+            equals: campus
           }
         }
       })
@@ -17,4 +15,4 @@ class FuncionarioPorCampus {
   }
 }
 
-export { FuncionarioPorCampus }
+export { ServiceFuncionarioPorCampus }

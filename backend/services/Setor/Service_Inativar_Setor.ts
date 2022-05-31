@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from '../../utils/db.server'
 
 class ServiceInativarSetor {
   async execute(id: number): Promise<any> {
     if (id) {
-      const prisma = new PrismaClient()
       const setor = await prisma.setor.update({
         where: {
           id: id

@@ -45,3 +45,4 @@ class ControllerCadastrarChamado {
 }
 
 export { ControllerCadastrarChamado };
+

@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
+import { prisma } from '../../utils/db.server'
 interface ISetor {
   setores: { id: number }[]
 }
@@ -7,7 +6,6 @@ interface ISetor {
 class ServiceEditarSetoresFuncionario {
   async execute(id: string, { setores }: ISetor): Promise<any> {
     if (id && setores.length > 0) {
-      const prisma = new PrismaClient()
       await prisma.funcionario.update({
         where: { id: id },
         data: {

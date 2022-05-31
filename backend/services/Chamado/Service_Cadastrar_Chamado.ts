@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from '../../utils/db.server'
 interface IChamado {
   area: string,
   descricao: string,
@@ -13,7 +13,6 @@ interface IChamado {
 class ServiceCadastrarChamado {
   async execute({ area, descricao, destinatario, statusIds, tombo, avaliacao, funcionarioId, setorId }: IChamado): Promise<any> {
     if (area && descricao && destinatario && statusIds && tombo && funcionarioId && setorId) {
-      const prisma = new PrismaClient()
       const chamado = await prisma.chamado.create({
         data: {
           area,
