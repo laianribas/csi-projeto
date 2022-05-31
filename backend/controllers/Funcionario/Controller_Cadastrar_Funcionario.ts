@@ -19,7 +19,7 @@ class ControllerCadastrarFuncionario {
     }
     if (!cargoId) {
       return response.status(400).json({
-        message: 'O nível de acesso do funcionário deve ser informado!'
+        message: 'O cargo do funcionário deve ser informado!'
       })
     }
     if (!setores || setores.length === 0) {
