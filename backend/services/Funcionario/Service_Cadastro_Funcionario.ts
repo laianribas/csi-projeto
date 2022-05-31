@@ -11,6 +11,7 @@ interface IFuncionario {
 
 class ServiceCadastroFuncionario {
   async execute({ cargoId, login, campus, senha, nome, setores }: IFuncionario): Promise<any> {
+    console.log(setores)
     if (cargoId && login && campus && senha && nome && setores) {
       const funcionario = await prisma.funcionario.create({
         data: {

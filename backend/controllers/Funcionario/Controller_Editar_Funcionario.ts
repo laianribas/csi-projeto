@@ -34,9 +34,10 @@ class ControllerEditarFuncionario {
     }
     try {
       const serviceEditarFuncionario = new ServiceEditarFuncionario()
+      const serviceEditarSetoresFuncionario = new ServiceEditarSetoresFuncionario()
       if (setores) {
-        const serviceEditarSetoresFuncionario = new ServiceEditarSetoresFuncionario()
-        await serviceEditarSetoresFuncionario.execute(id, setores)
+        console.log(setores.length)
+        await serviceEditarSetoresFuncionario.execute(id, { setores })
       }
       const funcionario = await serviceEditarFuncionario.execute(id, data)
       if (funcionario) {

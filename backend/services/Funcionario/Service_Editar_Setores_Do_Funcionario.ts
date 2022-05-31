@@ -5,19 +5,13 @@ interface ISetor {
 
 class ServiceEditarSetoresFuncionario {
   async execute(id: string, { setores }: ISetor): Promise<any> {
-    if (id && setores.length > 0) {
-      await prisma.funcionario.update({
-        where: { id: id },
-        data: {
-          setores: {
-            set: []
-          }
-        }
-      })
+    console.log(id, setores)
+    if (id && setores) {
       const funcionario = await prisma.funcionario.update({
         where: { id: id },
         data: {
           setores: {
+            deleteMany: {},
             create: setores.map(setorId => ({
               setor: {
                 connect: {

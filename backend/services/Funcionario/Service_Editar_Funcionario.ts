@@ -5,7 +5,14 @@ class ServiceEditarFuncionario {
       const funcionario = await prisma.funcionario.update({
         where: {
           id: id
-        }, data: data
+        }, data: data,
+        include: {
+          setores: {
+            include: {
+              setor: true
+            }
+          }
+        }
       })
       return funcionario
     }
