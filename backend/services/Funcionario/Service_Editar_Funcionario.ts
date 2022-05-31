@@ -10,6 +10,9 @@ class ServiceEditarFuncionario {
           setores: {
             include: {
               setor: true
+            },
+            orderBy: {
+              setorId: 'asc'
             }
           }
         }
