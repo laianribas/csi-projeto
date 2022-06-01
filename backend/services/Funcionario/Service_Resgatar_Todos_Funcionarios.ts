@@ -18,7 +18,11 @@ class ServiceResgatarTodosFuncionarios {
             }
           }
         },
-        setores: true
+        setores: {
+          select: {
+            setor: true
+          }
+        }
       }
     });
     return funcionarios

@@ -11,7 +11,7 @@ class ControllerChamadoPorFuncionario {
       const serviceChamadoPorFuncionario = new ServiceChamadoPorFuncionario()
       const chamado = await serviceChamadoPorFuncionario.execute(funcionario?.id)
       if (chamado) {
-        return response.status(201).json(chamado)
+        return response.status(200).json(chamado)
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

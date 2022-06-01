@@ -3,13 +3,24 @@ class ServiceResgatarTodosChamados {
   async execute(): Promise<any> {
     const chamados = await prisma.chamado.findMany({
       include: {
-        status: {
+        funcionario: {
           select: {
-            status: {
-              select: {
-                descricao: true,
+            id: true,
+            nome: true,
+            cargo: true,
+            campus: true,
+            setores: {
+              include: {
+                setor: true
               }
             }
+          }
+        },
+        setor: true,
+        status: {
+          select: {
+            createdAt: true,
+            status: true
           }
         }
       }

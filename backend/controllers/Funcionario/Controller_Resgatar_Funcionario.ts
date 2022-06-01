@@ -8,7 +8,7 @@ class ControllerResgatarFuncionario {
       const serviceResgatarFuncionario = new ServiceResgatarFuncionario()
       const funcionario = await serviceResgatarFuncionario.execute(id)
       if (funcionario) {
-        return response.status(201).json(funcionario)
+        return response.status(200).json(funcionario)
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

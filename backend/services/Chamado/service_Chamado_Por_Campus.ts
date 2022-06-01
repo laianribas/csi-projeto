@@ -7,6 +7,28 @@ class ServiceChamadoPorCampus {
           return await prisma.chamado.findMany({
             where: {
               funcionarioId: funcionario.id
+            },
+            include: {
+              funcionario: {
+                select: {
+                  id: true,
+                  nome: true,
+                  cargo: true,
+                  campus: true,
+                  setores: {
+                    include: {
+                      setor: true
+                    }
+                  }
+                }
+              },
+              setor: true,
+              status: {
+                select: {
+                  createdAt: true,
+                  status: true
+                }
+              }
             }
           })
         })

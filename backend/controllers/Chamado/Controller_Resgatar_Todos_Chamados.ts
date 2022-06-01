@@ -7,7 +7,7 @@ class ControllerResgatarTodosChamados {
       const serviceResgatarTodosChamados = new ServiceResgatarTodosChamados()
       const chamados = await serviceResgatarTodosChamados.execute()
       if (chamados) {
-        return response.status(201).json(chamados)
+        return response.status(200).json(chamados)
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

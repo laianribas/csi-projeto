@@ -14,7 +14,7 @@ class ControllerChamadoPorSetor {
       setores.map((setor: { setorId: any; }) => setoresId.push(setor.setorId))
       const chamados = await serviceChamadoPorSetor.execute(setoresId)
       if (chamados) {
-        return response.status(201).json(chamados)
+        return response.status(200).json(chamados)
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

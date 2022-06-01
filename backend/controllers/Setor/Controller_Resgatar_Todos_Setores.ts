@@ -7,7 +7,7 @@ class ControllerResgatarTodosSetores {
       const serviceResgatarTodosSetores = new ServiceResgatarTodosSetores()
       const setores = await serviceResgatarTodosSetores.execute()
       if (setores) {
-        return response.status(201).json(setores)
+        return response.status(200).json(setores)
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }
