@@ -12,16 +12,23 @@ class ServiceResgatarTodosSetores {
                 nome: true,
                 cargo: true,
                 campus: true,
-                setores: {
-                  include: {
-                    setor: true
-                  }
-                }
+                setores: true
               }
             }
           }
         },
-        chamados: true
+        chamados: {
+          include: {
+            funcionario: {
+              select: {
+                id: true,
+                nome: true,
+                cargo: true,
+                campus: true,
+              }
+            }
+          }
+        }
       }
     });
     return setores
