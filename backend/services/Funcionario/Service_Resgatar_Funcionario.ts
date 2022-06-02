@@ -26,6 +26,21 @@ class ServiceResgatarFuncionario {
             select: {
               setor: true
             }
+          },
+          cargo: {
+            select: {
+              nome: true,
+              permissao: {
+                select: {
+                  permissao: {
+                    select: {
+                      id: true,
+                      descricao: true
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       })
