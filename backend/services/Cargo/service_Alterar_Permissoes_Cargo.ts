@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { prisma } from './../../utils/db.server';
 
 class ServiceAlterarPermissoesCargo {
@@ -17,6 +16,9 @@ class ServiceAlterarPermissoesCargo {
               }
             }))
           }
+        },
+        include: {
+          permissao: true
         }
       })
       return cargo
@@ -25,4 +27,4 @@ class ServiceAlterarPermissoesCargo {
   }
 }
 
-export { ServiceAlterarPermissoesCargo }
+export { ServiceAlterarPermissoesCargo };
