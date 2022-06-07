@@ -8,19 +8,19 @@ class ControllerCadastrarChamado {
   async handle(request: Request, response: Response) {
     const { area, descricao, destinatario, tombo, avaliacao, setorId } = request.body
     if (!area) {
-      return response.status(400).json({ message: 'A área do chamado deve ser informada!' })
+      return response.status(400).json({ message: 'A área do Chamado deve ser informada!' })
     }
     if (!descricao) {
-      return response.status(400).json({ message: 'A descrição do chamado deve ser informada!' })
+      return response.status(400).json({ message: 'A descrição do Chamado deve ser informada!' })
     }
     if (!destinatario) {
-      return response.status(400).json({ message: 'O destinatário do chamado deve ser informado!' })
+      return response.status(400).json({ message: 'O destinatário do Chamado deve ser informado!' })
     }
     if (!tombo) {
-      return response.status(400).json({ message: 'O tombo do equipamento do chamado deve ser informado!' })
+      return response.status(400).json({ message: 'O tombo do equipamento do Chamado deve ser informado!' })
     }
     if (!setorId) {
-      return response.status(400).json({ message: 'O setor do chamado deve ser informado!' })
+      return response.status(400).json({ message: 'O setor do Chamado deve ser informado!' })
     }
     const serviceResgatarSetor = new ServiceResgatarSetor()
     const setor = await serviceResgatarSetor.execute(setorId)
@@ -31,9 +31,9 @@ class ControllerCadastrarChamado {
       const token = obterToken(request)
       const funcionario = await obterFuncionarioPorToken(response, token as string)
       const serviceCadastrarChamado = new ServiceCadastrarChamado()
-      const chamado = await serviceCadastrarChamado.execute({ area, descricao, destinatario, statusIds: [{ id: 1 }], tombo, avaliacao, funcionarioId: funcionario.id, setorId: setor.id })
-      if (chamado) {
-        return response.status(201).json(chamado)
+      const Chamado = await serviceCadastrarChamado.execute({ area, descricao, destinatario, statusIds: [{ id: 1 }], tombo, avaliacao, funcionarioId: funcionario.id, setorId: setor.id })
+      if (Chamado) {
+        return response.status(201).json({ Chamado: Chamado })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

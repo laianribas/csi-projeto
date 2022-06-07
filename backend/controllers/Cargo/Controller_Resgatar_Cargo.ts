@@ -8,7 +8,7 @@ class ControllerResgatarCargo {
       const serviceResgatarCargo = new ServiceResgatarCargo()
       const Cargo = await serviceResgatarCargo.execute(parseInt(id))
       if (Cargo) {
-        return response.status(200).json(Cargo)
+        return response.status(200).json({ Cargo: Cargo })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

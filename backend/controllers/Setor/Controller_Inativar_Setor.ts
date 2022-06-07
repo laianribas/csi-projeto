@@ -7,9 +7,9 @@ class ControllerInativarSetor {
     const { id } = request.params
     try {
       const serviceInativarSetor = new ServiceInativarSetor()
-      const setor = await serviceInativarSetor.execute(parseInt(id))
-      if (setor) {
-        return response.status(200).json(setor)
+      const Setor = await serviceInativarSetor.execute(parseInt(id))
+      if (Setor) {
+        return response.status(201).json({ Setor: Setor })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

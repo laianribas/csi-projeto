@@ -13,9 +13,9 @@ class ControllerAlterarPermissoesCargo {
     }
     try {
       const serviceAlterarPermissoesCargo = new ServiceAlterarPermissoesCargo()
-      const cargo = await serviceAlterarPermissoesCargo.execute(parseInt(id), permissoes)
-      if (cargo) {
-        return response.status(200).json(cargo)
+      const Cargo = await serviceAlterarPermissoesCargo.execute(parseInt(id), permissoes)
+      if (Cargo) {
+        return response.status(200).json({ Cargo: Cargo })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

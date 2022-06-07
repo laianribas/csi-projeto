@@ -12,6 +12,10 @@ class ServiceResgatarCargo {
           permissoes: {
             select: {
               permissao: true,
+
+            },
+            orderBy: {
+              permissaoId: 'asc',
             }
           }
         }

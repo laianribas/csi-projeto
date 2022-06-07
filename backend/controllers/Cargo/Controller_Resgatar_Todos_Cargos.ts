@@ -7,7 +7,7 @@ class ControllerResgatarTodosCargos {
       const serviceResgatarTodosCargos = new ServiceResgatarTodosCargos()
       const Cargos = await serviceResgatarTodosCargos.execute()
       if (Cargos) {
-        return response.status(200).json(Cargos)
+        return response.status(200).json({ Cargos: Cargos })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

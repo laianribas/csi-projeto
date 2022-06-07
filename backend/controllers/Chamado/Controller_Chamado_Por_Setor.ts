@@ -12,9 +12,9 @@ class ControllerChamadoPorSetor {
       const serviceChamadoPorSetor = new ServiceChamadoPorSetor()
       const { setores } = funcionario
       setores.map((setor: { setorId: any; }) => setoresId.push(setor.setorId))
-      const chamados = await serviceChamadoPorSetor.execute(setoresId)
-      if (chamados) {
-        return response.status(200).json(chamados)
+      const Chamados = await serviceChamadoPorSetor.execute(setoresId)
+      if (Chamados) {
+        return response.status(201).json({ Chamado: Chamados })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

@@ -38,9 +38,9 @@ class ControllerEditarFuncionario {
       if (setores) {
         await serviceEditarSetoresFuncionario.execute(id, { setores })
       }
-      const funcionario = await serviceEditarFuncionario.execute(id, data)
-      if (funcionario) {
-        return response.status(200).json(funcionario)
+      const Funcionario = await serviceEditarFuncionario.execute(id, data)
+      if (Funcionario) {
+        return response.status(201).json({ Funcionario: Funcionario })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

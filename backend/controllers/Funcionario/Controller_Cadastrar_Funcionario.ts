@@ -31,7 +31,7 @@ class ControllerCadastrarFuncionario {
       const login = await gerarLogin({ nome })
       const senha = gerarSenha({ nome })
 
-      const funcionario = await serviceCadastroFuncionario.execute({
+      const Funcionario = await serviceCadastroFuncionario.execute({
         campus,
         login,
         cargoId,
@@ -39,8 +39,8 @@ class ControllerCadastrarFuncionario {
         senha,
         setores
       })
-      if (funcionario) {
-        return response.status(201).json(funcionario)
+      if (Funcionario) {
+        return response.status(201).json({ Funcionario: Funcionario })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

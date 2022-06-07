@@ -30,7 +30,7 @@ class CheckLogin {
       usuarioAtual = null
     }
     if (usuarioAtual) {
-      return response.status(200).json(usuarioAtual)
+      return response.status(200).json({ usuario_Atual: usuarioAtual })
     } else {
       return response.status(400).json({ error: 'Sintaxe inválida!' })
     }

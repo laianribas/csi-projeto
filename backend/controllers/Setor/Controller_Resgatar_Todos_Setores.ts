@@ -5,9 +5,9 @@ class ControllerResgatarTodosSetores {
   async handle(request: Request, response: Response) {
     try {
       const serviceResgatarTodosSetores = new ServiceResgatarTodosSetores()
-      const setores = await serviceResgatarTodosSetores.execute()
-      if (setores) {
-        return response.status(200).json(setores)
+      const Setores = await serviceResgatarTodosSetores.execute()
+      if (Setores) {
+        return response.status(201).json({ Setores: Setores })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

@@ -1,14 +1,30 @@
+import { prisma } from './../utils/db.server';
 import { NextFunction, Request, Response } from "express";
 import { obterFuncionarioPorToken } from "../helpers/obterFuncionarioPorToken";
 import { obterToken } from "../helpers/obterToken";
 
 async function verificarNivelAcesso(request: Request, response: Response, next: NextFunction) {
-  const token = obterToken(request)
-  const funcionario = await obterFuncionarioPorToken(response, token as string)
-  if (funcionario?.cargoId !== 1) {
-    return response.status(403).json({ message: 'Nível de acesso insuficiente!' })
+  if (request.headers.permission) {
+    const token = obterToken(request)
+    const funcionario = await obterFuncionarioPorToken(response, token as string)
+    const permissaoDoCargo = await prisma.permissaoOnCargo.findMany({
+      where: {
+        cargoId: funcionario.cargoId,
+        permissao: {
+          descricao: {
+            equals: request.headers.permission as string
+          }
+        }
+      }
+    })
+    if (permissaoDoCargo.length > 0) {
+      next()
+    } else {
+      return response.status(403).json({ message: 'Nível de acesso insuficiente!' })
+    }
+  } else {
+    return response.status(403).json({ message: 'A permissao deve ser informada!' })
   }
-  next()
 }
 
 export { verificarNivelAcesso };

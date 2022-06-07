@@ -6,9 +6,9 @@ class ControllerResgatarChamado {
     const { id } = request.params
     try {
       const serviceResgatarChamado = new ServiceResgatarChamado()
-      const chamado = await serviceResgatarChamado.execute(id)
-      if (chamado) {
-        return response.status(200).json(chamado)
+      const Chamado = await serviceResgatarChamado.execute(id)
+      if (Chamado) {
+        return response.status(201).json({ Chamado: Chamado })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

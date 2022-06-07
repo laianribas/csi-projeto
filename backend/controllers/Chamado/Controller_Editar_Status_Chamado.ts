@@ -10,9 +10,9 @@ class ControllerEditarStatusChamado {
     }
     try {
       const serviceEditarStatusChamado = new ServiceEditarStatusChamado()
-      const chamado = await serviceEditarStatusChamado.execute(id, status)
-      if (chamado) {
-        return response.status(200).json(chamado)
+      const Chamado = await serviceEditarStatusChamado.execute(id, status)
+      if (Chamado) {
+        return response.status(201).json({ Chamado: Chamado })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

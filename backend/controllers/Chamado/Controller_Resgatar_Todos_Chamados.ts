@@ -5,9 +5,9 @@ class ControllerResgatarTodosChamados {
   async handle(request: Request, response: Response) {
     try {
       const serviceResgatarTodosChamados = new ServiceResgatarTodosChamados()
-      const chamados = await serviceResgatarTodosChamados.execute()
-      if (chamados) {
-        return response.status(200).json(chamados)
+      const Chamados = await serviceResgatarTodosChamados.execute()
+      if (Chamados) {
+        return response.status(201).json({ Chamados: Chamados })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

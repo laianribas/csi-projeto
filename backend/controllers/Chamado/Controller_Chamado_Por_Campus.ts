@@ -12,9 +12,9 @@ class ControllerChamadoPorCampus {
       const token = obterToken(request)
       const usuarioAtual = await obterFuncionarioPorToken(response, token as string)
       const funcionarios = await serviceFuncionarioPorCampus.execute(usuarioAtual?.campus)
-      const chamados = await serviceChamadoPorCampus.execute(funcionarios)
-      if (chamados) {
-        return response.status(200).json(chamados)
+      const Chamados = await serviceChamadoPorCampus.execute(funcionarios)
+      if (Chamados) {
+        return response.status(201).json({ Chamados: Chamados })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

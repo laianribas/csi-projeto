@@ -9,9 +9,9 @@ class ControllerCadastroSetor {
       return response.status(400).json({ message: 'O nome do setor deve ser informado!' })
     }
     try {
-      const setor = await serviceCadastroSetor.execute({ nome, descricao, ramal })
-      if (setor) {
-        return response.status(201).json(setor)
+      const Setor = await serviceCadastroSetor.execute({ nome, descricao, ramal })
+      if (Setor) {
+        return response.status(201).json({ Setor: Setor })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }

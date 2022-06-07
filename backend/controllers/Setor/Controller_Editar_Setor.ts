@@ -22,9 +22,9 @@ class ControllerEditarSetor {
     }
     try {
       const serviceEditarSetor = new ServiceEditarSetor()
-      const setor = await serviceEditarSetor.execute(parseInt(id), data)
-      if (setor) {
-        return response.status(200).json(setor)
+      const Setor = await serviceEditarSetor.execute(parseInt(id), data)
+      if (Setor) {
+        return response.status(201).json({ Setor: Setor })
       } else {
         return response.status(400).json({ error: 'Sintaxe inválida!' })
       }
