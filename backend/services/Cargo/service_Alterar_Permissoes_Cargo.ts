@@ -6,7 +6,7 @@ class ServiceAlterarPermissoesCargo {
       const cargo = await prisma.cargo.update({
         where: { id: id },
         data: {
-          permissao: {
+          permissoes: {
             deleteMany: {},
             create: permissoes.map(permissao => ({
               permissao: {
@@ -18,7 +18,20 @@ class ServiceAlterarPermissoesCargo {
           }
         },
         include: {
-          permissao: true
+          permissoes: true
+        }
+      })
+      return cargo
+    } else if (permissoes.length === 0) {
+      const cargo = await prisma.cargo.update({
+        where: { id: id },
+        data: {
+          permissoes: {
+            deleteMany: {},
+          }
+        },
+        include: {
+          permissoes: true
         }
       })
       return cargo
