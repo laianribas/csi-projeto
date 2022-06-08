@@ -15,6 +15,6 @@ app.use('/funcionario', RotasFuncionario)
 app.use('/setor', RotasSetor)
 app.use('/cargo', RotasCargo)
 
-app.listen(3000, () =>
-  console.log('REST API rodando: http://localhost:3000'),
+app.listen(5000, () =>
+  console.log('REST API rodando: http://localhost:5000'),
 )

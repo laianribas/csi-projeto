@@ -68,7 +68,7 @@ async function main() {
       id: 1
     },
     data: {
-      permissao: {
+      permissoes: {
         create: permissoes_criadas.map(permissao => ({
           permissao: {
             connect: {
@@ -79,7 +79,7 @@ async function main() {
       }
     },
     include: {
-      permissao: true
+      permissoes: true
     }
   })
   console.log(cargos_criados, admin, permissoes_criadas, permissoes_coordenador)

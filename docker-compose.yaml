@@ -22,13 +22,26 @@ services:
     depends_on:
       - postgres
     ports:
-      - "3000:3000"
+      - "5000:5000"
     restart: always
     volumes:
       - type: bind
         source: ./backend
         target: /app
 
+  react-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react-frontend
+    depends_on:
+      - prisma-postgres-api
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /app:frontend
 volumes:
   postgres-data:
-  pgadmin-data:
