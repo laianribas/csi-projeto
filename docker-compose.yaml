@@ -30,19 +30,14 @@ services:
         target: /app
 
   react-ui:
+    build: ./frontend/.
     container_name: react-ui
-    build: ./frontend
-    command: npm start
     volumes:
-      - './frontend:/app/'
-      - '/frontend/node_modules'
+      - ./frontend/.:/home/node
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
-      - CHOKIDAR_USEPOLLING=true
-    depends_on:
-      - prisma-postgres-api
-    restart: on-failure
+      - CHOKIDAR_USEPOLLING=ture
     stdin_open: true
     tty: true
 

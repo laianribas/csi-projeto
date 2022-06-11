@@ -1,13 +1,14 @@
-FROM node:alpine
 
-WORKDIR /usr/src/app
+FROM node:stretch
 
-COPY ./package*.json ./
+ENV HOME=/home/node
 
-RUN npm install
+RUN apt update && apt install git && chmod -R 777 $HOME
 
-COPY ./ ./
+WORKDIR $HOME
+
+RUN npm install -g create-react-app
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+ENTRYPOINT [ "/bin/sh" ]
