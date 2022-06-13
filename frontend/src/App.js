@@ -1,12 +1,10 @@
-import Alert from 'react-bootstrap/Alert'
-import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import OffcanvasExample from './components/OffcanvasExample'
 
 function App() {
   return (
     <div className="App">
-      <Alert variant="warning">dmsadmsaio</Alert>
-      <Button>aro aro aro aaaaaaaaaaaa</Button>
+      <OffcanvasExample />
     </div>
   )
 }
