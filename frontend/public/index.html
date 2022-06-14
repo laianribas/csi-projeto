@@ -9,36 +9,118 @@
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
 
     <link rel="stylesheet" href="%PUBLIC_URL%/plugins/fontawesome-free/css/all.min.css" />
 
     <link rel="stylesheet" href="%PUBLIC_URL%/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
 
-    <link rel="stylesheet" href="%PUBLIC_URL%/dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/dist/css/adminlte.min.css?v=3.2.0" />
+    <script nonce="34e4db7c-f0e5-4ca9-9e71-68427f21b6db">
+        ;
+        (function(w, d) {
+            !(function(a, e, t, r) {;
+                (a.zarazData = a.zarazData || {}),
+                (a.zarazData.executed = []),
+                (a.zaraz = {
+                    deferred: []
+                }),
+                (a.zaraz.q = []),
+                (a.zaraz._f = function(e) {
+                    return function() {
+                        var t = Array.prototype.slice.call(arguments)
+                        a.zaraz.q.push({
+                            m: e,
+                            a: t
+                        })
+                    }
+                })
+                for (const e of['track', 'set', 'ecommerce', 'debug'])
+                    a.zaraz[e] = a.zaraz._f(e);
+                (a.zaraz.init = () => {
+                    var t = e.getElementsByTagName(r)[0],
+                        z = e.createElement(r),
+                        n = e.getElementsByTagName('title')[0]
+                    for (
+                        n && (a.zarazData.t = e.getElementsByTagName('title')[0].text),
+                        a.zarazData.x = Math.random(),
+                        a.zarazData.w = a.screen.width,
+                        a.zarazData.h = a.screen.height,
+                        a.zarazData.j = a.innerHeight,
+                        a.zarazData.e = a.innerWidth,
+                        a.zarazData.l = a.location.href,
+                        a.zarazData.r = e.referrer,
+                        a.zarazData.k = a.screen.colorDepth,
+                        a.zarazData.n = e.characterSet,
+                        a.zarazData.o = new Date().getTimezoneOffset(),
+                        a.zarazData.q = []; a.zaraz.q.length;
+
+                    ) {
+                        const e = a.zaraz.q.shift()
+                        a.zarazData.q.push(e)
+                    }
+                    z.defer = !0
+                    for (const e of[localStorage, sessionStorage])
+                        Object.keys(e || {})
+                        .filter((a) => a.startsWith('_zaraz_'))
+                        .forEach((t) => {
+                            try {
+                                a.zarazData['z_' + t.slice(7)] = JSON.parse(e.getItem(t))
+                            } catch {
+                                a.zarazData['z_' + t.slice(7)] = e.getItem(t)
+                            }
+                        });
+                    (z.referrerPolicy = 'origin'),
+                    (z.src =
+                        '/cdn-cgi/zaraz/s.js?z=' +
+                        btoa(encodeURIComponent(JSON.stringify(a.zarazData)))),
+                    t.parentNode.insertBefore(z, t)
+                }), ['complete', 'interactive'].includes(e.readyState) ?
+                    zaraz.init() :
+                    a.addEventListener('DOMContentLoaded', zaraz.init)
+            })(w, d, 0, 'script')
+        })(window, document)
+    </script>
     <title>React App</title>
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
+    <!-- jQuery -->
     <script src="%PUBLIC_URL%/plugins/jquery/jquery.min.js"></script>
-
+    <!-- jQuery UI 1.11.4 -->
+    <script src="%PUBLIC_URL%/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
     <script src="%PUBLIC_URL%/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="%PUBLIC_URL%/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-    <script src="%PUBLIC_URL%/dist/js/adminlte.js"></script>
-
-    <script src="%PUBLIC_URL%/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="%PUBLIC_URL%/plugins/raphael/raphael.min.js"></script>
-    <script src="%PUBLIC_URL%/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="%PUBLIC_URL%/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-
+    <!-- ChartJS -->
     <script src="%PUBLIC_URL%/plugins/chart.js/Chart.min.js"></script>
-
-    <script src="%PUBLIC_URL%/dist/js/pages/dashboard2.js"></script>
+    <!-- Sparkline -->
+    <script src="%PUBLIC_URL%/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="%PUBLIC_URL%/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="%PUBLIC_URL%/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="%PUBLIC_URL%/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="%PUBLIC_URL%/plugins/moment/moment.min.js"></script>
+    <script src="%PUBLIC_URL%/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="%PUBLIC_URL%/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="%PUBLIC_URL%/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="%PUBLIC_URL%/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="%PUBLIC_URL%/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="%PUBLIC_URL%/dist/js/pages/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>
 
 </html>
