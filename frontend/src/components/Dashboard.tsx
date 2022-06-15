@@ -23,14 +23,14 @@ const Dashboard = (props: Props) => {
         <section className="content">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-12 col-sm-6 col-md-3">
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div className="small-box bg-info">
                   <div className="inner">
                     <h3>150</h3>
                     <p>Chamados</p>
                   </div>
                   <div className="icon">
-                    <i className="fas fa-shopping-cart" />
+                    <i className="fas fa-phone" />
                   </div>
                   <a href="#" className="small-box-footer">
                     More info <i className="fas fa-arrow-circle-right" />
@@ -38,43 +38,29 @@ const Dashboard = (props: Props) => {
                 </div>
 
               </div>
-              <div className="col-12 col-sm-6 col-md-3">
-                <div className="small-box bg-gradient-danger">
-                  <div className="inner">
-                    <h3>5</h3>
-                    <p>Cargos</p>
-                  </div>
-                  <div className="icon">
-                    <i className="fas fa-user-plus" />
-                  </div>
-                  <a href="#" className="small-box-footer">
-                    More info <i className="fas fa-arrow-circle-right" />
-                  </a>
-                </div>
-              </div>
               <div className="clearfix hidden-md-up" />
-              <div className="col-12 col-sm-6 col-md-3">
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div className="small-box bg-gradient-success">
                   <div className="inner">
                     <h3>44</h3>
                     <p>Funcionários</p>
                   </div>
                   <div className="icon">
-                    <i className="fas fa-user-plus" />
+                    <i className="fas fa-user-friends" />
                   </div>
                   <a href="#" className="small-box-footer">
                     More info <i className="fas fa-arrow-circle-right" />
                   </a>
                 </div>
               </div>
-              <div className="col-12 col-sm-6 col-md-3">
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div className="small-box bg-gradient-primary">
                   <div className="inner">
                     <h3>5</h3>
                     <p>Setores</p>
                   </div>
                   <div className="icon">
-                    <i className="fas fa-user-plus" />
+                    <i className="fas fa-address-card"></i>
                   </div>
                   <a href="#" className="small-box-footer">
                     More info <i className="fas fa-arrow-circle-right" />

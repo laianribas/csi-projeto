@@ -22,7 +22,7 @@ const Menu = (props: Props) => {
                 </li>
                 <li className="nav-item">
                   <a href="/" className="nav-link">
-                    <i className="nav-icon fas fa-tachometer-alt" />
+                    <i className="nav-icon fas fa-address-card" />
                     <p>
                       Setor
                     </p>
@@ -30,7 +30,7 @@ const Menu = (props: Props) => {
                 </li>
                 <li className="nav-item">
                   <a href="/" className="nav-link">
-                    <i className="nav-icon fas fa-tachometer-alt" />
+                    <i className="nav-icon fas fa-user-friends" />
                     <p>
                       Funcionário
                     </p>
@@ -38,7 +38,7 @@ const Menu = (props: Props) => {
                 </li>
                 <li className="nav-item">
                   <a href="/" className="nav-link">
-                    <i className="nav-icon fas fa-tachometer-alt" />
+                    <i className="nav-icon fas fa-phone" />
                     <p>
                       Chamado
                     </p>
@@ -46,7 +46,7 @@ const Menu = (props: Props) => {
                 </li>
                 <li className="nav-item">
                   <a href="/" className="nav-link">
-                    <i className="nav-icon fas fa-tachometer-alt" />
+                    <i className="nav-icon fas fa-briefcase" />
                     <p>
                       Cargo
                     </p>

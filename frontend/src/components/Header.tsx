@@ -4,7 +4,7 @@ type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <div>
+    <>
       {/* Navbar */}
       <nav className="main-header navbar navbar-expand navbar-dark">
         {/* Left navbar links */}
@@ -64,7 +64,7 @@ const Header = (props: Props) => {
           </li>
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
 
