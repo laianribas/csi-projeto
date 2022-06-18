@@ -18,69 +18,43 @@ import {
 } from 'components/Icons/Icons'
 
 var dashRoutes = [{
-        path: '/setores',
-        name: 'Setores',
+        path: '/dashboard',
+        name: 'Deshboard',
         rtlName: 'لوحة القيادة',
         icon: < HomeIcon color = "inherit" / > ,
         component: Dashboard,
         layout: '/admin'
     },
     {
-        path: '/tables',
-        name: 'Tables',
+        path: '/setor',
+        name: 'Setor',
         rtlName: 'لوحة القيادة',
-        icon: < StatsIcon color = "inherit" / > ,
+        icon: < CreditIcon color = "inherit" / > ,
         component: Tables,
         layout: '/admin'
     },
     {
-        path: '/billing',
-        name: 'Billing',
+        path: '/funcionario',
+        name: 'Funcionario',
         rtlName: 'لوحة القيادة',
-        icon: < CreditIcon color = "inherit" / > ,
+        icon: < PersonIcon color = "inherit" / > ,
         component: Billing,
         layout: '/admin'
     },
     {
-        path: '/rtl-support-page',
-        name: 'RTL',
+        path: '/chamado',
+        name: 'Chamado',
         rtlName: 'آرتيإل',
         icon: < SupportIcon color = "inherit" / > ,
         component: RTLPage,
-        layout: '/rtl'
+        layout: '/admin'
     },
     {
-        name: 'ACCOUNT PAGES',
-        category: 'account',
-        rtlName: 'صفحات',
-        state: 'pageCollapse',
-        views: [{
-                path: '/profile',
-                name: 'Profile',
-                rtlName: 'لوحة القيادة',
-                icon: < PersonIcon color = "inherit" / > ,
-                secondaryNavbar: true,
-                component: Profile,
-                layout: '/admin'
-            },
-            {
-                path: '/signin',
-                name: 'Sign In',
-                rtlName: 'لوحة القيادة',
-                icon: < DocumentIcon color = "inherit" / > ,
-                component: SignIn,
-                layout: '/auth'
-            },
-            {
-                path: '/signup',
-                name: 'Sign Up',
-                rtlName: 'لوحة القيادة',
-                icon: < RocketIcon color = "inherit" / > ,
-                secondaryNavbar: true,
-                component: SignUp,
-                layout: '/auth'
-            }
-        ]
+        path: '/signin',
+        rtlName: 'لوحة القيادة',
+        icon: < DocumentIcon color = "inherit" / > ,
+        component: SignIn,
+        layout: '/auth'
     }
 ]
 export default dashRoutes
