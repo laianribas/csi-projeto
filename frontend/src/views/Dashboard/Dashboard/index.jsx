@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   return (
     <Flex flexDirection="column" pt={{ base: '120px', md: '75px' }}>
-      <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing="24px">
+      <SimpleGrid columns={{ sm: 1, lg: 3 }} spacing="18px">
         <MiniStatistics
           title={'Setores'}
           amount={'18'}
