@@ -46,38 +46,11 @@ export default function Dashboard() {
         />
       </SimpleGrid>
       <Grid
-        templateColumns={{ md: '1fr', lg: '1.8fr 1.2fr' }}
-        templateRows={{ md: '1fr auto', lg: '1fr' }}
-        my="26px"
-        gap="24px"
-      >
-        <BuiltByDevelopers
-          title={'Built by Developers'}
-          name={'Purity UI Dashboard'}
-          description={
-            'From colors, cards, typography to complex elements, you will find the full documentation.'
-          }
-          image={
-            <Image
-              src={logoChakra}
-              alt="chakra image"
-              minWidth={{ md: '300px', lg: 'auto' }}
-            />
-          }
-        />
-        <WorkWithTheRockets
-          backgroundImage={peopleImage}
-          title={'Work with the rockets'}
-          description={
-            'Wealth creation is a revolutionary recent positive-sum game. It is all about who takes the opportunity first.'
-          }
-        />
-      </Grid>
-      <Grid
         templateColumns={{ sm: '1fr', lg: '1.3fr 1.7fr' }}
         templateRows={{ sm: 'repeat(2, 1fr)', lg: '1fr' }}
         gap="24px"
         mb={{ lg: '26px' }}
+        mt={{ lg: '26px' }}
       >
         <ActiveUsers
           title={'Active Users'}
