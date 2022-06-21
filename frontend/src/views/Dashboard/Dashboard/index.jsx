@@ -9,7 +9,7 @@ import {
 // assets
 import peopleImage from 'assets/img/people-image.png'
 import logoChakra from 'assets/svg/logo-white.svg'
-import BarChart from 'components/Charts/BarChart'
+import PieChart from 'components/Charts/PieChart'
 import LineChart from 'components/Charts/LineChart'
 // Custom icons
 import { SupportIcon, PersonIcon, CreditIcon } from 'components/Icons/Icons.js'
@@ -53,19 +53,17 @@ export default function Dashboard() {
         mt={{ lg: '26px' }}
       >
         <ActiveUsers
-          title={'Active Users'}
-          percentage={23}
-          chart={<BarChart />}
+          title={'Total de chamados de cada setor'}
+          chart={<PieChart />}
         />
         <SalesOverview
-          title={'Sales Overview'}
-          percentage={5}
+          title={'Chamados mensais por setor'}
           chart={<LineChart />}
         />
       </Grid>
       <Grid
-        templateColumns={{ sm: '1fr', md: '1fr 1fr', lg: '2fr 1fr' }}
-        templateRows={{ sm: '1fr auto', md: '1fr', lg: '1fr' }}
+        templateColumns={{ sm: '1fr', md: '1fr', lg: '1fr' }}
+        templateRows={{ sm: '1fr', md: '1fr', lg: '1fr' }}
         gap="24px"
       >
         <Projects
@@ -74,11 +72,11 @@ export default function Dashboard() {
           captions={['Companies', 'Members', 'Budget', 'Completion']}
           data={dashboardTableData}
         />
-        <OrdersOverview
+        {/* <OrdersOverview
           title={'Orders Overview'}
           amount={30}
           data={timelineData}
-        />
+        /> */}
       </Grid>
     </Flex>
   )

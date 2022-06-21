@@ -160,7 +160,7 @@ export const lineChartOptions = {
         labels: {
             colors: '#c8cfca'
         },
-        position: `left`
+        position: `bottom`
     },
     grid: {
         strokeDashArray: 5
@@ -196,4 +196,85 @@ export const lineChartOptions = {
         `#00B5D8`,
         `#38A169`
     ]
+}
+
+export const pieChartDataCharts1 = [41, 37, 39, 38, 39, 25, 28]
+
+export const pieChartOptionsCharts1 = {
+    labels: [
+        'DECEN-IT',
+        'SEAV-IT',
+        'DCHEL',
+        'BS-IT',
+        'SSC-IT',
+        'PRAE-IT',
+        'UINFOR-IT'
+    ],
+    colors: [
+        '#D6BCFA',
+        '#B794F4',
+        '#9F7AEA',
+        '#805AD5',
+        '#6B46C1',
+        '#553C9A',
+        '#44337A'
+    ],
+    chart: {
+        width: '100%'
+    },
+    states: {
+        hover: {
+            filter: {
+                type: 'none'
+            }
+        }
+    },
+    legend: {
+        show: true,
+        labels: {
+            colors: '#c8cfca'
+        },
+        position: `left`
+    },
+    noData: {
+        text: 'Não há dados a serem exibidos!',
+        align: 'center',
+        verticalAlign: 'middle',
+        offsetX: 0,
+        offsetY: 0,
+        style: {
+            color: '#c8cfca',
+            fontSize: '14px',
+            fontFamily: undefined
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    hover: { mode: null },
+    plotOptions: {
+        donut: {
+            expandOnClick: false,
+            donut: {
+                labels: {
+                    show: false
+                }
+            }
+        }
+    },
+    fill: {
+        colors: [
+            '#D6BCFA',
+            '#B794F4',
+            '#9F7AEA',
+            '#805AD5',
+            '#6B46C1',
+            '#553C9A',
+            '#44337A'
+        ]
+    },
+    tooltip: {
+        enabled: true,
+        theme: 'dark'
+    }
 }
