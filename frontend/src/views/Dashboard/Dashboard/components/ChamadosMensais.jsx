@@ -5,7 +5,7 @@ import Card from 'components/Card/Card.js'
 import CardHeader from 'components/Card/CardHeader.js'
 import React from 'react'
 
-const SalesOverview = ({ title, percentage, chart }) => {
+const ChamadosMensais = ({ title, percentage, chart }) => {
   const textColor = useColorModeValue('gray.700', 'white')
   return (
     <Card p="28px 10px 16px 0px" mb={{ sm: '26px', lg: '0px' }}>
@@ -23,4 +23,4 @@ const SalesOverview = ({ title, percentage, chart }) => {
   )
 }
 
-export default SalesOverview
+export default ChamadosMensais

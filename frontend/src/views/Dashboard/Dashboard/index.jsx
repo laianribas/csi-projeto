@@ -1,27 +1,15 @@
 // Chakra imports
-import {
-  Flex,
-  Grid,
-  Image,
-  SimpleGrid,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Flex, Grid, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
 // assets
-import peopleImage from 'assets/img/people-image.png'
-import logoChakra from 'assets/svg/logo-white.svg'
-import PieChart from 'components/Charts/PieChart'
 import LineChart from 'components/Charts/LineChart'
+import PieChart from 'components/Charts/PieChart'
 // Custom icons
-import { SupportIcon, PersonIcon, CreditIcon } from 'components/Icons/Icons.js'
-import React from 'react'
-import { dashboardTableData, timelineData } from 'variables/general'
-import ActiveUsers from './components/ActiveUsers'
-import BuiltByDevelopers from './components/BuiltByDevelopers'
-import MiniStatistics from './components/MiniStatistics'
-import OrdersOverview from './components/OrdersOverview'
-import Projects from './components/Projects'
-import SalesOverview from './components/SalesOverview'
-import WorkWithTheRockets from './components/WorkWithTheRockets'
+import { CreditIcon, PersonIcon, SupportIcon } from 'components/Icons/Icons.js'
+import { dashboardTableData } from 'variables/general'
+import ChamadosSetor from './components/ChamadosSetor'
+import CardInfo from './components/CardInfo'
+import ChamadosRecentes from './components/ChamadosRecentes'
+import ChamadosMensais from './components/ChamadosMensais'
 
 export default function Dashboard() {
   const iconBoxInside = useColorModeValue('white', 'white')
@@ -29,17 +17,17 @@ export default function Dashboard() {
   return (
     <Flex flexDirection="column" pt={{ base: '120px', md: '75px' }}>
       <SimpleGrid columns={{ sm: 1, lg: 3 }} spacing="18px">
-        <MiniStatistics
+        <CardInfo
           title={'Setores'}
           amount={'18'}
           icon={<CreditIcon h={'24px'} w={'24px'} color={iconBoxInside} />}
         />
-        <MiniStatistics
+        <CardInfo
           title={'Funcionários'}
           amount={'120'}
           icon={<PersonIcon h={'24px'} w={'24px'} color={iconBoxInside} />}
         />
-        <MiniStatistics
+        <CardInfo
           title={'Chamados'}
           amount={'50'}
           icon={<SupportIcon h={'24px'} w={'24px'} color={iconBoxInside} />}
@@ -52,11 +40,11 @@ export default function Dashboard() {
         mb={{ lg: '26px' }}
         mt={{ lg: '26px' }}
       >
-        <ActiveUsers
+        <ChamadosSetor
           title={'Total de chamados de cada setor'}
           chart={<PieChart />}
         />
-        <SalesOverview
+        <ChamadosMensais
           title={'Chamados mensais por setor'}
           chart={<LineChart />}
         />
@@ -66,8 +54,8 @@ export default function Dashboard() {
         templateRows={{ sm: '1fr', md: '1fr', lg: '1fr' }}
         gap="24px"
       >
-        <Projects
-          title={'Projects'}
+        <ChamadosRecentes
+          title={'Chamados Recentes'}
           amount={30}
           captions={['Companies', 'Members', 'Budget', 'Completion']}
           data={dashboardTableData}

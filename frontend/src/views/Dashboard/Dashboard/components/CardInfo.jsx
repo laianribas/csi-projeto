@@ -13,7 +13,7 @@ import CardBody from 'components/Card/CardBody.js'
 import IconBox from 'components/Icons/IconBox'
 import React from 'react'
 
-const MiniStatistics = ({ title, amount, percentage, icon }) => {
+const CardInfo = ({ title, amount, percentage, icon }) => {
   const iconTeal = useColorModeValue('purple.300', 'purple.300')
   const textColor = useColorModeValue('gray.700', 'white')
 
@@ -51,4 +51,4 @@ const MiniStatistics = ({ title, amount, percentage, icon }) => {
   )
 }
 
-export default MiniStatistics
+export default CardInfo

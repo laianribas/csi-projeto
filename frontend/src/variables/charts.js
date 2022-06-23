@@ -122,7 +122,7 @@ export const lineChartOptions = {
         enabled: false
     },
     stroke: {
-        curve: 'straight'
+        curve: 'smooth'
     },
     xaxis: {
         type: 'datetime',
