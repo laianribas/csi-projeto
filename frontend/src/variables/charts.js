@@ -122,7 +122,7 @@ export const lineChartOptions = {
         enabled: false
     },
     stroke: {
-        curve: 'smooth'
+        curve: 'straight'
     },
     xaxis: {
         type: 'datetime',
@@ -160,7 +160,7 @@ export const lineChartOptions = {
         labels: {
             colors: '#c8cfca'
         },
-        position: `bottom`
+        position: `left`
     },
     grid: {
         strokeDashArray: 5

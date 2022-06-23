@@ -51,10 +51,8 @@ export default function Footer(props) {
           target="_blank"
         >
           {document.documentElement.dir === 'rtl' ? 'سيممبل ' : ' Simmmple'}
-        </Link>
-        {document.documentElement.dir === 'rtl'
-          ? 'للحصول على ويب أفضل'
-          : ' for a better web'}
+        </Link>{' '}
+        for a better web
       </Text>
       <List display="flex">
         <ListItem
@@ -64,9 +62,7 @@ export default function Footer(props) {
           }}
         >
           <Link color="gray.400" href="https://www.creative-tim.com">
-            {document.documentElement.dir === 'rtl'
-              ? 'توقيت الإبداعية'
-              : 'Creative Tim'}
+            Creative Tim
           </Link>
         </ListItem>
         <ListItem
@@ -76,7 +72,7 @@ export default function Footer(props) {
           }}
         >
           <Link color="gray.400" href="https://www.simmmple.com">
-            {document.documentElement.dir === 'rtl' ? 'سيممبل' : 'Simmmple'}
+            Simmmple
           </Link>
         </ListItem>
         <ListItem
@@ -86,12 +82,12 @@ export default function Footer(props) {
           }}
         >
           <Link color="gray.400" href="https://creative-tim.com/blog">
-            {document.documentElement.dir === 'rtl' ? 'مدونة' : 'Blog'}
+            Blog{' '}
           </Link>
         </ListItem>
         <ListItem>
           <Link color="gray.400" href="https://www.creative-tim.com/license">
-            {document.documentElement.dir === 'rtl' ? 'رخصة' : 'License'}
+            License{' '}
           </Link>
         </ListItem>
       </List>

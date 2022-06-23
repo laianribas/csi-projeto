@@ -1,9 +1,9 @@
 // import
 import SignIn from 'views/Auth/SignIn.js'
-import Billing from 'views/Dashboard/Billing'
+import Funcionario from 'views/Dashboard/Funcionario'
 import Dashboard from 'views/Dashboard/Dashboard'
-import RTLPage from 'views/Dashboard/RTL'
-import Tables from 'views/Dashboard/Tables'
+import Chamado from 'views/Dashboard/Chamado'
+import Setor from 'views/Dashboard/Setor'
 
 import {
     CreditIcon,
@@ -16,7 +16,6 @@ import {
 var dashRoutes = [{
         path: '/dashboard',
         name: 'Deshboard',
-        rtlName: 'لوحة القيادة',
         icon: < HomeIcon color = "inherit" / > ,
         component: Dashboard,
         layout: '/admin'
@@ -24,30 +23,26 @@ var dashRoutes = [{
     {
         path: '/setor',
         name: 'Setor',
-        rtlName: 'لوحة القيادة',
         icon: < CreditIcon color = "inherit" / > ,
-        component: Tables,
+        component: Setor,
         layout: '/admin'
     },
     {
         path: '/funcionario',
         name: 'Funcionario',
-        rtlName: 'لوحة القيادة',
         icon: < PersonIcon color = "inherit" / > ,
-        component: Billing,
+        component: Funcionario,
         layout: '/admin'
     },
     {
         path: '/chamado',
         name: 'Chamado',
-        rtlName: 'آرتيإل',
         icon: < SupportIcon color = "inherit" / > ,
-        component: RTLPage,
+        component: Chamado,
         layout: '/admin'
     },
     {
         path: '/signin',
-        rtlName: 'لوحة القيادة',
         icon: < DocumentIcon color = "inherit" / > ,
         component: SignIn,
         layout: '/auth'
