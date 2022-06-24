@@ -57,14 +57,9 @@ export default function Dashboard() {
         <ChamadosRecentes
           title={'Chamados Recentes'}
           amount={30}
-          captions={['Companies', 'Members', 'Budget', 'Completion']}
+          captions={['Id', 'Área', 'Setor', 'Status']}
           data={dashboardTableData}
         />
-        {/* <OrdersOverview
-          title={'Orders Overview'}
-          amount={30}
-          data={timelineData}
-        /> */}
       </Grid>
     </Flex>
   )

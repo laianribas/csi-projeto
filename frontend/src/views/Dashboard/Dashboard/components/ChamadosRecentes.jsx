@@ -37,9 +37,9 @@ const ChamadosRecentes = ({ title, amount, captions, data }) => {
             />
             <Text fontSize="sm" color="gray.400" fontWeight="normal">
               <Text fontWeight="bold" as="span">
-                {amount} done
+                {amount}
               </Text>{' '}
-              this month.
+              esse mês.
             </Text>
           </Flex>
         </Flex>
