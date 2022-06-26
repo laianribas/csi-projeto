@@ -27,32 +27,15 @@ export default function Footer(props) {
         }}
         mb={{ base: '20px', xl: '0px' }}
       >
-        &copy; {1900 + new Date().getYear()},{' '}
-        <Text as="span">
-          {document.documentElement.dir === 'rtl'
-            ? ' مصنوع من ❤️ بواسطة'
-            : 'Made with ❤️ by '}
-        </Text>
+        &copy; {1900 + new Date().getYear()}, <Text as="span">made by </Text>
         <Link
           // color={linkTeal}
           color="teal.400"
-          href="https://www.creative-tim.com"
+          href="https://github.com/laianribas"
           target="_blank"
         >
-          {document.documentElement.dir === 'rtl'
-            ? ' توقيت الإبداعية'
-            : 'Creative Tim '}
+          Laian Ribas{' '}
         </Link>
-        &
-        <Link
-          // color={linkTeal}
-          color="teal.400"
-          href="https://www.simmmple.com"
-          target="_blank"
-        >
-          {document.documentElement.dir === 'rtl' ? 'سيممبل ' : ' Simmmple'}
-        </Link>{' '}
-        for a better web
       </Text>
       <List display="flex">
         <ListItem
