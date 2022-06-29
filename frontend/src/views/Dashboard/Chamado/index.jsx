@@ -15,7 +15,7 @@ export default function Dashboard() {
       <TodosChamados
         title={'Chamados Recentes'}
         amount={30}
-        captions={['Id', 'Área', 'Setor', 'Status']}
+        captions={['Id', 'Área', 'Setor', 'Status', 'Ações']}
         data={dashboardTableData2}
       />
     </Flex>

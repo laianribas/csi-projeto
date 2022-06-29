@@ -74,11 +74,30 @@ export const dashboardTableData = [{
 ]
 
 export const dashboardTableData2 = [{
-    id: '1',
-    area: 'Redes',
-    setor: 'PRAE-IT',
-    status: 'Em aberto'
-}]
+        id: '1',
+        area: 'Redes',
+        setor: 'PRAE-IT',
+        status: 'Em aberto'
+    },
+    {
+        id: '2',
+        area: 'Manutenção',
+        setor: 'BS-IT',
+        status: 'Em aberto'
+    },
+    {
+        id: '3',
+        area: 'Redes',
+        setor: 'SSC-IT',
+        status: 'Em aberto'
+    },
+    {
+        id: '4',
+        area: 'Coordenação',
+        setor: 'SSC-IT',
+        status: 'Em aberto'
+    }
+]
 
 export const timelineData = [{
         logo: FaBell,
