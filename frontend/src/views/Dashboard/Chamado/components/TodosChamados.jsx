@@ -44,12 +44,12 @@ const TodosChamados = ({ title, amount, captions, data }) => {
           </Flex>
         </Flex>
       </CardHeader>
-      <Table variant="simple" color={textColor}>
+      <Table variant="simple" color={textColor} size="sm">
         <Thead>
           <Tr my=".8rem" ps="0px">
             {captions.map((caption, idx) => {
               return (
-                <Th color="gray.400" key={idx} ps={idx === 0 ? '0px' : null}>
+                <Th color="gray.400" key={idx} ps={idx === 0 ? '10px' : null}>
                   {caption}
                 </Th>
               )

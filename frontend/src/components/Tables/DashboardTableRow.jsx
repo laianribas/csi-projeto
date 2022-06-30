@@ -14,7 +14,7 @@ function DashboardTableRow(props) {
   const textColor = useColorModeValue('gray.700', 'white')
   return (
     <Tr>
-      <Td minWidth={{ sm: '150px' }} pl="0px">
+      <Td minWidth={{ sm: '150px' }} pl="10px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
           <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
             {id}
@@ -39,13 +39,6 @@ function DashboardTableRow(props) {
       </Td>
       <Td>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          <IconButton
-            marginRight={'5px'}
-            variant="outline"
-            colorScheme="yellow"
-            fontSize="20px"
-            icon={<EditIcon />}
-          />
           <IconButton
             variant="outline"
             colorScheme="red"
