@@ -41,9 +41,9 @@ function DashboardTableRow(props) {
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           <IconButton
             variant="outline"
-            colorScheme="red"
+            colorScheme="yellow"
             fontSize="20px"
-            icon={<DeleteIcon />}
+            icon={<EditIcon />}
           />
         </Text>
       </Td>
