@@ -1,29 +1,30 @@
-import React from "react";
+import React from 'react'
 import {
   IconButton,
   Input,
   InputGroup,
   InputLeftElement,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+  useColorModeValue
+} from '@chakra-ui/react'
+import { SearchIcon } from '@chakra-ui/icons'
 export function SearchBar(props) {
   // Pass the computed styles into the `__css` prop
-  const { variant, children, ...rest } = props;
+  const { variant, children, ...rest } = props
   // Chakra Color Mode
-  const mainTeal = useColorModeValue("teal.300", "teal.300");
-  const searchIconColor = useColorModeValue("gray.700", "gray.200");
-  const inputBg = useColorModeValue("white", "gray.800");
+  const mainTeal = useColorModeValue('teal.300', 'teal.300')
+  const searchIconColor = useColorModeValue('gray.700', 'gray.200')
+  const inputBg = useColorModeValue('white', 'gray.800')
   return (
     <InputGroup
-      bg={inputBg}
+      size={'lg'}
+      bgColor={inputBg}
       borderRadius="15px"
-      w="200px"
+      width="70vw"
       _focus={{
-        borderColor: { mainTeal },
+        borderColor: { mainTeal }
       }}
       _active={{
-        borderColor: { mainTeal },
+        borderColor: { mainTeal }
       }}
     >
       <InputLeftElement
@@ -33,12 +34,12 @@ export function SearchBar(props) {
             borderRadius="inherit"
             _hover="none"
             _active={{
-              bg: "inherit",
-              transform: "none",
-              borderColor: "transparent",
+              bg: 'inherit',
+              transform: 'none',
+              borderColor: 'transparent'
             }}
             _focus={{
-              boxShadow: "none",
+              boxShadow: 'none'
             }}
             icon={<SearchIcon color={searchIconColor} w="15px" h="15px" />}
           ></IconButton>
@@ -51,5 +52,5 @@ export function SearchBar(props) {
         borderRadius="inherit"
       />
     </InputGroup>
-  );
+  )
 }
