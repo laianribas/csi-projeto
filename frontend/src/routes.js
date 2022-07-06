@@ -1,5 +1,5 @@
 // import
-import SignIn from 'views/Auth/SignIn.js'
+import SignIn from 'views/Auth/SignIn'
 import Funcionario from 'views/Dashboard/Funcionario'
 import Dashboard from 'views/Dashboard/Dashboard'
 import Chamado from 'views/Dashboard/Chamado'

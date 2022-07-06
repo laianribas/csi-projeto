@@ -13,7 +13,8 @@ import {
 // Custom components
 import Card from 'components/Card/Card.js'
 import CardHeader from 'components/Card/CardHeader.js'
-import ChamadoCadForm from 'components/Modal/ChamadoCadForm'
+import ChamadoCadForm from 'components/Form/ChamadoCadForm'
+import ModalButton from 'components/Modal/ModalButton'
 import { SearchBar } from 'components/Navbars/SearchBar/SearchBar'
 import DashboardTableRow from 'components/Tables/DashboardTableRow'
 import React from 'react'
@@ -28,7 +29,9 @@ const TodosChamados = ({ title, amount, captions, data }) => {
         <CardHeader p="12px 0px 28px 0px">
           <Flex direction="row" justify={'space-between'} w="100%">
             <SearchBar />
-            <ChamadoCadForm />
+            <ModalButton>
+              <ChamadoCadForm />
+            </ModalButton>
           </Flex>
         </CardHeader>
       </Card>
