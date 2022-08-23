@@ -3,6 +3,7 @@ import SignIn from 'views/Auth/SignIn'
 import Funcionario from 'views/Dashboard/Funcionario'
 import Dashboard from 'views/Dashboard/Dashboard'
 import Chamado from 'views/Dashboard/Chamado'
+import Permissoes from 'views/Dashboard/Permissoes'
 import Setor from 'views/Dashboard/Setor'
 
 import {
@@ -10,7 +11,8 @@ import {
     DocumentIcon,
     HomeIcon,
     PersonIcon,
-    SupportIcon
+    SupportIcon,
+    SettingsIcon
 } from 'components/Icons/Icons'
 
 var dashRoutes = [{
@@ -39,6 +41,13 @@ var dashRoutes = [{
         name: 'Chamado',
         icon: < SupportIcon color = "inherit" / > ,
         component: Chamado,
+        layout: '/admin'
+    },
+    {
+        path: '/permissoes',
+        name: 'Permissões',
+        icon: < SettingsIcon color = "inherit" / > ,
+        component: Permissoes,
         layout: '/admin'
     },
     {

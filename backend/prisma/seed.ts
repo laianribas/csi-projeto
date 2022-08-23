@@ -30,7 +30,7 @@ async function main() {
     { id: 17, descricao: 'Inativar setor' },
     { id: 18, descricao: 'Resgatar todos setores' },
   ]
-  const cargos_criados = await Promise.all(cargos.map(async cargo => {
+  const cargos_criados = await Promise.all(cargos.map(async (cargo) => {
     return await prisma.cargo.create({
       data: {
         id: cargo.id,

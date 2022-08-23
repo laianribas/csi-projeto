@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { ServiceAlterarPermissoesCargo } from "../../services/Cargo/service_Alterar_Permissoes_Cargo";
 
-
 class ControllerAlterarPermissoesCargo {
   async handle(request: Request, response: Response) {
     const { id } = request.params
