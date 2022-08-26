@@ -16,7 +16,7 @@ import CardHeader from 'components/Card/CardHeader.js'
 import ChamadoCadForm from 'components/Form/ChamadoCadForm'
 import ModalButton from 'components/Modal/ModalButton'
 import { SearchBar } from 'components/Navbars/SearchBar/SearchBar'
-import DashboardTableRow from 'components/Tables/DashboardTableRow'
+import ChamadoTableRow from 'components/Tables/ChamadoTableRow'
 import React from 'react'
 import { IoCheckmarkDoneCircleSharp } from 'react-icons/io5'
 
@@ -73,7 +73,7 @@ const TodosChamados = ({ title, amount, captions, data }) => {
           <Tbody>
             {data.map((row) => {
               return (
-                <DashboardTableRow
+                <ChamadoTableRow
                   key={row.id}
                   id={row.id}
                   area={row.area}

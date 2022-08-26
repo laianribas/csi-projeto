@@ -1,13 +1,19 @@
 // Chakra imports
 import { Flex } from '@chakra-ui/react'
+import { funconarioData } from 'variables/general'
+import TabelaFuncionarios from './components/TabelaFuncionários'
 // Assets
 
-function Billing() {
+function Funcionario() {
   return (
     <Flex direction="column" pt={{ base: '120px', md: '75px' }}>
-      Criar View Funcionario
+      <TabelaFuncionarios
+        title={'Funcionarios'}
+        captions={['Nome', 'Cargo', 'Setor', 'Campus', 'Status', 'Ações']}
+        data={funconarioData}
+      />
     </Flex>
   )
 }
 
-export default Billing
+export default Funcionario

@@ -9,7 +9,7 @@ import {
 
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
-function DashboardTableRow(props) {
+function ChamadoTableRow(props) {
   const { id, area, setor, status } = props
   const textColor = useColorModeValue('gray.700', 'white')
   return (
@@ -51,4 +51,4 @@ function DashboardTableRow(props) {
   )
 }
 
-export default DashboardTableRow
+export default ChamadoTableRow
