@@ -30,7 +30,7 @@ class ServiceResgatarFuncionario {
           cargo: {
             select: {
               nome: true,
-              permissoes: {
+              permissao: {
                 select: {
                   permissao: {
                     select: {

@@ -1,25 +1,27 @@
-FROM node:alpine
+# base image
+FROM node:lts
 
-WORKDIR /app
-# COPY package.json and package-lock.json files
-COPY package*.json /app
+# create & set working directory
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
 
-# generated prisma files
-COPY prisma /app/prisma/
+# copy source files
+COPY . /usr/src
 
-# COPY ENV variable
-COPY .env /app
+COPY package*.json ./
+COPY prisma ./prisma/
 
-# COPY tsconfig.json file
-COPY tsconfig.json /app
+RUN apt-get -qy update && apt-get -qy install openssl
 
-# COPY
-COPY . /app
-
+# install dependencies
 RUN npm install
 
-RUN npx prisma generate
+RUN npm install @prisma/client
 
-EXPOSE 5432
+COPY . .
+RUN npx prisma generate --schema ./prisma/schema.prisma
 
-CMD npm start
+# start app
+#RUN npm run build
+EXPOSE 5000
+CMD npm run start

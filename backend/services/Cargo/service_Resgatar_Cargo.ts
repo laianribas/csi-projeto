@@ -9,7 +9,7 @@ class ServiceResgatarCargo {
           id: id
         },
         include: {
-          permissoes: {
+          permissao: {
             select: {
               permissao: true,
 

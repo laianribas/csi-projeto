@@ -30,14 +30,11 @@ async function main() {
     { id: 17, descricao: 'Inativar setor' },
     { id: 18, descricao: 'Resgatar todos setores' },
   ]
-  const cargos_criados = await Promise.all(cargos.map(async (cargo) => {
-    return await prisma.cargo.create({
-      data: {
-        id: cargo.id,
-        nome: cargo.nome
-      }
-    })
-  }))
+  // const cargos_criados = await Promise.all(cargos.map(async (cargo) => {
+  //   return await prisma.cargo.create({
+  //     data: cargo
+  //   })
+  // }))
   const senha = SHA512('admin', process.env.SECRET_KEY as string).hash2
   const admin = await prisma.funcionario.create({
     data: {
@@ -68,7 +65,7 @@ async function main() {
       id: 1
     },
     data: {
-      permissoes: {
+      permissao: {
         create: permissoes_criadas.map(permissao => ({
           permissao: {
             connect: {
@@ -79,10 +76,10 @@ async function main() {
       }
     },
     include: {
-      permissoes: true
+      permissao: true
     }
   })
-  console.log(cargos_criados, admin, permissoes_criadas, permissoes_coordenador)
+  console.log(admin, permissoes_criadas, permissoes_coordenador)
 }
 
 main()

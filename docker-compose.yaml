@@ -9,14 +9,14 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: csidb
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
   prisma-postgres-api:
     build:
-      context: ./backend
+      context: ./backend/.
       dockerfile: Dockerfile
     container_name: prisma-postgres-api
     depends_on:
@@ -27,7 +27,7 @@ services:
     volumes:
       - type: bind
         source: ./backend
-        target: /app
+        target: /usr/src
 
   react-ui:
     build: ./frontend/.

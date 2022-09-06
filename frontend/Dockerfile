@@ -12,5 +12,5 @@ RUN npm install -g create-react-app
 
 EXPOSE 3000
 
-#ENTRYPOINT [ "/bin/sh" ]
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/sh" ]
+#ENTRYPOINT [ "/bin/bash" ]
