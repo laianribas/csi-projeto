@@ -14,7 +14,7 @@ import IconBox from 'components/Icons/IconBox'
 import React from 'react'
 
 const CardInfo = ({ title, amount, percentage, icon }) => {
-  const iconTeal = useColorModeValue('purple.300', 'purple.300')
+  const iconTeal = useColorModeValue('purple.600', 'purple.600')
   const textColor = useColorModeValue('gray.700', 'white')
 
   return (

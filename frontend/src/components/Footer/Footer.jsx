@@ -30,7 +30,7 @@ export default function Footer(props) {
         &copy; {1900 + new Date().getYear()}, <Text as="span">made by </Text>
         <Link
           // color={linkTeal}
-          color="purple.400"
+          color="purple.600"
           href="https://github.com/laianribas"
           target="_blank"
         >

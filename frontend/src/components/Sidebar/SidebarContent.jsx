@@ -10,7 +10,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import IconBox from 'components/Icons/IconBox'
-import { CreativeTimLogo } from 'components/Icons/Icons'
+import { SigmainfoIcon } from 'components/Icons/Icons'
 import { Separator } from 'components/Separator/Separator'
 import { SidebarHelp } from 'components/Sidebar/SidebarHelp'
 import React from 'react'
@@ -102,7 +102,7 @@ const SidebarContent = ({ logoText, routes }) => {
                     <Icon>{prop.icon}</Icon>
                   ) : (
                     <IconBox
-                      bg="purple.300"
+                      bg="purple.600"
                       color="white"
                       h="30px"
                       w="30px"
@@ -153,7 +153,7 @@ const SidebarContent = ({ logoText, routes }) => {
                   ) : (
                     <IconBox
                       bg={inactiveBg}
-                      color="purple.300"
+                      color="purple.600"
                       h="30px"
                       w="30px"
                       me="12px"
@@ -179,22 +179,22 @@ const SidebarContent = ({ logoText, routes }) => {
 
   return (
     <>
-      <Box pt={'25px'} mb="12px">
+      <Box mb="12px">
         <Link
           href={`${process.env.PUBLIC_URL}/#/`}
           target="_blank"
           display="flex"
           lineHeight="100%"
-          mb="30px"
+          mb="0px"
           fontWeight="bold"
           justifyContent="center"
           alignItems="center"
           fontSize="11px"
         >
-          <CreativeTimLogo w="32px" h="32px" me="10px" />
-          <Text fontSize="sm" mt="3px">
+          <SigmainfoIcon w="128px" h="4rem" me="10px" />
+          {/* <Text fontSize="sm" mt="3px">
             {logoText}
-          </Text>
+          </Text> */}
         </Link>
         <Separator></Separator>
       </Box>

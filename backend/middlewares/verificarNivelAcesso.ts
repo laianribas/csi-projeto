@@ -11,8 +11,8 @@ async function verificarNivelAcesso(request: Request, response: Response, next: 
       where: {
         cargoId: funcionario.cargoId,
         permissao: {
-          descricao: {
-            equals: request.headers.permission as string
+          id: {
+            equals: +request.headers.permission as number
           }
         }
       }
