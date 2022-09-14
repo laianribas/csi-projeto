@@ -1,7 +1,7 @@
 // Chakra imports
 import { Flex } from '@chakra-ui/react'
 import { funconarioData } from 'variables/general'
-import TabelaFuncionarios from './components/TabelaFuncionários'
+import TabelaFuncionarios from './components/TabelaFuncionarios'
 // Assets
 
 function Funcionario() {

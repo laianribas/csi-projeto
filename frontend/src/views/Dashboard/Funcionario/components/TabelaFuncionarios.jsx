@@ -18,7 +18,7 @@ import { SearchBar } from 'components/Navbars/SearchBar/SearchBar'
 import FuncionarioTableRow from 'components/Tables/FuncionarioTableRow'
 
 const TabelaFuncionarios = ({ title, captions, data }) => {
-  const textColor = useColorModeValue('gray.700', 'white')
+  const textColor = useColorModeValue('gray.700', 'gray.300')
 
   return (
     <>
@@ -40,7 +40,12 @@ const TabelaFuncionarios = ({ title, captions, data }) => {
             </Text>
           </Flex>
         </CardHeader>
-        <Table variant="simple" color={textColor} size="sm">
+        <Table
+          variant="striped"
+          color={textColor}
+          size="md"
+          colorScheme="purple"
+        >
           <Thead>
             <Tr my=".8rem" ps="0px">
               {captions.map((caption, idx) => {

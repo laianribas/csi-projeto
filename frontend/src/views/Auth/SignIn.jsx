@@ -45,7 +45,7 @@ function SignIn() {
             mt={{ md: '150px', lg: '80px' }}
           >
             <Heading color={titleColor} fontSize="32px" mb="10px">
-              Welcome Back
+              Bem-vindo
             </Heading>
             <Text
               mb="36px"
@@ -54,44 +54,34 @@ function SignIn() {
               fontWeight="bold"
               fontSize="14px"
             >
-              Enter your email and password to sign in
+              Digite seu login e senha para entrar
             </Text>
             <FormControl>
               <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Email
+                login
               </FormLabel>
               <Input
                 borderRadius="15px"
                 mb="24px"
                 fontSize="sm"
                 type="text"
-                placeholder="Your email adress"
+                placeholder="Seu Login"
                 size="lg"
               />
               <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Password
+                Senha
               </FormLabel>
               <Input
                 borderRadius="15px"
                 mb="36px"
                 fontSize="sm"
                 type="password"
-                placeholder="Your password"
+                placeholder="Sua Senha"
                 size="lg"
               />
-              <FormControl display="flex" alignItems="center">
-                <Switch id="remember-login" colorScheme="purple" me="10px" />
-                <FormLabel
-                  htmlFor="remember-login"
-                  mb="0"
-                  ms="1"
-                  fontWeight="normal"
-                >
-                  Remember me
-                </FormLabel>
-              </FormControl>
+
               <Button
-                fontSize="10px"
+                fontSize="16px"
                 type="submit"
                 bg="purple.300"
                 w="100%"
@@ -106,23 +96,9 @@ function SignIn() {
                   bg: 'purple.400'
                 }}
               >
-                SIGN IN
+                Entrar
               </Button>
             </FormControl>
-            <Flex
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              maxW="100%"
-              mt="0px"
-            >
-              <Text color={textColor} fontWeight="medium">
-                Don't have an account?
-                <Link color={titleColor} as="span" ms="5px" fontWeight="bold">
-                  Sign Up
-                </Link>
-              </Text>
-            </Flex>
           </Flex>
         </Flex>
         <Box
@@ -135,11 +111,14 @@ function SignIn() {
         >
           <Box
             bgImage={signInImage1}
+            mt="15%"
             w="100%"
-            h="100%"
+            h="80%"
             bgSize="cover"
+            bgRepeat="no-repeat"
             bgPosition="50%"
             position="absolute"
+            borderTopLeftRadius="20px"
             borderBottomLeftRadius="20px"
           ></Box>
         </Box>

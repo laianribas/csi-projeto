@@ -41,11 +41,11 @@ function FuncionarioTableRow(props) {
       <Td>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {status ? (
-            <Badge variant="solid" colorScheme="green">
+            <Badge variant="solid" colorScheme="green" fontSize=".8em">
               ATIVO
             </Badge>
           ) : (
-            <Badge variant="solid" colorScheme="red">
+            <Badge variant="solid" colorScheme="red" fontSize=".8em">
               INATIVO
             </Badge>
           )}

@@ -13,40 +13,40 @@ import {
   Switch,
   Text,
   useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import GitHubButton from "react-github-btn";
-import { Separator } from "components/Separator/Separator";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { FaTwitter, FaFacebook } from "react-icons/fa";
+  useColorModeValue
+} from '@chakra-ui/react'
+import GitHubButton from 'react-github-btn'
+import { Separator } from 'components/Separator/Separator'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { FaTwitter, FaFacebook } from 'react-icons/fa'
 
 export default function Configurator(props) {
-  const { secondary, isOpen, onClose, fixed, ...rest } = props;
-  const [switched, setSwitched] = useState(props.isChecked);
+  const { secondary, isOpen, onClose, fixed, ...rest } = props
+  const [switched, setSwitched] = useState(props.isChecked)
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
   // Chakra Color Mode
-  let fixedDisplay = "flex";
+  let fixedDisplay = 'flex'
   if (props.secondary) {
-    fixedDisplay = "none";
+    fixedDisplay = 'none'
   }
 
   let bgButton = useColorModeValue(
-    "linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%)",
-    "white"
-  );
-  let colorButton = useColorModeValue("white", "gray.700");
-  const secondaryButtonBg = useColorModeValue("white", "transparent");
-  const secondaryButtonBorder = useColorModeValue("gray.700", "white");
-  const secondaryButtonColor = useColorModeValue("gray.700", "white");
-  const settingsRef = React.useRef();
+    'linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%)',
+    'white'
+  )
+  let colorButton = useColorModeValue('white', 'gray.700')
+  const secondaryButtonBg = useColorModeValue('white', 'transparent')
+  const secondaryButtonBorder = useColorModeValue('gray.700', 'white')
+  const secondaryButtonColor = useColorModeValue('gray.700', 'white')
+  const settingsRef = React.useRef()
   return (
     <>
       <Drawer
         isOpen={props.isOpen}
         onClose={props.onClose}
-        placement={document.documentElement.dir === "rtl" ? "left" : "right"}
+        placement={document.documentElement.dir === 'rtl' ? 'left' : 'right'}
         finalFocusRef={settingsRef}
         blockScrollOnMount={false}
       >
@@ -75,9 +75,9 @@ export default function Configurator(props) {
                     w="50%"
                     p="8px 32px"
                     me="8px"
-                    colorScheme="teal"
-                    borderColor="teal.300"
-                    color="teal.300"
+                    colorScheme="purple"
+                    borderColor="purple.300"
+                    color="purple.300"
                     variant="outline"
                     fontSize="xs"
                     onClick={props.onTransparent}
@@ -86,11 +86,11 @@ export default function Configurator(props) {
                   </Button>
                   <Button
                     type="submit"
-                    bg="teal.300"
+                    bg="purple.300"
                     w="50%"
                     p="8px 32px"
                     mb={5}
-                    _hover="teal.300"
+                    _hover="purple.300"
                     color="white"
                     fontSize="xs"
                     onClick={props.onOpaque}
@@ -108,15 +108,15 @@ export default function Configurator(props) {
                   Navbar Fixed
                 </Text>
                 <Switch
-                  colorScheme="teal"
+                  colorScheme="purple"
                   isChecked={switched}
                   onChange={(event) => {
                     if (switched === true) {
-                      props.onSwitch(false);
-                      setSwitched(false);
+                      props.onSwitch(false)
+                      setSwitched(false)
                     } else {
-                      props.onSwitch(true);
-                      setSwitched(true);
+                      props.onSwitch(true)
+                      setSwitched(true)
                     }
                   }}
                 />
@@ -130,7 +130,7 @@ export default function Configurator(props) {
                   Dark/Light
                 </Text>
                 <Button onClick={toggleColorMode}>
-                  Toggle {colorMode === "light" ? "Dark" : "Light"}
+                  Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
                 </Button>
               </Flex>
 
@@ -144,7 +144,7 @@ export default function Configurator(props) {
                 </Text>
                 <Box>
                   <Link
-                    href="https://www.creative-tim.com/product/purity-ui-dashboard"
+                    href="https://www.creative-tim.com/product/"
                     w="100%"
                     mb="16px"
                   >
@@ -160,10 +160,7 @@ export default function Configurator(props) {
                       Free Download
                     </Button>
                   </Link>
-                  <Link
-                    href="https://demos.creative-tim.com/docs-purity-ui-dashboard/"
-                    w="100%"
-                  >
+                  <Link href="https://demos.creative-tim.com/docs-/" w="100%">
                     <Button
                       w="100%"
                       bg={secondaryButtonBg}
@@ -186,10 +183,10 @@ export default function Configurator(props) {
                   mb="16px"
                 >
                   <GitHubButton
-                    href="https://github.com/creativetimofficial/purity-ui-dashboard"
+                    href="https://github.com/creativetimofficial/"
                     data-icon="octicon-star"
                     data-show-count="true"
-                    aria-label="Star creativetimofficial/purity-ui-dashboard on GitHub"
+                    aria-label="Star creativetimofficial/ on GitHub"
                   >
                     Star
                   </GitHubButton>
@@ -201,7 +198,7 @@ export default function Configurator(props) {
                   <Flex justifyContent="center" alignContent="center">
                     <Link
                       isExternal="true"
-                      href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fpurity-ui-dashboard&text=Check%20Purity%20UI%20Dashboard%20made%20by%20%40CreativeTim%20and%20%40simmmple_web%20%23webdesign%20%23dashboard%20%23chakra"
+                      href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2F&text=Check%20Purity%20UI%20Dashboard%20made%20by%20%40CreativeTim%20and%20%40simmmple_web%20%23webdesign%20%23dashboard%20%23chakra"
                     >
                       <Button
                         colorScheme="twitter"
@@ -213,7 +210,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fpurity-ui-dashboard"
+                      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2F"
                     >
                       <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
                         <Text>Share</Text>
@@ -227,11 +224,11 @@ export default function Configurator(props) {
         </DrawerContent>
       </Drawer>
     </>
-  );
+  )
 }
 Configurator.propTypes = {
   secondary: PropTypes.bool,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
-  fixed: PropTypes.bool,
-};
+  fixed: PropTypes.bool
+}
