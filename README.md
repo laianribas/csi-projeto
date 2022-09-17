@@ -23,7 +23,7 @@ A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoe
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **backend**
 
-| *Chave*   | *Descrição*                                   |
+| *Variável*   | *Descrição*                                   |
 | :---------- | :------------------------------------------ |
 | `DATABASE_URL`      | Informar a URL do banco de dados (irá vairar se estiver rodando localmente ou no container)|
 | `NODE_ENV`      | Para informar se o sistema está em modo de desenvolvimento ou produção|
@@ -55,4 +55,38 @@ Suba os containers
 ```bash
   docker compose up -d
 ```
+## :desktop_computer: Rodando localmente
+### :warning:Atenção!:warning:
 
+Para rodar o projeto localmente, é necessário alterar a variável de ambiente de configuração de banco de dados (`DATABASE_URL`) no arquivo .env no backend. Seguindo a documentação do Prisma e o formato sugerido pelo PostgreSQL, segue abaixo a formatação:
+
+<div>
+
+[Imgur](https://i.imgur.com/5vGK38c.png)
+
+
+</div>
+
+Clone o projeto
+
+```bash
+  git clone https://link-para-o-projeto
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start
+```
