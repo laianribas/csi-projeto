@@ -7,11 +7,11 @@
 
 <div align="center">
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=flat&logo=Prisma&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 </div>
 
@@ -23,13 +23,13 @@ A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoe
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **backend**
 
-`DATABASE_URL` Para informar a URL do banco de dados (irá vairar se estiver rodando localmente ou no container)
+| *Chave*   | *Descrição*                                   |
+| :---------- | :------------------------------------------ |
+| `DATABASE_URL`      | Informar a URL do banco de dados (irá vairar se estiver rodando localmente ou no container)|
+| `NODE_ENV`      | Para informar se o sistema está em modo de desenvolvimento ou produção|
+| `SECRET_KEY`     | Essa é a sua chave criptográfica|
+| `JWT_KEY`      | Chave para gerar Token de autenticação|
 
-`NODE_ENV` Para informar se o sistema está em modo de desenvolvimento ou produção
-
-`SECRET_KEY` Esta é a chave criptográfica
-
-`JWT_KEY` Chave para gerar Token de autenticação
 
 ## :whale: Rodando com Docker
 
@@ -56,15 +56,3 @@ Suba os containers
   docker compose up -d
 ```
 
-## :hammer_and_wrench: Stack utilizada
-
-**Front-end:** React, Redux, TailwindCSS
-
-**Back-end:** Node, Express
-
-
-## :world_map: Roadmap
-
-- Melhorar o suporte de navegadores
-
-- Adicionar mais integrações
