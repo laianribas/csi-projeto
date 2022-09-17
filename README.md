@@ -62,10 +62,16 @@ Para rodar o projeto localmente, é necessário alterar a variável de ambiente 
 
 <div>
 
-[Imgur](https://i.imgur.com/5vGK38c.png)
+![Imgur](https://i.imgur.com/5vGK38c.png)
 
 
 </div>
+
+Logo, um bom exemplo de configuração da variável é: 
+
+```
+  postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+```
 
 Clone o projeto
 
