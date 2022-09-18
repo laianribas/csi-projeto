@@ -105,3 +105,7 @@ Retorne à raiz do projeto e acesse o Front-end
 ```
 
 Inicie o Front-end
+
+```bash
+  npm run start
+```
