@@ -1,3 +1,5 @@
+# SIGMAINFO
+
 <div align="center">
 
 ![Logo](https://i.imgur.com/Oe1WClw.png)
