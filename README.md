@@ -21,7 +21,7 @@ A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoe
 
 ## :page_facing_up: Variáveis de Ambiente
 
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **backend**
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **Back-end**
 
 | *Variável*   | *Descrição*                                   |
 | :---------- | :------------------------------------------ |
@@ -69,20 +69,21 @@ Para rodar o projeto localmente, é necessário alterar a variável de ambiente 
 
 Logo, um bom exemplo de configuração da variável é: 
 
-```
+```javascript
   postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 ```
+Agora vamos ao que interessa!
 
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/laianribas/csi-projeto.git
 ```
 
-Entre no diretório do projeto
+Entre no diretório do Back-end do projeto
 
 ```bash
-  cd my-project
+  cd csi-projeto/backend
 ```
 
 Instale as dependências
@@ -91,8 +92,16 @@ Instale as dependências
   npm install
 ```
 
-Inicie o servidor
+Inicie o servidor 
 
 ```bash
   npm run start
 ```
+
+Retorne à raiz do projeto e acesse o Front-end
+
+```bash
+  cd .. && cd frontend
+```
+
+Inicie o Front-end
