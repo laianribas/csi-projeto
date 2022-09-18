@@ -23,10 +23,10 @@ export function SidebarHelp(props) {
         <QuestionIcon color="purple.600" h="18px" w="18px" />
       </IconBox>
       <Text fontSize="sm" color="white" fontWeight="bold">
-        Need help?
+        Precisa de ajuda?
       </Text>
       <Text fontSize="xs" color="white" mb="10px">
-        Please check our docs
+        Enter em contato
       </Text>
       <Link w="100%" href="https://demos.creative-tim.com/docs-/">
         <Button
@@ -45,7 +45,7 @@ export function SidebarHelp(props) {
           }}
           color="black"
         >
-          DOCUMENTATION
+          ALGUMA COISA DE CONTATO
         </Button>
       </Link>
     </Flex>

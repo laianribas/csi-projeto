@@ -1,4 +1,5 @@
 import express from 'express'
+import helmet from "helmet";
 import { RotasChamado } from '../routes/Rotas_Chamado'
 import { RotasFuncionario } from '../routes/Rotas_Funcionario'
 import { RotasSetor } from '../routes/Rotas_Setor'
@@ -6,6 +7,7 @@ import { RotaLogin } from '../routes/Rota_login'
 import { RotasCargo } from '../routes/Rotas_Cargo'
 
 const app = express()
+app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
