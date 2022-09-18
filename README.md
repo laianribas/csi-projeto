@@ -23,7 +23,7 @@ A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoe
 
 ## :page_facing_up: Variáveis de Ambiente
 
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **Back-end**
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env do **Back-end**. Segue o exemplo no arquivo [.env.example](backend/.env.example)
 
 | *Variável*   | *Descrição*                                   |
 | :---------- | :------------------------------------------ |
