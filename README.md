@@ -111,6 +111,6 @@ Inicie o Front-end
 ```bash
   npm run start
 ```
-## Suporte
+## Suporte e Feedback
 
-Para suporte, mande um email para laian67a@gmail.com
+Para suporte e Feedback, mande um email para laian67a@gmail.com
