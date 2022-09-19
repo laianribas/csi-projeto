@@ -26,9 +26,9 @@ Inicie o servidor
   npm run start
 ```
 
-## :mailbox_with_mail: Documentação da API:
+## :mailbox_with_mail: Fazendo requisições para a API:
 
-Antes de mais nada, para fazer uma requisição para a API, é necessário que alguns **headers** sejam informados. Segue o exemplo de uma requisição feita com o Axios:
+Para fazer uma requisição para a API, é necessário que alguns **headers** sejam informados. Segue o exemplo sugerido de uma requisição feita com o Axios:
 
 ```javascript
 var axios = require('axios');
