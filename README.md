@@ -75,7 +75,7 @@ Logo, um bom exemplo de configuração da variável é:
   postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 ```
 
-Para prosseguir siga as instruções presentes nos diretórios do [Back-end](backend/README.md) e do [Front-end](backend/README.md)
+Para prosseguir siga as instruções presentes nos diretórios do [Back-end](backend/README.md) e do [Front-end](frontend/README.md)
 
 ## Suporte e Feedback
 
