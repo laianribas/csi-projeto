@@ -57,7 +57,7 @@ Suba os containers
 ```bash
   docker compose up -d
 ```
-## :desktop_computer: Rodando localmente
+## :desktop_computer: Rodando sem Docker
 ### :warning:Atenção!:warning:
 
 Para rodar o projeto localmente, é necessário alterar a variável de ambiente de configuração de banco de dados (`DATABASE_URL`) no arquivo .env no backend. Seguindo a documentação do Prisma e o formato sugerido pelo PostgreSQL, segue abaixo a formatação:
@@ -74,43 +74,11 @@ Logo, um bom exemplo de configuração da variável é:
 ```javascript
   postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 ```
-### :rocket: Agora vamos ao que interessa!
 
-Clone o projeto
-
-```bash
-  git clone https://github.com/laianribas/csi-projeto.git
-```
-
-Entre no diretório do Back-end do projeto
-
-```bash
-  cd csi-projeto/backend
-```
-
-Instale as dependências
-
-```bash
-  npm install
-```
-
-Inicie o servidor 
-
-```bash
-  npm run start
-```
+Para prosseguir siga as instruções presentes nos diretórios do [Back-end](backend/README.md) e do [Front-end](backend/README.md)
 
 Retorne à raiz do projeto e acesse o Front-end
 
-```bash
-  cd .. && cd frontend
-```
-
-Inicie o Front-end
-
-```bash
-  npm run start
-```
 ## Suporte e Feedback
 
 Para suporte e Feedback, mande um email para laian67a@gmail.com
