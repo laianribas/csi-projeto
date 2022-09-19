@@ -11,7 +11,7 @@ Clone o repositório
 Entre no diretório do projeto
 
 ```bash
-  cd backend
+  cd csi-projeto/backend
 ```
 
 Instale as dependências
