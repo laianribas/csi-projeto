@@ -1,11 +1,11 @@
 # Back-end
 
-**Para instalar e executar o projeto execute o passo-a-passo:**
+## :computer: Instalação e execução: passo-a-passo:
 
 Clone o repositório
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/laianribas/csi-projeto.git
 ```
 
 Entre no diretório do projeto
@@ -26,15 +26,19 @@ Inicie o servidor
   npm run start
 ```
 
+## :mailbox_with_mail: Documentação da API:
+
+Antes de mais nada, para fazer uma requisição para a API, é necessário que alguns **headers** sejam informados. Segue o exemplo de uma requisição feita com o Axios:
+
 ```javascript
 var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: `http://localhost:5000/${rota}`,
+  url: `http://localhost:5000/setor`,      // informar a rota
   headers: { 
-    'permission': `${permissionId}`, 
-    'Authorization': `Bearer ${token}`
+    'permission': '18',                    // informar o ID da permissão para que seja verificado o acesso
+    'Authorization': `Bearer mytoken`      // Substitua o 'mytoken' pelo token gerado pelo JWT
   }
 };
 
