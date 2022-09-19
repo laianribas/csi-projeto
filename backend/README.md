@@ -1,5 +1,20 @@
 # Back-end
+## :warning:Atenção!:warning:
 
+Para rodar o projeto localmente, é necessário alterar a variável de ambiente de configuração de banco de dados (`DATABASE_URL`) no arquivo .env ([exemplo](.env.example)) no backend. Seguindo a documentação do Prisma e o formato sugerido pelo PostgreSQL, segue abaixo a formatação:
+
+<div>
+
+![Imgur](https://i.imgur.com/5vGK38c.png)
+
+
+</div>
+
+Logo, um bom exemplo de configuração da variável é: 
+
+```javascript
+  postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+```
 ## :computer: Instalação e execução: passo-a-passo:
 
 Clone o repositório
