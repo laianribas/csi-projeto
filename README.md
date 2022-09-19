@@ -19,7 +19,7 @@
 
 ## :mag: Sobre
 
-A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoeste da Bahia (UESB) vem enfrentando dificuldades no gerenciamento dos chamados de manutenção em informática e redes. Afim de reduzir tais dificuldades, está sendo criada uma ferramenta que tem como objetivo principal agilizar o processo de abertura e acompanhamento dos chamados. 
+A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoeste da Bahia (UESB) vem enfrentando dificuldades no gerenciamento dos chamados de manutenção em informática e redes. A fim de reduzir tais dificuldades, está sendo criada uma ferramenta que tem como objetivo principal agilizar o processo de abertura e acompanhamento dos chamados. 
 
 ## :page_facing_up: Variáveis de Ambiente
 
@@ -76,8 +76,6 @@ Logo, um bom exemplo de configuração da variável é:
 ```
 
 Para prosseguir siga as instruções presentes nos diretórios do [Back-end](backend/README.md) e do [Front-end](backend/README.md)
-
-Retorne à raiz do projeto e acesse o Front-end
 
 ## Suporte e Feedback
 
