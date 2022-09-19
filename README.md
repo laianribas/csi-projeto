@@ -58,24 +58,10 @@ Suba os containers
   docker compose up -d
 ```
 ## :desktop_computer: Rodando sem Docker
-### :warning:Atenção!:warning:
 
-Para rodar o projeto localmente, é necessário alterar a variável de ambiente de configuração de banco de dados (`DATABASE_URL`) no arquivo .env no backend. Seguindo a documentação do Prisma e o formato sugerido pelo PostgreSQL, segue abaixo a formatação:
-
-<div>
-
-![Imgur](https://i.imgur.com/5vGK38c.png)
-
-
-</div>
-
-Logo, um bom exemplo de configuração da variável é: 
-
-```javascript
-  postgresql://USER:PASSWORD@HOST:PORT/DATABASE
-```
-
-**Para prosseguir siga as instruções presentes nos diretórios do [Back-end](backend) e do [Front-end](frontend)**
+#### Siga as instruções presentes nos diretórios:
+- **[Back-end](backend)** 
+- **[Front-end](frontend)**
 
 ## Suporte e Feedback
 
