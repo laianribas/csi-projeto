@@ -23,7 +23,7 @@ Clone o repositório
   git clone https://github.com/laianribas/csi-projeto.git
 ```
 
-Entre no diretório do backend do projeto
+Entre no diretório do back-end do projeto
 
 ```bash
   cd csi-projeto/backend
