@@ -1,5 +1,18 @@
 # Back-end
-## :warning:Atenção!:warning:
+## :toolbox: Tecnologias utilizadas
+
+| *Tecnologia*   | *Versão*                                   |
+| :---------- | :------------------------------------------ |
+| [TypeScript](https://www.typescriptlang.org/)      | ^4.7.2|
+| [Prisma](https://www.prisma.io/)      | ^3.13.0|
+| [Express](https://expressjs.com/)      | ^4.18.1|
+| [JsonWebToken](https://jwt.io/)      | ^8.5.1|
+| [Nodemon](https://www.npmjs.com/package/nodemon)      | ^2.0.16|
+| [SwaggerUI Express](https://www.npmjs.com/package/swagger-ui-express)      | ^4.5.0|
+ 
+
+## :computer: Instalação e execução: passo-a-passo
+### :warning:Atenção!:warning:
 
 Para rodar o projeto localmente, é necessário alterar a variável de ambiente de configuração de banco de dados (`DATABASE_URL`) no arquivo .env ([exemplo](.env.example)) no backend. Seguindo a documentação do Prisma e o formato sugerido pelo PostgreSQL, segue abaixo a formatação:
 
@@ -15,7 +28,6 @@ Logo, um bom exemplo de configuração da variável é:
 ```javascript
   postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 ```
-## :computer: Instalação e execução: passo-a-passo:
 
 Clone o repositório
 
@@ -41,7 +53,7 @@ Inicie o servidor
   npm run start
 ```
 
-## :mailbox_with_mail: Fazendo requisições para a API:
+## :mailbox_with_mail: Fazendo requisições para a API
 
 Para fazer uma requisição para a API, é necessário que alguns **headers** sejam informados. Segue o exemplo sugerido de uma requisição feita com o Axios:
 
