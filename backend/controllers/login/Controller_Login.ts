@@ -24,7 +24,7 @@ class ControllerLogin {
       return response.status(400).json({ message: 'login e/ou senha inválido!' })
     }
     if (!funcionario.ativo) {
-      return response.status(400).json({ message: 'Seu usuário está inativo. Favor, entrar em contato com os administradores!!' })
+      return response.status(401).json({ message: 'Seu usuário está inativo. Favor, entrar em contato com os administradores!!' })
     }
     gerarToken({ funcionario, request, response });
   }

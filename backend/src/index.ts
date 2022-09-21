@@ -1,5 +1,7 @@
 import express from 'express'
-import helmet from "helmet";
+import helmet from "helmet"
+import swaggerUi from "swagger-ui-express"
+import swaggerDocs from './swagger.json'
 import { RotasChamado } from '../routes/Rotas_Chamado'
 import { RotasFuncionario } from '../routes/Rotas_Funcionario'
 import { RotasSetor } from '../routes/Rotas_Setor'
@@ -10,6 +12,7 @@ const app = express()
 app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use('/', RotaLogin)
 app.use('/chamado', RotasChamado)
