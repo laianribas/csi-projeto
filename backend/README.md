@@ -1,15 +1,5 @@
 # Back-end
-## :toolbox: Tecnologias utilizadas
 
-| *Tecnologia*   | *Versão*                                   |
-| :---------- | :------------------------------------------ |
-| [TypeScript](https://www.typescriptlang.org/)      | ^4.7.2|
-| [Prisma](https://www.prisma.io/)      | ^3.13.0|
-| [Express](https://expressjs.com/)      | ^4.18.1|
-| [JsonWebToken](https://jwt.io/)      | ^8.5.1|
-| [Nodemon](https://www.npmjs.com/package/nodemon)      | ^2.0.16|
-| [SwaggerUI Express](https://www.npmjs.com/package/swagger-ui-express)      | ^4.5.0|
- 
 
 ## :computer: Instalação e execução: passo-a-passo
 ### :warning:Atenção!:warning:
