@@ -1,0 +1,54 @@
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import { schema, rules } from '@ioc:Adonis/Core/Validator';
+import Call from 'App/Models/Call';
+import Employee from 'App/Models/Employee';
+
+export default class CreateCallService {
+  /**
+   * Cria um novo chamado com base nos dados fornecidos.
+   *
+   * @param request - Os dados da requisição de criação do chamado.
+   * @param employeeId - O ID do funcionário responsável pelo chamado.
+   * @returns O chamado criado.
+   */
+  public async execute(request: HttpContextContract['request'], employeeId: string) {
+    // Define o esquema de validação dos dados do chamado
+    const validatedData = await schema.create({
+      recipient: schema.string({}, [rules.trim()]),
+      area: schema.string({}, [rules.trim()]),
+      description: schema.string({}, [rules.trim()]),
+      assetTag: schema.string({}, [rules.trim()]),
+      evaluation: schema.string({}, [rules.trim()]),
+      departmentId: schema.number(),
+    });
+
+    // Valida os dados recebidos na requisição
+    const data = await request.validate({ schema: validatedData });
+
+    // Obtenha o funcionário pelo ID
+    const employee = await Employee.findOrFail(employeeId);
+
+    // Cria uma nova instância do modelo Call
+    const call = new Call();
+
+    // Atribui os valores validados aos campos do chamado
+    call.recipient = data.recipient;
+    call.area = data.area;
+    call.description = data.description;
+    call.asset_tag = data.assetTag;
+    call.evaluation = data.evaluation;
+    call.departmentId = data.departmentId;
+    call.employeeId = employeeId;
+    call.campusId = employee.campusId;
+    call.active = true;
+
+    // Salva o chamado no banco de dados
+    await call.save();
+
+    await call.load('employee');
+    await call.load('department');
+    await call.load('status');
+
+    return call;
+  }
+}

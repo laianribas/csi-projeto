@@ -4,7 +4,6 @@
 
 ![Logo](https://i.imgur.com/Oe1WClw.png)
 
-
 </div>
 
 <div align="center">
@@ -19,7 +18,7 @@
 
 ## :mag: Sobre
 
-A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoeste da Bahia (UESB) vem enfrentando dificuldades no gerenciamento dos chamados de manutenção em informática e redes. A fim de reduzir tais dificuldades, está sendo criada uma ferramenta que tem como objetivo principal agilizar o processo de abertura e acompanhamento dos chamados. 
+A Coordenação Setorial de Informática (CSI) da Universidade Estadual do Sudoeste da Bahia (UESB) vem enfrentando dificuldades no gerenciamento dos chamados de manutenção em informática e redes. A fim de reduzir tais dificuldades, está sendo criada uma ferramenta que tem como objetivo principal agilizar o processo de abertura e acompanhamento dos chamados.
 
 ## :page_facing_up: Variáveis de Ambiente
 
@@ -31,7 +30,6 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | `NODE_ENV`      | Para informar se o sistema está em modo de desenvolvimento ou produção|
 | `SECRET_KEY`     | Essa é a sua chave criptográfica|
 | `JWT_KEY`      | Chave para gerar Token de autenticação|
-
 
 ## :whale: Rodando com Docker
 
@@ -52,17 +50,20 @@ Faça o Build do docker compose
 ```bash
   docker compose build
 ```
+
 Suba os containers
 
 ```bash
   docker compose up -d
 ```
+
 ## :desktop_computer: Rodando sem Docker
 
-#### Siga as instruções presentes nos diretórios:
-- **[Back-end](backend)** 
+#### Siga as instruções presentes nos diretórios
+
+- **[Back-end](backend)**
 - **[Front-end](frontend)**
 
 ## Suporte e Feedback
 
-Para suporte e Feedback, mande um email para laian67a@gmail.com
+Para suporte e Feedback, mande um email para <laian67a@gmail.com>
