@@ -31,6 +31,34 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | `SECRET_KEY`     | Essa é a sua chave criptográfica|
 | `JWT_KEY`      | Chave para gerar Token de autenticação|
 
+<<<<<<< HEAD
+=======
+## :toolbox: Principais Tecnologias utilizadas
+
+ - **Back-end**
+
+  | *Tecnologia*   | *Versão*                                   |
+  | :----------: | :------------------------------------------: |
+  | [TypeScript](https://www.typescriptlang.org/)      | ^4.7.2|
+  | [Prisma](https://www.prisma.io/)      | ^3.13.0|
+  | [Express](https://expressjs.com/)      | ^4.18.1|
+  | [JsonWebToken](https://jwt.io/)      | ^8.5.1|
+  | [Nodemon](https://www.npmjs.com/package/nodemon)      | ^2.0.16|
+  | [SwaggerUI Express](https://www.npmjs.com/package/swagger-ui-express)      | ^4.5.0|
+
+
+ - **Front-end**
+
+  | *Tecnologia*   | *Versão*                                   |
+  | :----------: | :------------------------------------------: |
+  | [ApexCharts](https://apexcharts.com)      | ^3.27.3|
+  | [Axios](https://axios-http.com/ptbr/docs/intro)      | ^0.27.2|
+  | [React](https://pt-br.reactjs.org)      | ^17.0.2|
+  | [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start)      | 5.2.1|
+
+
+
+>>>>>>> 7fe715046d02513ea041e08363fafb48252b1fe9
 ## :whale: Rodando com Docker
 
 Clone o projeto
