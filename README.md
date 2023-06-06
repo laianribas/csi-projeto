@@ -31,8 +31,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | `SECRET_KEY`     | Essa é a sua chave criptográfica|
 | `JWT_KEY`      | Chave para gerar Token de autenticação|
 
-<<<<<<< HEAD
-=======
+
 ## :toolbox: Principais Tecnologias utilizadas
 
  - **Back-end**
@@ -58,7 +57,6 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 
 
->>>>>>> 7fe715046d02513ea041e08363fafb48252b1fe9
 ## :whale: Rodando com Docker
 
 Clone o projeto
