@@ -2,6 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { schema, rules } from '@ioc:Adonis/Core/Validator';
 import Call from 'App/Models/Call';
 import Employee from 'App/Models/Employee';
+import Status from 'App/Models/Status';
 
 export default class CreateCallService {
   /**
@@ -11,7 +12,7 @@ export default class CreateCallService {
    * @param employeeId - O ID do funcionário responsável pelo chamado.
    * @returns O chamado criado.
    */
-  public async execute(request: HttpContextContract['request'], employeeId: string) {
+  public async execute(request: HttpContextContract['request'], employeeId: string): Promise<Call> {
     // Define o esquema de validação dos dados do chamado
     const validatedData = await schema.create({
       recipient: schema.string({}, [rules.trim()]),
@@ -44,6 +45,12 @@ export default class CreateCallService {
 
     // Salva o chamado no banco de dados
     await call.save();
+
+    // Cria a relação com o status "aberto"
+    const status = await Status.findBy('description', 'Em aberto');
+    if (status) {
+      await call.related('status').attach([status.id]);
+    }
 
     await call.load('employee');
     await call.load('department');

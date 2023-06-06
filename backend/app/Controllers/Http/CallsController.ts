@@ -16,7 +16,12 @@ export default class CallsController {
    */
   public async index({ response }: HttpContextContract) {
     try {
-      const calls = await Call.query().preload('department').preload('employee').preload('status');
+      const calls = await Call.query()
+        .where('active', true)
+        .preload('department')
+        .preload('employee', query => query.preload('position'))
+        .preload('status')
+        .orderBy('createdAt', 'desc');
 
       return response.ok(calls);
     } catch (error) {

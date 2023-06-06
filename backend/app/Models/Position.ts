@@ -10,8 +10,8 @@ export default class Position extends BaseModel {
 
   @manyToMany(() => Permission, {
     pivotTable: 'position_permission',
-    pivotForeignKey: 'permission_id',
-    pivotRelatedForeignKey: 'position_id',
+    pivotForeignKey: 'position_id',
+    pivotRelatedForeignKey: 'permission_id',
     pivotTimestamps: true,
   })
   public permissions: ManyToMany<typeof Permission>;

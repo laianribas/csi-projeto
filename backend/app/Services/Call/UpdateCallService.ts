@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { schema, rules } from '@ioc:Adonis/Core/Validator';
 import Call from 'App/Models/Call';
+import Status from 'App/Models/Status';
 
 export default class UpdateCallService {
   /**
@@ -19,6 +20,7 @@ export default class UpdateCallService {
       assetTag: schema.string.optional({}, [rules.trim()]),
       evaluation: schema.string.optional({}, [rules.trim()]),
       departmentId: schema.number.optional(),
+      statusIds: schema.number.optional(),
     });
 
     // Valida os dados recebidos na requisição
@@ -45,6 +47,15 @@ export default class UpdateCallService {
     }
     if (data.departmentId) {
       call.departmentId = data.departmentId;
+    }
+
+    // Verifica se foram fornecidos os IDs de status
+    if (data.statusIds) {
+      // Busca os status pelo ID
+      const status = await Status.findByOrFail('id', data.statusIds);
+
+      // Associa o chamado aos novos status
+      await call.related('status').save(status);
     }
 
     // Salva as alterações no chamado

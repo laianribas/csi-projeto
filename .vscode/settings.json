@@ -11,5 +11,7 @@
     "permissoes",
     "Seguranca",
     "usuario"
-  ]
+  ],
+  "editor.formatOnSave": true
 }
+

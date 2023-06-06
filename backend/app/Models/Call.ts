@@ -1,4 +1,5 @@
-import { BaseModel, column, BelongsTo, belongsTo, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm';
+import { BaseModel, column, BelongsTo, belongsTo, ManyToMany, manyToMany, beforeCreate } from '@ioc:Adonis/Lucid/Orm';
+import { v4 as uuidv4 } from 'uuid';
 import Employee from './Employee';
 import Department from './Department';
 import { DateTime } from 'luxon';
@@ -61,6 +62,16 @@ export default class Call extends BaseModel {
     pivotTable: 'status_call',
     pivotForeignKey: 'call_id',
     pivotRelatedForeignKey: 'status_id',
+    pivotTimestamps: true,
+    pivotColumns: ['date', 'created_at', 'updated_at']
   })
   public status: ManyToMany<typeof Status>;
+
+  @beforeCreate()
+  public static async createUUID(call: Call) {
+    if (call.id === undefined) {
+      call.id = uuidv4()
+    }
+  }
+
 }
