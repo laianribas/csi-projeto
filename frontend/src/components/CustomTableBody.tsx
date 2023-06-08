@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Delete, Edit } from '@mui/icons-material';
 import { IconButton, TableBody, TableCell, TableRow, Tooltip, useTheme } from '@mui/material';
 import React, { ReactNode, useContext } from 'react';
-import { ModalContext } from '../context/ModalContext';
+import { ModalContext } from '../context/ModalProvider';
 import CallStatusChip from './CallStatusChip';
 
 interface CustomTableBodyProps {

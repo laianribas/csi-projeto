@@ -1,7 +1,7 @@
 import { Close } from '@mui/icons-material';
 import { Box, IconButton, Modal } from '@mui/material';
 import React, { useContext } from 'react';
-import { ModalContext } from '../context/ModalContext';
+import { ModalContext } from '../context/ModalProvider';
 
 interface CustomModalProps {
   open: boolean;

@@ -5,7 +5,8 @@ import './index.css';
 
 import { createTheme } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
-import { ModalProvider } from './context/ModalContext';
+import { ModalProvider } from './context/ModalProvider';
+import { SearchProvider } from './context/SearchProvider';
 
 const theme = createTheme();
 
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ModalProvider>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </ModalProvider>
     </BrowserRouter>
   </React.StrictMode>,
