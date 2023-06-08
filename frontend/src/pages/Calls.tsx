@@ -1,22 +1,22 @@
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableContainer from "@mui/material/TableContainer";
-import TablePagination from "@mui/material/TablePagination";
-import { Container } from "@mui/system";
+import { Box, Container, Paper, Table, TableContainer, TablePagination } from "@mui/material";
 import * as React from "react";
 import CreateButton from "../components/CreateButton";
+import CustomModal from "../components/CustomModal";
 import CustomTableBody from "../components/CustomTableBody";
+import CallForm from "../components/Forms/CallForm";
 import SearchBar from "../components/SearchBar";
 import TableHeadComponent from "../components/TableHeadComponent";
+import { ModalContext } from '../context/ModalContext';
 import { Data, Order, callsHeadCells, callsRows, getComparator, stableSort } from "../helpers";
 
 export default function Calls() {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("id");
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [searchText, setSearchText] = React.useState('');
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const { openModal } = React.useContext(ModalContext)
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -45,27 +45,35 @@ export default function Calls() {
     setPage(0);
   };
 
-  const filteredCalls = React.useMemo(() => {
-    return callsRows.filter((row) =>
-      row.number.toLowerCase().includes(searchText.toLowerCase()) ||
-      row.openingDate.includes(searchText.toLowerCase()) ||
-      row.status.toLowerCase().includes(searchText.toLowerCase()) ||
-      row.responsible.toLowerCase().includes(searchText.toLowerCase())
-    );
-  }, [searchText, callsRows]);
+  const filteredData = React.useMemo(() => {
+    if (searchText === '') {
+      return callsRows;
+    }
+    const lowercasedValue = searchText.toLowerCase();
+    return callsRows.filter((row) => {
+      return Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(lowercasedValue)
+      );
+    });
+  }, [searchText]);
 
   const visibleRows = React.useMemo(() => {
-    return stableSort(filteredCalls, getComparator(order, orderBy)).slice(
+    return stableSort(filteredData, getComparator(order, orderBy)).slice(
       page * rowsPerPage,
       page * rowsPerPage + rowsPerPage
     );
-  }, [order, orderBy, page, rowsPerPage, filteredCalls]);
+  }, [order, orderBy, page, rowsPerPage, filteredData]);
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredCalls.length) : 0;
+  const emptyRows = React.useMemo(() => {
+    return page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0;
+  }, [page, rowsPerPage, filteredData]);
 
   const handleCreate = () => {
+    openModal();
+  }
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   }
 
   return (
@@ -74,23 +82,29 @@ export default function Calls() {
       <Box sx={{ width: "100%", marginTop: '16px', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <CreateButton onClick={handleCreate} buttonName={'Novo chamado'} />
       </Box>
-      <Box sx={{ width: "100%", marginTop: '16px' }} >
-        <Paper sx={{ width: "100%", mb: 2 }}>
-          <TableContainer >
-            <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+      <CustomModal onClose={handleCloseModal} open={isModalOpen}>
+        <CallForm />
+      </CustomModal>
+      <Box sx={{ width: "100%", marginTop: '16px', overflowX: 'auto' }}>
+        <Paper sx={{ minWidth: 1000 }}>
+          <TableContainer sx={{ width: '100%' }}>
+            <Table size="medium">
               <TableHeadComponent
                 headCells={callsHeadCells}
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
               />
-              <CustomTableBody visibleRows={visibleRows} emptyRows={emptyRows} />
+              <CustomTableBody
+                visibleRows={visibleRows}
+                emptyRows={emptyRows}
+              />
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 50, 100]}
+            rowsPerPageOptions={[5, 10, 25, 50, 100]}
             component="div"
-            count={filteredCalls.length}
+            count={filteredData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

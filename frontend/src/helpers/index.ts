@@ -29,7 +29,7 @@ function getRandomName() {
 }
 
 function getRandomStatus() {
-  const statuses = ["Concluído", "Em Andamento"];
+  const statuses = ["Concluído", "Em Andamento", "Em Aberto"];
   return statuses[Math.floor(Math.random() * statuses.length)];
 }
 

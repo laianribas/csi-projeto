@@ -16,10 +16,11 @@ interface TableHeadProps {
     event: React.MouseEvent<unknown>,
     property: keyof Data
   ) => void;
+  showActions?: boolean;
 }
 
 export default function TableHeadComponent(props: TableHeadProps) {
-  const { order, orderBy, onRequestSort, headCells } = props;
+  const { order, orderBy, onRequestSort, headCells, showActions = true } = props;
   const createSortHandler =
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
@@ -31,7 +32,7 @@ export default function TableHeadComponent(props: TableHeadProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align='center'
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -51,6 +52,7 @@ export default function TableHeadComponent(props: TableHeadProps) {
             </TableSortLabel>
           </TableCell>
         ))}
+        {showActions && <TableCell align="center">Ações</TableCell>}
       </TableRow>
     </TableHead>
   );
