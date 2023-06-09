@@ -2,6 +2,7 @@ import { Box, Container, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import CallsTable, { TableColumn } from '../components/CallsTable';
 import LineChartComponent, { DataLineChart } from '../components/LineChartComponent';
+import PageTitle from '../components/PageTitle';
 import PieChartComponent from '../components/PieChartComponent';
 import StatisticsCard from '../components/StatisticsCard';
 
@@ -93,6 +94,7 @@ const Home: React.FC = () => {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
+      <PageTitle text="Dashboard" />
       <Typography variant="h6" gutterBottom display={isMediumScreen ? 'initial' : 'flex'} justifyContent="center">
         Chamados
       </Typography>

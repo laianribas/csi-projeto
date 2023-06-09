@@ -1,17 +1,14 @@
 import {
   Box,
-  Container,
-  Paper, Table,
-  TableContainer,
-  TablePagination
+  Container
 } from "@mui/material";
 import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
-import CustomTableBody from "../components/CustomTableBody";
+import CustomTableContainer from "../components/CustomTableContainer";
 import CallForm from "../components/Forms/CallForm";
+import PageTitle from "../components/PageTitle";
 import SearchBar from "../components/SearchBar";
-import TableHeadComponent from "../components/TableHeadComponent";
 import { ModalContext } from '../context/ModalProvider';
 import { SearchContext } from '../context/SearchProvider';
 import {
@@ -79,6 +76,7 @@ export default function Calls() {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
+      <PageTitle text="Chamados" />
       <SearchBar value={searchText} onChange={handleSearch} />
       <Box sx={{ width: "100%", marginTop: '16px', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <CreateButton onClick={handleCreate} buttonName={'Novo chamado'} />
@@ -86,33 +84,19 @@ export default function Calls() {
       <CustomModal onClose={handleCloseModal} open={isModalOpen}>
         <CallForm />
       </CustomModal>
-      <Box sx={{ width: "100%", marginTop: '16px', overflowX: 'auto' }}>
-        <Paper sx={{ minWidth: 1000 }}>
-          <TableContainer sx={{ width: '100%' }}>
-            <Table size="medium">
-              <TableHeadComponent
-                headCells={callsHeadCells}
-                order={order}
-                orderBy={orderBy}
-                onRequestSort={handleRequestSort}
-              />
-              <CustomTableBody
-                visibleRows={visibleRows}
-                emptyRows={emptyRows}
-              />
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25, 50, 100]}
-            component="div"
-            count={filteredData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      </Box>
+      <CustomTableContainer
+        headCells={callsHeadCells}
+        order={order}
+        orderBy={orderBy}
+        onRequestSort={handleRequestSort}
+        visibleRows={visibleRows}
+        emptyRows={emptyRows}
+        filteredData={filteredData}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </Container>
   );
 }
