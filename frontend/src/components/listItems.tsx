@@ -13,9 +13,9 @@ import { Link } from 'react-router-dom';
 const menuItems = [
   { to: '/', icon: <DashboardIcon />, text: 'Início' },
   { to: '/calls', icon: <AssignmentIcon />, text: 'Chamado' },
-  { to: '/department', icon: <LayersIcon />, text: 'Setor' },
-  { to: '/employee', icon: <PeopleIcon />, text: 'Funcionário' },
-  { to: '/permission', icon: <BarChartIcon />, text: 'Permissão' },
+  { to: '/departments', icon: <LayersIcon />, text: 'Setor' },
+  { to: '/employees', icon: <PeopleIcon />, text: 'Funcionário' },
+  { to: '/permissions', icon: <BarChartIcon />, text: 'Permissão' },
 ];
 
 export const mainListItems = (

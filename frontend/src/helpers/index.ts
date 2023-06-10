@@ -188,4 +188,61 @@ export function calculateEmptyRows(
   return page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0;
 }
 
+export interface EmployeeData {
+  [key: string]: unknown;
+  id: number;
+  name: string;
+  position: string;
+}
+
+function createEmployeeData(
+  id: number,
+  name: string,
+  position: string
+): EmployeeData {
+  return {
+    id,
+    name,
+    position
+  };
+}
+
+const positions = ["Gerente", "Analista", "Desenvolvedor", "Designer", "Vendedor"];
+
+export const employeesRows: EmployeeData[] = Array.from({ length: 50 }, (_, index) => {
+  const id = index + 1;
+  const name = getRandomName();
+  const position = getRandomPosition();
+  return createEmployeeData(id, name, position);
+});
+
+function getRandomPosition() {
+  return positions[Math.floor(Math.random() * positions.length)];
+}
+
+export interface EmployeeHeadCell {
+  id: keyof EmployeeData;
+  disablePadding: boolean;
+  label: string;
+}
+
+export const employeeHeadCells: EmployeeHeadCell[] = [
+  {
+    id: "id",
+    disablePadding: false,
+    label: "ID"
+  },
+  {
+    id: "name",
+    disablePadding: false,
+    label: "Nome"
+  },
+  {
+    id: "position",
+    disablePadding: false,
+    label: "Cargo"
+  }
+];
+
+
 

@@ -6,22 +6,22 @@ import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
 import CustomTableContainer from "../components/CustomTableContainer";
-import CallForm from "../components/Forms/CallForm";
+import EmployeeForm from "../components/Forms/EmployeeForm";
 import PageTitle from "../components/PageTitle";
 import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
 import { SearchContext } from '../context/SearchProvider';
 import {
-  CallData,
+  EmployeeData,
   Order,
   calculateEmptyRows,
-  callsHeadCells,
-  callsRows,
+  employeeHeadCells,
+  employeesRows,
   filterRows,
   getVisibleRows
 } from "../helpers";
 
-export default function Calls() {
+export default function Employees() {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<string>("id");
   const [page, setPage] = React.useState(0);
@@ -32,7 +32,7 @@ export default function Calls() {
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof CallData
+    property: keyof EmployeeData
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -54,7 +54,7 @@ export default function Calls() {
   };
 
   const filteredData = React.useMemo(() => {
-    return filterRows(callsRows, searchText);
+    return filterRows(employeesRows, searchText);
   }, [searchText]);
 
 
@@ -74,18 +74,22 @@ export default function Calls() {
     setIsModalOpen(false);
   }
 
+  const handleSubmit = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
-      <PageTitle text="Chamados" />
+      <PageTitle text="Funcionários" />
       <SearchBar value={searchText} onChange={handleSearch} />
       <Box sx={{ width: "100%", marginTop: '16px', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-        <CreateButton onClick={handleCreate} buttonName={'Novo chamado'} />
+        <CreateButton onClick={handleCreate} buttonName={'Novo Funcionário'} />
       </Box>
-      <CustomModal title="Cadastro Chamado" onClose={handleCloseModal} open={isModalOpen}>
-        <CallForm />
+      <CustomModal title="Cadastro Funcionário" onClose={handleCloseModal} open={isModalOpen}>
+        <EmployeeForm />
       </CustomModal>
       <CustomTableContainer
-        headCells={callsHeadCells}
+        headCells={employeeHeadCells}
         order={order}
         orderBy={orderBy}
         onRequestSort={handleRequestSort}
