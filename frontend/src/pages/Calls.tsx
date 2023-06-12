@@ -22,7 +22,7 @@ import {
 } from "../helpers";
 
 export default function Calls() {
-  const [order, setOrder] = React.useState<Order>("asc");
+  const [order, setOrder] = React.useState<Order>("desc");
   const [orderBy, setOrderBy] = React.useState<string>("id");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);

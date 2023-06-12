@@ -1,6 +1,5 @@
-import { Delete, Edit } from '@mui/icons-material';
-import { IconButton, TableContainer as MuiTableContainer, Paper, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import React, { useState } from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import React from 'react';
 import CallStatusChip from './CallStatusChip';
 
 export interface TableColumn {
@@ -20,63 +19,28 @@ export interface CallType {
 interface CallsTableProps {
   columns: TableColumn[];
   calls: CallType[];
-  showActions?: boolean;
-  rowLimit?: number;
 }
 
-const CallsTable: React.FC<CallsTableProps> = ({ columns, calls, showActions = true, rowLimit }) => {
-  const [orderBy, setOrderBy] = useState<string>('');
-  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>('asc');
-
-  const handleSort = (columnId: string) => {
-    if (orderBy === columnId) {
-      setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setOrderBy(columnId);
-      setOrderDirection('asc');
-    }
-  };
-
-  const sortedCalls = calls.sort((a, b) => {
-    if (orderBy === '') {
-      return 0;
-    }
-    const valueA = a[orderBy];
-    const valueB = b[orderBy];
-    if (valueA < valueB) {
-      return orderDirection === 'asc' ? -1 : 1;
-    }
-    if (valueA > valueB) {
-      return orderDirection === 'asc' ? 1 : -1;
-    }
-    return 0;
-  });
-
-  const limitedCalls = rowLimit ? sortedCalls.slice(0, rowLimit) : sortedCalls;
+const CallsTable: React.FC<CallsTableProps> = ({ columns, calls }) => {
+  const limitedCalls = calls.slice(0, 5);
 
   return (
-    <MuiTableContainer component={Paper} sx={{ mt: 2 }}>
+    <TableContainer component={Paper} sx={{ mt: 2 }}>
       <Table>
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell key={column.id} onClick={() => handleSort(column.id)} style={{ cursor: 'pointer' }}>
-                <TableSortLabel
-                  active={orderBy === column.id}
-                  direction={orderBy === column.id ? orderDirection : 'asc'}
-                >
-                  {column.label}
-                </TableSortLabel>
+              <TableCell key={column.id} align="center">
+                {column.label}
               </TableCell>
             ))}
-            {showActions && <TableCell>Ações</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
           {limitedCalls.map((call) => (
             <TableRow key={call.id}>
               {columns.map((column) => (
-                <TableCell key={column.id}>
+                <TableCell key={column.id} align="center">
                   {column.id === 'status' ? (
                     <CallStatusChip status={call[column.id]} />
                   ) : (
@@ -84,21 +48,11 @@ const CallsTable: React.FC<CallsTableProps> = ({ columns, calls, showActions = t
                   )}
                 </TableCell>
               ))}
-              {showActions && (
-                <TableCell>
-                  <IconButton>
-                    <Edit />
-                  </IconButton>
-                  <IconButton>
-                    <Delete />
-                  </IconButton>
-                </TableCell>
-              )}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </MuiTableContainer>
+    </TableContainer>
   );
 };
 

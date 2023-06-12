@@ -132,8 +132,6 @@ const Home: React.FC = () => {
         </Typography>
         <CallsTable
           columns={columns}
-          showActions={false}
-          rowLimit={5}
           calls={dataTickets}
         />
 

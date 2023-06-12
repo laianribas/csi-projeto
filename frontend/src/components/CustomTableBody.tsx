@@ -29,6 +29,12 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
     openModal();
   };
 
+  const calculateCellWidth = (containerWidth: number, numCells: number) => {
+    const containerMinWidth = 1050; // Valor do minWidth do container/paper
+    const availableWidth = containerWidth - containerMinWidth;
+    return availableWidth / numCells;
+  };
+
   return (
     <TableBody>
       {visibleRows.map((row, index) => (
@@ -42,9 +48,13 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
           }}
         >
           {Object.entries(row).map(([key, value]) => (
-            <TableCell key={key} align="center" style={{ paddingRight: '42px' }}>
+            <TableCell key={key}
+              align="center"
+              style={{ paddingRight: '42px' }} variant='body'>
               {key === 'status' ? (
                 <CallStatusChip status={value as string} />
+              ) : key === 'active' ? (
+                <CallStatusChip status={value ? 'Ativo' : 'Inativo'} />
               ) : (
                 value as ReactNode
               )}

@@ -12,9 +12,11 @@ const CallStatusChip: React.FC<{ status: string }> = ({ status }) => {
       color = 'primary';
       break;
     case 'Concluído':
+    case 'Ativo':
       color = 'success';
       break;
     case 'Cancelado':
+    case 'Inativo':
       color = 'error';
       break;
     default:
@@ -24,4 +26,4 @@ const CallStatusChip: React.FC<{ status: string }> = ({ status }) => {
   return <Chip label={status} color={color} />;
 };
 
-export default CallStatusChip
+export default CallStatusChip;

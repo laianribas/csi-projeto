@@ -102,12 +102,6 @@ export interface CallsHeadCell {
   disablePadding: boolean;
   label: string;
 }
-export interface EmployeesHeadCell {
-  id: keyof CallData;
-  name: string;
-  disablePadding: boolean;
-  label: string;
-}
 
 export const callsHeadCells: CallsHeadCell[] = [
   {
@@ -168,12 +162,18 @@ export function filterRows(rows: { [key: string]: unknown }[], searchText: strin
 }
 
 export function getVisibleRows(
-  filteredData: readonly { [x: string]: string | number;[x: number]: string | number; }[],
+  filteredData: readonly {
+    [x: string]: string | number;
+    [x: number]: string | number;
+  }[],
   order: Order,
   orderBy: string,
   page: number,
   rowsPerPage: number
-): { [x: string]: string | number;[x: number]: string | number; }[] {
+): {
+  [x: string]: string | number;
+  [x: number]: string | number;
+}[] {
   return stableSort(filteredData, getComparator(order, orderBy)).slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -193,28 +193,47 @@ export interface EmployeeData {
   id: number;
   name: string;
   position: string;
+  campus: string; // Novo atributo para o campus
+  active: boolean; // Novo atributo para indicar se está ativo
 }
 
 function createEmployeeData(
   id: number,
   name: string,
-  position: string
+  position: string,
+  campus: string,
+  active: boolean
 ): EmployeeData {
   return {
     id,
     name,
-    position
+    position,
+    campus,
+    active
   };
 }
 
 const positions = ["Gerente", "Analista", "Desenvolvedor", "Designer", "Vendedor"];
 
+
+const campuses = ["Jequié", "Vit. da Conquista", "Itapetinga"];
+
 export const employeesRows: EmployeeData[] = Array.from({ length: 50 }, (_, index) => {
   const id = index + 1;
   const name = getRandomName();
   const position = getRandomPosition();
-  return createEmployeeData(id, name, position);
+  const campus = getRandomCampus(); // Novo valor aleatório para o campus
+  const active = getRandomBoolean(); // Novo valor aleatório para ativo
+  return createEmployeeData(id, name, position, campus, active);
 });
+
+function getRandomCampus() {
+  return campuses[Math.floor(Math.random() * campuses.length)];
+}
+
+function getRandomBoolean() {
+  return Math.random() < 0.5; // Retorna aleatoriamente true ou false
+}
 
 function getRandomPosition() {
   return positions[Math.floor(Math.random() * positions.length)];
@@ -241,6 +260,16 @@ export const employeeHeadCells: EmployeeHeadCell[] = [
     id: "position",
     disablePadding: false,
     label: "Cargo"
+  },
+  {
+    id: "campus",
+    disablePadding: false,
+    label: "Campus"
+  },
+  {
+    id: "active",
+    disablePadding: false,
+    label: "Ativo"
   }
 ];
 

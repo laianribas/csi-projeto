@@ -38,7 +38,7 @@ const CustomTableContainer: React.FC<CustomTableContainerProps> = ({
   handleChangeRowsPerPage,
 }) => {
   return (
-    <Box sx={{ width: "100%", marginTop: "16px", overflowX: "auto" }}>
+    <Box sx={{ marginTop: "16px", overflowX: "auto" }}>
       <Paper sx={{ minWidth: 1050 }}>
         <TableContainer sx={{ width: "100%" }}>
           <Table size="medium">
