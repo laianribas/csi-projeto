@@ -149,7 +149,22 @@ export const callsHeadCells: CallsHeadCell[] = [
 ];
 
 
-export function filterRows(rows: { [key: string]: unknown }[], searchText: string): { [key: string]: unknown }[] {
+// export function filterRows(rows: { [key: string]: unknown }[], searchText: string): { [key: string]: unknown }[] {
+//   if (searchText === '') {
+//     return rows;
+//   }
+//   const lowercasedValue = searchText.toLowerCase();
+//   return rows.filter((row) => {
+//     return Object.values(row).some((value) =>
+//       String(value).toLowerCase().includes(lowercasedValue)
+//     );
+//   });
+// }
+
+export function filterRows<T extends { [key: string]: unknown }>(
+  rows: T[],
+  searchText: string
+): T[] {
   if (searchText === '') {
     return rows;
   }
@@ -271,6 +286,77 @@ export const employeeHeadCells: EmployeeHeadCell[] = [
     disablePadding: false,
     label: "Ativo"
   }
+];
+export interface DepartmentData {
+  [key: string]: unknown;
+  id: number;
+  name: string;
+  extension: string;
+  active: boolean;
+  employeeCount: number;
+  callCount: number;
+}
+
+const departmentNames = ["RH", "Financeiro", "Tecnologia", "Vendas", "Marketing"];
+
+export const departmentRows: DepartmentData[] = departmentNames.map((name, index) => ({
+  id: index + 1,
+  name,
+  extension: getRandomExtension(),
+  active: getRandomBoolean(),
+  employeeCount: getRandomCount(),
+  callCount: getRandomCount(),
+}));
+
+function getRandomExtension() {
+  const min = 1000;
+  const max = 9999;
+  return String(Math.floor(Math.random() * (max - min + 1) + min));
+}
+
+function getRandomCount() {
+  const min = 0;
+  const max = 100;
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export interface DepartmentHeadCell {
+  id: keyof DepartmentData;
+  disablePadding: boolean;
+  label: string;
+}
+
+export const departmentHeadCells: DepartmentHeadCell[] = [
+  {
+    id: "id",
+    disablePadding: false,
+    label: "ID"
+  },
+  {
+    id: "name",
+    disablePadding: false,
+    label: "Nome"
+  },
+  {
+    id: "extension",
+    disablePadding: false,
+    label: "Ramal"
+  },
+  {
+    id: "active",
+    disablePadding: false,
+    label: "Ativo"
+  },
+  {
+    id: "employeeCount",
+    disablePadding: false,
+    label: "Qtd. Funcionários"
+  },
+  {
+    id: "callCount",
+    disablePadding: false,
+    label: "Qtd. Chamados"
+  },
 ];
 
 
