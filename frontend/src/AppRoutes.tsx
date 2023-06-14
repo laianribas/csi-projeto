@@ -4,7 +4,7 @@ import Calls from './pages/Calls';
 import Departments from './pages/Departments';
 import Employees from './pages/Employees';
 import Home from './pages/Home';
-// import Permissions from './pages/Permissions';
+import Permissions from './pages/Permissions';
 
 
 const AppRoutes: React.FC = () => {
@@ -14,7 +14,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/calls" element={<Calls />} />
       <Route path="/employees" element={<Employees />} />
       <Route path="/departments" element={<Departments />} />
-      {/* <Route path="/permissions" element={<Permissions />} /> */}
+      <Route path="/permissions" element={<Permissions />} />
     </Routes>
   );
 };
