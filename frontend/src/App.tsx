@@ -1,13 +1,13 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import * as React from 'react';
+import React from 'react';
 import AppRoutes from './AppRoutes';
 import Header from './components/Header';
+import { UserContext } from './context/UserProvider';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
   const [isDarkMode, setIsDarkMode] = React.useState<boolean>(prefersDarkMode);
 
   const handleThemeToggle = () => {
@@ -24,14 +24,18 @@ function App() {
     [isDarkMode],
   );
 
-  React.useEffect(() => {
-    setIsDarkMode(theme.palette.mode === 'dark');
-  }, [theme.palette.mode]);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header onToggleTheme={handleThemeToggle} isDarkMode={isDarkMode} systemStatus='ok' />
+      <UserContext.Consumer>
+        {({ user }) =>
+          user ? (
+            <>
+              <Header onToggleTheme={handleThemeToggle} isDarkMode={isDarkMode} systemStatus="ok" />
+            </>
+          ) : null
+        }
+      </UserContext.Consumer>
       <AppRoutes />
     </ThemeProvider>
   );

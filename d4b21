@@ -1,0 +1,258 @@
+[33mcommit d4b21267793dda0af0680bc52993308ea8016800[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Wed Jun 14 20:52:08 2023 -0300
+
+    página de permissões
+
+[33mcommit 9cc371bbc26057acc12a2053352c5df95aa8ad48[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Tue Jun 13 22:05:04 2023 -0300
+
+    página de setor
+
+[33mcommit 55aa739c8b325ce26840e4549348f5ddce0c7574[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Sun Jun 11 22:24:26 2023 -0300
+
+    atualização tabela de funcionário
+
+[33mcommit 8cd41fdb22f41706991cffe28cf099a58b1c7920[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Fri Jun 9 22:34:44 2023 -0300
+
+    ajustes forms
+
+[33mcommit d04d88e309681e54aefcabb9afcd2d382c7b2c04[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Thu Jun 8 21:11:13 2023 -0300
+
+    Custom table component
+
+[33mcommit 3cdb6b7543ded3e844dc350654735e422597566a[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Thu Jun 8 18:29:10 2023 -0300
+
+    search context
+
+[33mcommit 2164b072d69e2c78d992e7a9d9484a164af733cb[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Wed Jun 7 22:00:18 2023 -0300
+
+    searchbar
+
+[33mcommit c3bcebea92e5ee0e67e33d1cece6e5ad7220cec7[m
+Merge: e3b822a 611511c
+Author: laianribas <laian67a@gmail.com>
+Date:   Mon Jun 5 22:18:46 2023 -0300
+
+    Merge branch 'master' of https://github.com/laianribas/csi-projeto
+
+[33mcommit e3b822a9e451fff1fd170b6f924f2b53dd6d1d50[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Mon Jun 5 22:18:42 2023 -0300
+
+    tabela chamados
+
+[33mcommit 611511c157f616cd635e8eb365b30cc8d98d072f[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Thu Jun 1 21:13:32 2023 -0300
+
+    Update README.md
+
+[33mcommit d3c9ce55b847c7613796e91398fb297db3ca08cc[m
+Merge: abc41e0 7fe7150
+Author: laianribas <laian67a@gmail.com>
+Date:   Mon May 29 09:10:24 2023 -0300
+
+    Merge branch 'master' of https://github.com/laianribas/csi-projeto
+
+[33mcommit abc41e0d2b16667705ea095b1aa5064eb56487cb[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Mon May 29 09:09:52 2023 -0300
+
+    substituição do express pelo adonis
+
+[33mcommit 7fe715046d02513ea041e08363fafb48252b1fe9[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Fri Sep 23 10:06:16 2022 -0300
+
+    Update README.md
+
+[33mcommit bf0fd2a0a8d01c5a906ced50f41127d3dbf91e0f[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Fri Sep 23 09:22:21 2022 -0300
+
+    Update README.md
+
+[33mcommit 5dc3f27a66286c0ff30cf86171981f93278df203[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Wed Sep 21 18:28:50 2022 -0300
+
+    Update README.md
+
+[33mcommit 0b838a2484356492e910ac05a24f328d512f2748[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Wed Sep 21 11:53:39 2022 -0300
+
+    Update README.md
+
+[33mcommit d599caf66abf53768f397946f75c43bf1f27f8a6[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Wed Sep 21 11:53:09 2022 -0300
+
+    Update README.md
+
+[33mcommit be9bdd3fc5b68facccbff285fdb7443fa0814604[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Wed Sep 21 11:52:30 2022 -0300
+
+    Update README.md
+
+[33mcommit 94e29a9db5d0192d566bbaa138abfb52ebcb271f[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Wed Sep 21 11:51:41 2022 -0300
+
+    Create README.md
+
+[33mcommit 4178edac2b3e6b68780b12f09cf4170abf8a60f7[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Wed Sep 21 07:25:49 2022 -0300
+
+    inicio swagger
+
+[33mcommit 7057b8379e835eb56c9da5c24a64ba65cd17eb99[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 11:27:33 2022 -0300
+
+    Update README.md
+
+[33mcommit fdf724d2cbd7ed3d5364f3d318dee3eccd2af7b6[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 11:21:38 2022 -0300
+
+    Update README.md
+
+[33mcommit 342e307e5db4ce2f36acf63c8205e57e492c312a[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 11:16:51 2022 -0300
+
+    Update README.md
+
+[33mcommit 3fe7b3a409176e771906c18f93a6b10b1f6e8e30[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 11:15:15 2022 -0300
+
+    Update README.md
+
+[33mcommit e81e4fdf3bc901840437197f1db452e5b876451c[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 11:03:22 2022 -0300
+
+    Update README.md
+
+[33mcommit 5330fa9b146adee7fdb6a17337aa2649204b3ad6[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 10:43:33 2022 -0300
+
+    Update README.md
+
+[33mcommit db79e2427b7fc36060ea8f3bd3db1c089cf1c6be[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 10:37:42 2022 -0300
+
+    Update README.md
+
+[33mcommit 91462654df08d8ba8830e225f4ffc88a4288e6d8[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 09:51:12 2022 -0300
+
+    Update README.md
+
+[33mcommit 18a1da943eed286fad7c1e2837c20e8904c5ca0c[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 09:50:18 2022 -0300
+
+    Update README.md
+
+[33mcommit cde7975e83a0d3929d738b9994068dcee1ff4603[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 09:49:52 2022 -0300
+
+    Update README.md
+
+[33mcommit fb25361453ae8932d4297d74a057d16d88d15ac2[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Mon Sep 19 09:32:29 2022 -0300
+
+    Create README.md
+
+[33mcommit 4e1dd1a69694857ab0c64264b8d16547ab0ea695[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sun Sep 18 11:09:57 2022 -0300
+
+    Update README.md
+
+[33mcommit bb21d88f64ab55188be4c441c7ccc84f8ea69887[m
+Merge: bd70bf0 33a88fa
+Author: laianribas <laian67a@gmail.com>
+Date:   Sun Sep 18 11:03:26 2022 -0300
+
+    Merge branch 'master' of https://github.com/laianribas/csi-projeto
+
+[33mcommit bd70bf0a465c034866d8d28ea2629782c5792981[m
+Author: laianribas <laian67a@gmail.com>
+Date:   Sun Sep 18 11:03:23 2022 -0300
+
+    .env example
+
+[33mcommit 33a88fa415ef7eb833a791b92c9fda02f1bce398[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 22:10:25 2022 -0300
+
+    Update README.md
+
+[33mcommit 4eda964d67224760c35d623777cb969f7950c237[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 22:08:06 2022 -0300
+
+    Update README.md
+
+[33mcommit b691dba6a8824152dc854f37647fe47867b1bda1[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 22:05:19 2022 -0300
+
+    Update README.md
+
+[33mcommit 095dd0cfdfa88fef95cab4e17d268e51210c13aa[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 22:02:54 2022 -0300
+
+    Update README.md
+
+[33mcommit 3ff67dfe8ba87e8d852725e8f49ed42c1207163b[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 21:58:12 2022 -0300
+
+    Update README.md
+
+[33mcommit acefabce607df314c348a54b7022d8497d16d4b0[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 21:57:38 2022 -0300
+
+    Update README.md
+
+[33mcommit 3dc42187249e20d22181144763032a02d6b5d2b5[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 20:41:03 2022 -0300
+
+    Update README.md
+
+[33mcommit d1c3a75c40d42354fdbd5b90e62bee5ba7801751[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 20:38:53 2022 -0300
+
+    Update README.md
+
+[33mcommit d874a6c95fb7d082aa798806082d6cfb8f48523c[m
+Author: Laian Ribas Nascimento <90574623+laianribas@users.noreply.github.com>
+Date:   Sat Sep 17 20:32:1

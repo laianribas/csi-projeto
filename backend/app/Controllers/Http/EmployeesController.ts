@@ -1,10 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Employee from 'App/Models/Employee';
 import CreateEmployeeService from 'App/Services/Employee/CreateEmployeeService';
-import UpdateEmployeeService from 'App/Services/Employee/UpdateEmployeeService';
 import DeleteEmployeeService from 'App/Services/Employee/DeleteEmployeeService';
 import LoginEmployeeService from 'App/Services/Employee/LoginEmployeeService';
 import LogoutService from 'App/Services/Employee/LogoutService';
+import UpdateEmployeeService from 'App/Services/Employee/UpdateEmployeeService';
 
 export default class EmployeesController {
   /**
@@ -136,6 +136,24 @@ export default class EmployeesController {
     } catch (error) {
       console.error(error);
       return response.status(500).json({ error: 'Internal server error' });
+    }
+  }
+
+  public async currentUser({ response, auth }: HttpContextContract) {
+    try {
+      // Obtém o usuário autenticado
+      const user = await auth.authenticate();
+
+      // Verifica se o usuário existe
+      if (!user) {
+        return response.status(401).json({ message: 'Usuário não encontrado' });
+      }
+
+      // Retorna as informações do usuário
+      return response.json(user);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: 'Erro ao obter informações do usuário' });
     }
   }
 }

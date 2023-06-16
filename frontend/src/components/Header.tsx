@@ -7,7 +7,7 @@ import Warning from '@mui/icons-material/Warning';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Button, Divider, List, ListItemButton, Popover, styled } from '@mui/material';
+import { Box, Button, Divider, List, ListItemButton, Popover, styled } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -15,6 +15,8 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../helpers/api';
 import SideMenu from './SideMenu';
 
 const ScrollableList = styled(List)(({ theme }) => ({
@@ -44,6 +46,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
   const anchorRef = useRef<HTMLButtonElement | null>(null);
   const [showNotifications, setShowNotifications] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const navigate = useNavigate()
+
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -60,6 +65,27 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
   const handleMenuClickAway = () => {
     setOpenMenu(false);
   };
+
+  const handleAccountClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    api.post('logout').then((response) => {
+      return response.data
+    })
+
+    navigate('/');
+    window.location.reload();
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'account-popover' : undefined;
 
   const ThemeIcon = isDarkMode ? Brightness7Icon : Brightness4Icon;
 
@@ -130,9 +156,27 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
               ))}
             </ScrollableList>
           </Popover>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleAccountClick}>
             <AccountCircle />
           </IconButton>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClosePopover}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <Box sx={{ p: 2 }}>
+              <Button onClick={handleLogout}>Sair</Button>
+            </Box>
+          </Popover>
         </Toolbar>
       </ClickAwayListener>
       <SideMenu open={openMenu} onClose={toggleMenu} />

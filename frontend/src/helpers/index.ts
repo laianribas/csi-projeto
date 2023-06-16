@@ -1,3 +1,5 @@
+import api from "./api";
+
 export interface CallData {
   [key: string]: unknown;
   id: number;
@@ -60,7 +62,15 @@ export const callsRows: CallData[] = Array.from({ length: 50 }, (_, index) => {
   return createData(id, number, openingDate, status, responsible, department, requester);
 });
 
+export const setAuthToken = () => {
+  const token = localStorage.getItem('token');
 
+  if (token) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete api.defaults.headers.common['Authorization'];
+  }
+};
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -147,19 +157,6 @@ export const callsHeadCells: CallsHeadCell[] = [
     label: "Solicitante"
   }
 ];
-
-
-// export function filterRows(rows: { [key: string]: unknown }[], searchText: string): { [key: string]: unknown }[] {
-//   if (searchText === '') {
-//     return rows;
-//   }
-//   const lowercasedValue = searchText.toLowerCase();
-//   return rows.filter((row) => {
-//     return Object.values(row).some((value) =>
-//       String(value).toLowerCase().includes(lowercasedValue)
-//     );
-//   });
-// }
 
 export function filterRows<T extends { [key: string]: unknown }>(
   rows: T[],

@@ -1,8 +1,8 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { AuthContract } from '@ioc:Adonis/Addons/Auth';
+import Hash from '@ioc:Adonis/Core/Hash';
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { rules, schema } from '@ioc:Adonis/Core/Validator';
 import Employee from 'App/Models/Employee';
-import Hash from '@ioc:Adonis/Core/Hash';
 
 export default class LoginEmployeeService {
   private auth: AuthContract;

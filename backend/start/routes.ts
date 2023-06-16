@@ -3,7 +3,8 @@ import Route from '@ioc:Adonis/Core/Route';
 Route.group(() => {
   // Rotas de autenticação
   Route.post('/login', 'EmployeesController.login');
-  Route.post('/logout', 'AuthController.logout');
+  Route.post('/logout', 'EmployeesController.logout');
+  Route.get('/currentuser', 'EmployeesController.currentUser');
 
   Route.group(() => {
     // Rotas do funcionário
