@@ -2,6 +2,7 @@ import {
   Box,
   Container
 } from "@mui/material";
+import { format } from "date-fns";
 import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
@@ -12,29 +13,30 @@ import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
 import { SearchContext } from '../context/SearchProvider';
 import {
-  CallData,
   Order,
   calculateEmptyRows,
   callsHeadCells,
-  callsRows,
   filterRows,
   getAuthToken,
   getVisibleRows
 } from "../helpers";
+import { CallInterface } from "../helpers/Interfaces";
 import api from "../helpers/api";
 
 export default function Calls() {
   const [order, setOrder] = React.useState<Order>("desc");
-  const [orderBy, setOrderBy] = React.useState<string>("id");
+  const [orderBy, setOrderBy] = React.useState<string>("openingDate");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { openModal } = React.useContext(ModalContext);
   const { searchText, handleSearch } = React.useContext(SearchContext);
 
+  const [calls, setCalls] = React.useState([]);
+
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof CallData
+    property: keyof CallInterface
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -56,8 +58,8 @@ export default function Calls() {
   };
 
   const filteredData = React.useMemo(() => {
-    return filterRows(callsRows, searchText);
-  }, [searchText]);
+    return filterRows(calls, searchText);
+  }, [calls, searchText]);
 
 
   const visibleRows = React.useMemo(() => {
@@ -79,15 +81,33 @@ export default function Calls() {
   const token = getAuthToken();
 
   React.useEffect(() => {
-    api.get('calls', {
-      headers: {
-        'Authorization': `Bearer ${token}`
+    const fetchCalls = async () => {
+      try {
+        const response = await api.get('calls', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        const data = response.data;
+
+        // Transformar os dados para a interface CallData
+        const transformedData = data.map((call: CallInterface) => ({
+          id: call.id.substring(0, 5),
+          openingDate: format(new Date(call.created_at), 'dd/MM/yyyy'),
+          status: call.status && call.status.length > 0 ? call.status[0].description : '',
+          responsible: call.recipient,
+          department: call.department.name,
+          requester: call.employee.name
+        }));
+
+        setCalls(transformedData);
+      } catch (error) {
+        console.error(error);
       }
-    }).then((response) => {
-      const data = response.data
-      console.log(data)
-    })
-  }, [])
+    };
+
+    fetchCalls();
+  }, []);
 
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>

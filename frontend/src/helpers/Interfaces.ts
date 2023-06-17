@@ -28,7 +28,8 @@ export interface Employee {
   position: Position;
 }
 
-export interface Call {
+export interface CallInterface {
+  [key: string]: unknown;
   id: string;
   recipient: string;
   area: string;

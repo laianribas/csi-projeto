@@ -2,37 +2,13 @@ import api from "./api";
 
 export interface CallData {
   [key: string]: unknown;
-  id: number;
-  number: string;
+  id: string;
   openingDate: string;
   status: string;
   responsible: string;
   department: string;
   requester: string;
 }
-
-
-function createData(
-  id: number,
-  number: string,
-  openingDate: string,
-  status: string,
-  responsible: string,
-  department: string,
-  requester: string
-): CallData {
-  return {
-    id,
-    number,
-    openingDate,
-    status,
-    responsible,
-    department: getRandomDepartment(),
-    requester: getRandomName()
-  };
-}
-
-
 
 const departments = ["RH", "Financeiro", "Tecnologia", "Vendas", "Marketing"];
 const names = ["João", "Maria", "Pedro", "Ana", "Carlos", "Mariana", "José", "Laura", "André", "Luana"];
@@ -50,17 +26,6 @@ function getRandomStatus() {
   const statuses = ["Concluído", "Em Andamento", "Em Aberto"];
   return statuses[Math.floor(Math.random() * statuses.length)];
 }
-
-export const callsRows: CallData[] = Array.from({ length: 50 }, (_, index) => {
-  const id = index + 1;
-  const number = `CH00${id}`;
-  const openingDate = "2023-05-15";
-  const status = getRandomStatus();
-  const responsible = getRandomName();
-  const department = getRandomDepartment(); // Novo valor aleatório para o setor
-  const requester = getRandomName(); // Novo valor aleatório para quem solicitou
-  return createData(id, number, openingDate, status, responsible, department, requester);
-});
 
 export const setAuthToken = () => {
   const token = localStorage.getItem('token');
@@ -123,12 +88,6 @@ export const callsHeadCells: CallsHeadCell[] = [
     numeric: true,
     disablePadding: false,
     label: "ID"
-  },
-  {
-    id: "number",
-    numeric: true,
-    disablePadding: false,
-    label: "Número"
   },
   {
     id: "openingDate",
