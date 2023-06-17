@@ -1,11 +1,11 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import CreateCallService from 'App/Services/Call/CreateCallService';
-import UpdateCallService from 'App/Services/Call/UpdateCallService';
-import GetCallsByCampusService from 'App/Services/Call/GetCallsByCampusService';
-import GetCallsByEmployeeService from 'App/Services/Call/GetCallsByEmployeeService';
-import GetCallsByDepartmentService from 'App/Services/Call/GetCallsByDepartmentService';
-import DeleteCallService from 'App/Services/Call/DeleteCallService';
 import Call from 'App/Models/Call';
+import CreateCallService from 'App/Services/Call/CreateCallService';
+import DeleteCallService from 'App/Services/Call/DeleteCallService';
+import GetCallsByCampusService from 'App/Services/Call/GetCallsByCampusService';
+import GetCallsByDepartmentService from 'App/Services/Call/GetCallsByDepartmentService';
+import GetCallsByEmployeeService from 'App/Services/Call/GetCallsByEmployeeService';
+import UpdateCallService from 'App/Services/Call/UpdateCallService';
 
 export default class CallsController {
   /**
@@ -20,7 +20,7 @@ export default class CallsController {
         .where('active', true)
         .preload('department')
         .preload('employee', query => query.preload('position'))
-        .preload('status')
+        .preload('status', query => query.orderBy('updated_at', 'desc'))
         .orderBy('createdAt', 'desc');
 
       return response.ok(calls);

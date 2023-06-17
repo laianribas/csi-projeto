@@ -1,11 +1,11 @@
+import Hash from '@ioc:Adonis/Core/Hash';
 import { BaseModel, beforeCreate, beforeSave, BelongsTo, belongsTo, column, HasMany, hasMany, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm';
-import { v4 as uuidv4 } from 'uuid';
 import { DateTime } from 'luxon';
-import Hash from '@ioc:Adonis/Core/Hash'
+import { v4 as uuidv4 } from 'uuid';
 import Call from './Call';
+import Campus from './Campus';
 import Department from './Department';
 import Position from './Position';
-import Campus from './Campus';
 
 export default class Employee extends BaseModel {
   @column({ isPrimary: true })
@@ -14,22 +14,22 @@ export default class Employee extends BaseModel {
   @column()
   public name: string;
 
-  @column()
+  @column({ serializeAs: null })
   public login: string;
 
-  @column()
+  @column({ serializeAs: null })
   public password: string;
 
-  @column()
+  @column({ serializeAs: null })
   public firstLogin: boolean;
 
-  @column({ columnName: 'position_id'})
+  @column({ columnName: 'position_id' })
   public positionId: number;
 
-  @column({ columnName: 'campus_id'})
+  @column({ columnName: 'campus_id' })
   public campusId: number;
 
-  @column()
+  @column({ serializeAs: null })
   public active: boolean;
 
   @column.dateTime({ autoCreate: true })

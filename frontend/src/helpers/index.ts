@@ -7,8 +7,8 @@ export interface CallData {
   openingDate: string;
   status: string;
   responsible: string;
-  department: string; // Nova propriedade para o setor
-  requester: string; // Nova propriedade para quem solicitou
+  department: string;
+  requester: string;
 }
 
 
@@ -71,6 +71,10 @@ export const setAuthToken = () => {
     delete api.defaults.headers.common['Authorization'];
   }
 };
+
+export const getAuthToken = () => {
+  return localStorage.getItem('token');
+}
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {

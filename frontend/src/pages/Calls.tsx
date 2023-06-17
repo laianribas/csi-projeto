@@ -18,8 +18,10 @@ import {
   callsHeadCells,
   callsRows,
   filterRows,
+  getAuthToken,
   getVisibleRows
 } from "../helpers";
+import api from "../helpers/api";
 
 export default function Calls() {
   const [order, setOrder] = React.useState<Order>("desc");
@@ -73,6 +75,19 @@ export default function Calls() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   }
+
+  const token = getAuthToken();
+
+  React.useEffect(() => {
+    api.get('calls', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then((response) => {
+      const data = response.data
+      console.log(data)
+    })
+  }, [])
 
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
