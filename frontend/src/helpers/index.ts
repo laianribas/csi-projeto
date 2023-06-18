@@ -3,28 +3,18 @@ import api from "./api";
 export interface CallData {
   [key: string]: unknown;
   id: string;
-  openingDate: string;
-  status: string;
-  responsible: string;
-  department: string;
+  created_at: string;
   requester: string;
+  department: string;
+  area: string;
+  responsible: string;
+  status: string;
 }
 
-const departments = ["RH", "Financeiro", "Tecnologia", "Vendas", "Marketing"];
 const names = ["João", "Maria", "Pedro", "Ana", "Carlos", "Mariana", "José", "Laura", "André", "Luana"];
 
 function getRandomName() {
   return names[Math.floor(Math.random() * names.length)];
-}
-
-function getRandomDepartment() {
-  return departments[Math.floor(Math.random() * departments.length)];
-}
-
-
-function getRandomStatus() {
-  const statuses = ["Concluído", "Em Andamento", "Em Aberto"];
-  return statuses[Math.floor(Math.random() * statuses.length)];
 }
 
 export const setAuthToken = () => {
@@ -90,22 +80,16 @@ export const callsHeadCells: CallsHeadCell[] = [
     label: "ID"
   },
   {
-    id: "openingDate",
+    id: "created_at",
     numeric: true,
     disablePadding: false,
     label: "Data de Abertura"
   },
   {
-    id: "status",
+    id: "requester", // Nova coluna para quem solicitou
     numeric: true,
     disablePadding: false,
-    label: "Status"
-  },
-  {
-    id: "responsible",
-    numeric: true,
-    disablePadding: false,
-    label: "Responsável"
+    label: "Solicitante"
   },
   {
     id: "department", // Nova coluna para o setor
@@ -114,11 +98,23 @@ export const callsHeadCells: CallsHeadCell[] = [
     label: "Setor"
   },
   {
-    id: "requester", // Nova coluna para quem solicitou
+    id: 'area',
+    numeric: false,
+    disablePadding: false,
+    label: 'Área'
+  },
+  {
+    id: "responsible",
+    numeric: false,
+    disablePadding: false,
+    label: "Responsável"
+  },
+  {
+    id: "status",
     numeric: true,
     disablePadding: false,
-    label: "Solicitante"
-  }
+    label: "Status"
+  },
 ];
 
 export function filterRows<T extends { [key: string]: unknown }>(

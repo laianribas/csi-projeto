@@ -1,12 +1,36 @@
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
+import { ModalContext } from '../../context/ModalProvider';
+import { CallData, getAuthToken } from '../../helpers';
+import { Department } from '../../helpers/Interfaces';
+import api from '../../helpers/api';
 
-const CallForm: React.FC = () => {
+interface CallFormProps {
+  updateCalls: (newCall: CallData) => void;
+}
+
+const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
   const [responsible, setResponsible] = useState('');
   const [area, setArea] = useState('');
   const [description, setDescription] = useState('');
   const [assetNumber, setAssetNumber] = useState('');
   const [department, setDepartment] = useState('');
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const { closeModal } = React.useContext(ModalContext);
+
+  React.useEffect(() => {
+    const token = getAuthToken();
+    api.get('departments', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => {
+        setDepartments(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   const handleResponsibleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setResponsible(event.target.value);
@@ -30,11 +54,46 @@ const CallForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setResponsible('');
-    setArea('');
-    setDescription('');
-    setAssetNumber('');
-    setDepartment('');
+
+    const newCallData = {
+      recipient: responsible,
+      area,
+      description,
+      assetTag: assetNumber,
+      departmentId: department,
+    };
+
+    const token = getAuthToken();
+    const createCall = async () => {
+      try {
+        api.post('calls', JSON.stringify(newCallData), {
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+        })
+          .then(response => {
+            const createdCall = {
+              id: response.data.id.substring(0, 5),
+              created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
+              requester: response.data.employee.name,
+              department: response.data.department.name,
+              area: response.data.area,
+              responsible: response.data.recipient,
+              status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : '',
+            };
+
+            setResponsible('');
+            setArea('');
+            setDescription('');
+            setAssetNumber('');
+            setDepartment('');
+
+            closeModal()
+            updateCalls(createdCall);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    createCall();
   };
 
   return (
@@ -64,7 +123,6 @@ const CallForm: React.FC = () => {
               >
                 <MenuItem value="manutencao">Manutenção</MenuItem>
                 <MenuItem value="redes">Redes</MenuItem>
-                {/* Adicione outros tipos de chamado aqui */}
               </Select>
             </FormControl>
           </Grid>
@@ -101,9 +159,11 @@ const CallForm: React.FC = () => {
                 required
                 variant="filled"
               >
-                <MenuItem value="departamentoA">Departamento A</MenuItem>
-                <MenuItem value="departamentoB">Departamento B</MenuItem>
-                {/* Adicione outros departamentos aqui */}
+                {departments.map(department => (
+                  <MenuItem key={department.id} value={department.id}>
+                    {department.name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>

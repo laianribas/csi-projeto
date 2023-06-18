@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
+import CustomSnackbar from "../components/CustomSnackbar";
 import CustomTableContainer from "../components/CustomTableContainer";
 import CallForm from "../components/Forms/CallForm";
 import PageTitle from "../components/PageTitle";
@@ -13,6 +14,7 @@ import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
 import { SearchContext } from '../context/SearchProvider';
 import {
+  CallData,
   Order,
   calculateEmptyRows,
   callsHeadCells,
@@ -32,7 +34,12 @@ export default function Calls() {
   const { openModal } = React.useContext(ModalContext);
   const { searchText, handleSearch } = React.useContext(SearchContext);
 
-  const [calls, setCalls] = React.useState([]);
+  const [calls, setCalls] = React.useState<CallData[]>([]);
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = React.useState<
+    'error' | 'success' | 'info' | 'warning'
+  >('success');
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -72,15 +79,27 @@ export default function Calls() {
 
   const handleCreate = () => {
     openModal();
+    setIsModalOpen(true);
   }
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   }
 
-  const token = getAuthToken();
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
+  const handleUpdateCalls = (newCall: CallData) => {
+    setCalls(prevCalls => [newCall, ...prevCalls] as CallData[]);
+    setSnackbarSeverity('success');
+    setSnackbarMessage('Chamado criado com sucesso');
+    setShowSnackbar(true);
+  };
+
 
   React.useEffect(() => {
+    const token = getAuthToken();
     const fetchCalls = async () => {
       try {
         const response = await api.get('calls', {
@@ -90,14 +109,14 @@ export default function Calls() {
         });
         const data = response.data;
 
-        // Transformar os dados para a interface CallData
         const transformedData = data.map((call: CallInterface) => ({
           id: call.id.substring(0, 5),
-          openingDate: format(new Date(call.created_at), 'dd/MM/yyyy'),
-          status: call.status && call.status.length > 0 ? call.status[0].description : '',
-          responsible: call.recipient,
+          created_at: format(new Date(call.created_at), 'dd/MM/yyyy'),
+          requester: call.employee.name,
           department: call.department.name,
-          requester: call.employee.name
+          area: call.area,
+          responsible: call.recipient,
+          status: call.status && call.status.length > 0 ? call.status[0].description : '',
         }));
 
         setCalls(transformedData);
@@ -117,7 +136,7 @@ export default function Calls() {
         <CreateButton onClick={handleCreate} buttonName={'Novo chamado'} />
       </Box>
       <CustomModal title="Cadastro Chamado" onClose={handleCloseModal} open={isModalOpen}>
-        <CallForm />
+        <CallForm updateCalls={handleUpdateCalls} />
       </CustomModal>
       <CustomTableContainer
         headCells={callsHeadCells}
@@ -131,6 +150,12 @@ export default function Calls() {
         page={page}
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+      <CustomSnackbar
+        open={showSnackbar}
+        onClose={handleCloseSnackbar}
+        severity={snackbarSeverity}
+        message={snackbarMessage}
       />
     </Container>
   );

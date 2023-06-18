@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import { schema, rules } from '@ioc:Adonis/Core/Validator';
+import { rules, schema } from '@ioc:Adonis/Core/Validator';
 import Call from 'App/Models/Call';
 import Employee from 'App/Models/Employee';
 import Status from 'App/Models/Status';
@@ -19,7 +19,6 @@ export default class CreateCallService {
       area: schema.string({}, [rules.trim()]),
       description: schema.string({}, [rules.trim()]),
       assetTag: schema.string({}, [rules.trim()]),
-      evaluation: schema.string({}, [rules.trim()]),
       departmentId: schema.number(),
     });
 
@@ -37,7 +36,6 @@ export default class CreateCallService {
     call.area = data.area;
     call.description = data.description;
     call.asset_tag = data.assetTag;
-    call.evaluation = data.evaluation;
     call.departmentId = data.departmentId;
     call.employeeId = employeeId;
     call.campusId = employee.campusId;
