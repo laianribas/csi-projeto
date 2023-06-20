@@ -59,6 +59,9 @@ export default class CallsController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const call = await Call.findOrFail(params.id);
+      await call.load('employee');
+      await call.load('department');
+      await call.load('status');
 
       return response.ok(call);
     } catch (error) {

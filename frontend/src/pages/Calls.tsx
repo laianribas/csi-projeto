@@ -110,13 +110,19 @@ export default function Calls() {
         const data = response.data;
 
         const transformedData = data.map((call: CallInterface) => ({
-          id: call.id.substring(0, 5),
-          created_at: format(new Date(call.created_at), 'dd/MM/yyyy'),
-          requester: call.employee.name,
-          department: call.department.name,
-          area: call.area,
-          responsible: call.recipient,
-          status: call.status && call.status.length > 0 ? call.status[0].description : '',
+          data: {
+            id: call.id.substring(0, 5),
+            created_at: format(new Date(call.created_at), 'dd/MM/yyyy'),
+            requester: call.employee.name,
+            department: call.department.name,
+            area: call.area,
+            status: call.status && call.status.length > 0 ? call.status[0].description : '',
+          },
+          details: {
+            responsible: call.recipient,
+            description: call.description,
+            evaluation: call.evaluation
+          },
         }));
 
         setCalls(transformedData);

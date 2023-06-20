@@ -41,7 +41,7 @@ const CustomTableContainer: React.FC<CustomTableContainerProps> = ({
     <Box sx={{ marginTop: "16px", overflowX: "auto" }}>
       <Paper sx={{ minWidth: 1050 }}>
         <TableContainer sx={{ width: "100%" }}>
-          <Table size="medium">
+          <Table size="small">
             <TableHeadComponent
               headCells={headCells}
               order={order}

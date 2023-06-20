@@ -104,12 +104,6 @@ export const callsHeadCells: CallsHeadCell[] = [
     label: 'Área'
   },
   {
-    id: "responsible",
-    numeric: false,
-    disablePadding: false,
-    label: "Responsável"
-  },
-  {
     id: "status",
     numeric: true,
     disablePadding: false,
@@ -314,6 +308,5 @@ export const departmentHeadCells: DepartmentHeadCell[] = [
     label: "Qtd. Chamados"
   },
 ];
-
 
 
