@@ -59,7 +59,7 @@ export default function Employees() {
 
 
   const visibleRows = React.useMemo(() => {
-    return getVisibleRows(filteredData as readonly { [x: string]: string | number;[x: number]: string | number; }[], order, orderBy, page, rowsPerPage);
+    return getVisibleRows(filteredData as readonly EmployeeData[], order, orderBy as "id" | "name" | "position" | "campus" | "active", page, rowsPerPage);
   }, [filteredData, order, orderBy, page, rowsPerPage]);
 
   const emptyRows = React.useMemo(() => {

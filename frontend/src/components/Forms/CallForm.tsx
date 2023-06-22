@@ -71,13 +71,21 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
         })
           .then(response => {
             const createdCall = {
-              id: response.data.id.substring(0, 5),
-              created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
-              requester: response.data.employee.name,
-              department: response.data.department.name,
-              area: response.data.area,
-              responsible: response.data.recipient,
-              status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : '',
+              data: {
+
+                id: response.data.id.substring(0, 5),
+                created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
+                requester: response.data.employee.name,
+                department: response.data.department.name,
+                area: response.data.area,
+                status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : '',
+              },
+              details: {
+                responsible: response.data.recipient,
+                description: response.data.description,
+                evaluation: ''
+
+              }
             };
 
             setResponsible('');

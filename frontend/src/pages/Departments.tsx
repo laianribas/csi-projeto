@@ -12,6 +12,7 @@ import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
 import { SearchContext } from '../context/SearchProvider';
 import {
+  DepartmentData,
   EmployeeData,
   Order,
   calculateEmptyRows,
@@ -59,7 +60,7 @@ export default function Departments() {
 
 
   const visibleRows = React.useMemo(() => {
-    return getVisibleRows(filteredData as readonly { [x: string]: string | number;[x: number]: string | number; }[], order, orderBy, page, rowsPerPage);
+    return getVisibleRows(filteredData as readonly DepartmentData[], order, orderBy as "id" | "name" | "active" | "extension" | "employeeCount" | "callCount", page, rowsPerPage);
   }, [filteredData, order, orderBy, page, rowsPerPage]);
 
   const emptyRows = React.useMemo(() => {

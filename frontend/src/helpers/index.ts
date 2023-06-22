@@ -2,14 +2,21 @@ import api from "./api";
 
 export interface CallData {
   [key: string]: unknown;
-  id: string;
-  created_at: string;
-  requester: string;
-  department: string;
-  area: string;
-  responsible: string;
-  status: string;
+  data: {
+    id: string;
+    created_at: string;
+    requester: string;
+    department: string;
+    area: string;
+    status: string;
+  };
+  details: {
+    responsible: string;
+    description: string;
+    evaluation: string;
+  };
 }
+
 
 const names = ["João", "Maria", "Pedro", "Ana", "Carlos", "Mariana", "José", "Laura", "André", "Luana"];
 
@@ -31,39 +38,11 @@ export const getAuthToken = () => {
   return localStorage.getItem('token');
 }
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
+
 
 export type Order = "asc" | "desc";
 
-export function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key
-): (
-  a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string }
-) => number {
-  return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
-export function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as const);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
 
 export interface CallsHeadCell {
   id: keyof CallData;
@@ -120,30 +99,13 @@ export function filterRows<T extends { [key: string]: unknown }>(
   }
   const lowercasedValue = searchText.toLowerCase();
   return rows.filter((row) => {
-    return Object.values(row).some((value) =>
+    const { data } = row; // Extrai a propriedade `data` de cada objeto
+    return Object.values(data as string).some((value) =>
       String(value).toLowerCase().includes(lowercasedValue)
     );
   });
 }
 
-export function getVisibleRows(
-  filteredData: readonly {
-    [x: string]: string | number;
-    [x: number]: string | number;
-  }[],
-  order: Order,
-  orderBy: string,
-  page: number,
-  rowsPerPage: number
-): {
-  [x: string]: string | number;
-  [x: number]: string | number;
-}[] {
-  return stableSort(filteredData, getComparator(order, orderBy)).slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
-  );
-}
 
 export function calculateEmptyRows(
   page: number,
@@ -155,32 +117,36 @@ export function calculateEmptyRows(
 
 export interface EmployeeData {
   [key: string]: unknown;
-  id: number;
-  name: string;
-  position: string;
-  campus: string; // Novo atributo para o campus
-  active: boolean; // Novo atributo para indicar se está ativo
+  data: {
+    id: number;
+    name: string;
+    position: string;
+    campus: string;
+    active: boolean;
+  };
 }
 
 function createEmployeeData(
-  id: number,
-  name: string,
-  position: string,
-  campus: string,
-  active: boolean
+  data: {
+    id: number;
+    name: string;
+    position: string;
+    campus: string;
+    active: boolean;
+  }
 ): EmployeeData {
   return {
-    id,
-    name,
-    position,
-    campus,
-    active
+    data: {
+      id: data.id,
+      name: data.name,
+      position: data.position,
+      campus: data.campus,
+      active: data.active,
+    },
   };
 }
 
 const positions = ["Gerente", "Analista", "Desenvolvedor", "Designer", "Vendedor"];
-
-
 const campuses = ["Jequié", "Vit. da Conquista", "Itapetinga"];
 
 export const employeesRows: EmployeeData[] = Array.from({ length: 50 }, (_, index) => {
@@ -189,8 +155,9 @@ export const employeesRows: EmployeeData[] = Array.from({ length: 50 }, (_, inde
   const position = getRandomPosition();
   const campus = getRandomCampus(); // Novo valor aleatório para o campus
   const active = getRandomBoolean(); // Novo valor aleatório para ativo
-  return createEmployeeData(id, name, position, campus, active);
+  return createEmployeeData({ id, name, position, campus, active });
 });
+
 
 function getRandomCampus() {
   return campuses[Math.floor(Math.random() * campuses.length)];
@@ -239,23 +206,27 @@ export const employeeHeadCells: EmployeeHeadCell[] = [
 ];
 export interface DepartmentData {
   [key: string]: unknown;
-  id: number;
-  name: string;
-  extension: string;
-  active: boolean;
-  employeeCount: number;
-  callCount: number;
+  data: {
+    id: number;
+    name: string;
+    extension: string;
+    active: boolean;
+    employeeCount: number;
+    callCount: number;
+  }
 }
 
 const departmentNames = ["RH", "Financeiro", "Tecnologia", "Vendas", "Marketing"];
 
 export const departmentRows: DepartmentData[] = departmentNames.map((name, index) => ({
-  id: index + 1,
-  name,
-  extension: getRandomExtension(),
-  active: getRandomBoolean(),
-  employeeCount: getRandomCount(),
-  callCount: getRandomCount(),
+  data: {
+    id: index + 1,
+    name,
+    extension: getRandomExtension(),
+    active: getRandomBoolean(),
+    employeeCount: getRandomCount(),
+    callCount: getRandomCount(),
+  }
 }));
 
 function getRandomExtension() {
@@ -309,4 +280,46 @@ export const departmentHeadCells: DepartmentHeadCell[] = [
   },
 ];
 
+export function getVisibleRows<T extends CallData | DepartmentData | EmployeeData>(
+  filteredData: readonly T[],
+  order: Order,
+  orderBy: keyof T["data"],
+  page: number,
+  rowsPerPage: number
+): T[] {
+  const sortedData = stableSort(filteredData, getComparator(order, orderBy));
+  return sortedData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+}
+export function stableSort<T extends CallData | DepartmentData | EmployeeData>(
+  array: readonly T[],
+  comparator: (a: T["data"], b: T["data"]) => number
+): T[] {
+  const sortedArray: T[] = [];
+  array.forEach((el) => {
+    const sortedEl: T = {
+      ...el,
+      data: { ...el.data }
+    };
+    sortedArray.push(sortedEl);
+  });
+  sortedArray.sort((a, b) => {
+    const order = comparator(a.data, b.data);
+    if (order !== 0) return order;
+    return 0;
+  });
+  return sortedArray;
+}
+export function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a[orderBy], b[orderBy])
+    : (a, b) => -descendingComparator(a[orderBy], b[orderBy]);
+} function descendingComparator<T>(a: T, b: T) {
+  if (b < a) {
+    return -1;
+  }
+  if (b > a) {
+    return 1;
+  }
+  return 0;
+}
 

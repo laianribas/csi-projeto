@@ -5,7 +5,6 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 import { CallData, CallsHeadCell, Order } from "helpers";
-import { CallInterface } from "helpers/Interfaces";
 
 import * as React from "react";
 
@@ -15,7 +14,7 @@ interface TableHeadProps {
   headCells: CallsHeadCell[];
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof CallInterface
+    property: keyof CallData
   ) => void;
   showActions?: boolean;
 }

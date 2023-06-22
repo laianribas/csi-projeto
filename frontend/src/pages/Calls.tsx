@@ -27,7 +27,7 @@ import api from "../helpers/api";
 
 export default function Calls() {
   const [order, setOrder] = React.useState<Order>("desc");
-  const [orderBy, setOrderBy] = React.useState<string>("openingDate");
+  const [orderBy, setOrderBy] = React.useState<string>("created_at");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -43,11 +43,12 @@ export default function Calls() {
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof CallInterface
+    property: any
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property as string);
+    console.log(order, orderBy)
   };
 
   const handleChangePage = (
@@ -65,12 +66,13 @@ export default function Calls() {
   };
 
   const filteredData = React.useMemo(() => {
+    console.log('calls', calls.map(call => call.details));
     return filterRows(calls, searchText);
   }, [calls, searchText]);
 
 
   const visibleRows = React.useMemo(() => {
-    return getVisibleRows(filteredData as readonly { [x: string]: string | number;[x: number]: string | number; }[], order, orderBy, page, rowsPerPage);
+    return getVisibleRows(filteredData as readonly CallData[], order, orderBy as "created_at" | "id" | "requester" | "department" | "area" | "status", page, rowsPerPage);
   }, [filteredData, order, orderBy, page, rowsPerPage]);
 
   const emptyRows = React.useMemo(() => {
