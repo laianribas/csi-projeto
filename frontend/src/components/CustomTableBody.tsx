@@ -1,14 +1,11 @@
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import {
-  Box,
-  Button,
   Collapse,
   Grid,
   IconButton,
   TableBody,
   TableCell,
   TableRow,
-  TextField,
   useTheme
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
@@ -18,9 +15,10 @@ import CallStatusChip from './CallStatusChip';
 interface CustomTableBodyProps {
   visibleRows: { data: any; details: any }[];
   emptyRows: number;
+  form: React.ElementType;
 }
 
-const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRows }) => {
+const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRows, form: FormComponent }) => {
   const theme = useTheme();
   const { openModal } = useContext(ModalContext);
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
@@ -70,7 +68,6 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
       }
     });
   };
-
   return (
     <TableBody>
       {visibleRows.map((row, index) => {
@@ -100,7 +97,7 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
                   )}
                 </TableCell>
               ))}
-              <TableCell>
+              <TableCell sx={{ textAlign: 'center' }}>
                 <IconButton onClick={() => handleShowDetailsClick(index)}>
                   {isExpanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                 </IconButton>
@@ -110,47 +107,8 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={Object.keys(row.data).length + 1}>
                 <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                   <Grid container spacing={2}>
-                    {Object.entries(row.details).map(([key, value]) => {
-                      const editedValue = editedRowDetails[key] || value;
-
-                      return (
-                        <Grid item xs={4} key={key}>
-                          <TextField
-                            label={key}
-                            value={editedValue}
-                            disabled={!isEditing}
-                            multiline
-                            rows={key === 'description' ? 4 : 1}
-                            fullWidth
-                            variant="filled"
-                            sx={{ my: 2 }}
-                            onChange={(event) => handleChange(index, key, event.target.value)}
-                          />
-                        </Grid>
-                      );
-                    })}
+                    <FormComponent rowDetails={row.details} handleChange={handleChange} />
                   </Grid>
-                  <Box sx={{ textAlign: 'right', my: 2 }}>
-                    {isEditing ? (
-                      <>
-                        <Button variant="contained" color="success" onClick={() => handleEditDetails(index)}>
-                          Confirmar
-                        </Button>
-                        <Button variant="contained" color="error" onClick={() => handleCancelEdit(index)} sx={{ ml: 2 }}>
-                          Cancelar
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button variant="contained" color="warning" onClick={() => handleEditDetails(index)}>
-                          Editar
-                        </Button>
-                        <Button variant="contained" color="error" onClick={() => handleDeleteDetails(index)} sx={{ ml: 2 }}>
-                          Excluir
-                        </Button>
-                      </>
-                    )}
-                  </Box>
                 </Collapse>
               </TableCell>
             </TableRow>

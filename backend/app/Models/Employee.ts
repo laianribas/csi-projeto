@@ -23,6 +23,9 @@ export default class Employee extends BaseModel {
   @column({ serializeAs: null })
   public firstLogin: boolean;
 
+  @column({ columnName: 'department_id', serializeAs: null })
+  public departmentId: number;
+
   @column({ columnName: 'position_id' })
   public positionId: number;
 

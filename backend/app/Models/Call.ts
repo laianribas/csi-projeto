@@ -1,17 +1,20 @@
-import { BaseModel, column, BelongsTo, belongsTo, ManyToMany, manyToMany, beforeCreate } from '@ioc:Adonis/Lucid/Orm';
-import { v4 as uuidv4 } from 'uuid';
-import Employee from './Employee';
-import Department from './Department';
+import { BaseModel, BelongsTo, ManyToMany, beforeCreate, belongsTo, column, manyToMany } from '@ioc:Adonis/Lucid/Orm';
 import { DateTime } from 'luxon';
-import Status from './Status';
+import { v4 as uuidv4 } from 'uuid';
 import Campus from './Campus';
+import Department from './Department';
+import Employee from './Employee';
+import Status from './Status';
 
 export default class Call extends BaseModel {
   @column({ isPrimary: true })
   public id: string;
 
-  @column()
-  public recipient: string;
+  @column({ columnName: 'employee_id' })
+  public employeeId: string;
+
+  @column({ columnName: 'responsible_id' })
+  public responsibleId: string;
 
   @column()
   public area: string;
@@ -19,17 +22,14 @@ export default class Call extends BaseModel {
   @column()
   public description: string;
 
-  @column()
-  public asset_tag: string;
+  @column({ columnName: 'asset_tag' })
+  public assetTag: string;
 
   @column()
   public evaluation: string;
 
   @column({ columnName: 'department_id' })
   public departmentId: number;
-
-  @column({ columnName: 'employee_id' })
-  public employeeId: string;
 
   @column({ columnName: 'campus_id' })
   public campusId: number;
@@ -47,6 +47,11 @@ export default class Call extends BaseModel {
     foreignKey: 'employeeId',
   })
   public employee: BelongsTo<typeof Employee>;
+
+  @belongsTo(() => Employee, {
+    foreignKey: 'responsibleId',
+  })
+  public responsible: BelongsTo<typeof Employee>;
 
   @belongsTo(() => Department, {
     foreignKey: 'departmentId',

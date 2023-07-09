@@ -8,6 +8,7 @@ Route.group(() => {
 
   Route.group(() => {
     // Rotas do funcionário
+    Route.get('/employees/support', 'EmployeesController.supportEmployees');
     Route.resource('employees', 'EmployeesController').apiOnly();
 
     // Rotas do setor

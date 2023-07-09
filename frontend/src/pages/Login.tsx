@@ -34,7 +34,6 @@ export default function Login() {
       .post('login', { login, password })
       .then((response) => {
         // Manipular a resposta da API
-        console.log(response.data);
         const token = response.data.token.token;
 
         // Armazena o token no localStorage

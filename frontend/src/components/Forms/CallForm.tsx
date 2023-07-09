@@ -72,7 +72,6 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
           .then(response => {
             const createdCall = {
               data: {
-
                 id: response.data.id.substring(0, 5),
                 created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
                 requester: response.data.employee.name,
@@ -81,11 +80,14 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
                 status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : '',
               },
               details: {
-                responsible: response.data.recipient,
+                id: response.data.id,
+                responsible: response.data.responsible ? response.data.responsible.name : '',
                 description: response.data.description,
-                evaluation: ''
-
-              }
+                evaluation: response.data.evaluation,
+                department: response.data.department.name,
+                area: response.data.area,
+                status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : ''
+              },
             };
 
             setResponsible('');
@@ -108,16 +110,6 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
     <form onSubmit={handleSubmit}>
       <Box sx={{ width: '100%', maxWidth: 500, p: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              label="Responsável"
-              value={responsible}
-              onChange={handleResponsibleChange}
-              required
-              fullWidth
-              variant="filled"
-            />
-          </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="area-label">Área</InputLabel>

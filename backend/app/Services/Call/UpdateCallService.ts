@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import { schema, rules } from '@ioc:Adonis/Core/Validator';
+import { rules, schema } from '@ioc:Adonis/Core/Validator';
 import Call from 'App/Models/Call';
 import Status from 'App/Models/Status';
 
@@ -14,7 +14,7 @@ export default class UpdateCallService {
   public async execute(request: HttpContextContract['request'], id: string) {
     // Define o esquema de validação dos dados do chamado
     const validatedData = await schema.create({
-      recipient: schema.string.optional({}, [rules.trim()]),
+      responsibleId: schema.string.optional({}, [rules.trim()]),
       area: schema.string.optional({}, [rules.trim()]),
       description: schema.string.optional({}, [rules.trim()]),
       assetTag: schema.string.optional({}, [rules.trim()]),
@@ -30,8 +30,8 @@ export default class UpdateCallService {
     const call = await Call.findOrFail(id);
 
     // Atualiza os campos do chamado com os valores validados, se fornecidos
-    if (data.recipient) {
-      call.recipient = data.recipient;
+    if (data.responsibleId) {
+      call.responsibleId = data.responsibleId;
     }
     if (data.area) {
       call.area = data.area;
@@ -40,7 +40,7 @@ export default class UpdateCallService {
       call.description = data.description;
     }
     if (data.assetTag) {
-      call.asset_tag = data.assetTag;
+      call.assetTag = data.assetTag;
     }
     if (data.evaluation) {
       call.evaluation = data.evaluation;
@@ -60,8 +60,8 @@ export default class UpdateCallService {
 
     // Salva as alterações no chamado
     await call.save();
-
     await call.load('employee');
+    await call.load('responsible');
     await call.load('department');
     await call.load('status');
 

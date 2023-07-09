@@ -22,6 +22,7 @@ interface CustomTableContainerProps {
   page: number;
   handleChangePage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => void;
   handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  form?: React.ElementType;
 }
 
 const CustomTableContainer: React.FC<CustomTableContainerProps> = ({
@@ -36,19 +37,20 @@ const CustomTableContainer: React.FC<CustomTableContainerProps> = ({
   page,
   handleChangePage,
   handleChangeRowsPerPage,
+  form,
 }) => {
   return (
     <Box sx={{ marginTop: "16px", overflowX: "auto" }}>
       <Paper sx={{ minWidth: 1050 }}>
         <TableContainer sx={{ width: "100%" }}>
-          <Table size="small">
+          <Table size="small" stickyHeader >
             <TableHeadComponent
               headCells={headCells}
               order={order}
               orderBy={orderBy}
               onRequestSort={onRequestSort}
             />
-            <CustomTableBody visibleRows={visibleRows} emptyRows={emptyRows} />
+            <CustomTableBody visibleRows={visibleRows} emptyRows={emptyRows} form={form!} />
           </Table>
         </TableContainer>
         <TablePagination

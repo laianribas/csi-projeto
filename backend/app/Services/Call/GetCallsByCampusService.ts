@@ -28,6 +28,7 @@ export default class GetCallsByCampusService {
         query.where('id', campusId);
       })
       .preload('employee')
+      .preload('responsible')
       .preload('department')
       .preload('status')
       .orderBy('createdAt', 'desc')

@@ -31,7 +31,7 @@ export interface Employee {
 export interface CallInterface {
   [key: string]: unknown;
   id: string;
-  recipient: string;
+  responsible: Employee
   area: string;
   description: string;
   asset_tag: string;

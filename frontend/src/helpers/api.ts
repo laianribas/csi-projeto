@@ -15,7 +15,6 @@ export async function makeRequest(method: 'get' | 'post' | 'put' | 'delete', pat
   };
 
   try {
-
     const response = await (data ? api[method](path, data, { headers }) : api[method](path, { headers }));
     return response.data;
   } catch (error) {

@@ -1,10 +1,28 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled } from '@mui/system';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import Header from './components/Header';
+
+const ScrollablePage = styled('div')(({ theme }) => ({
+  maxHeight: '100vh',
+  overflow: 'auto',
+  '&::-webkit-scrollbar': {
+    width: '8px',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: theme.palette.background.default,
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[600] : theme.palette.primary.main,
+    borderRadius: '8px',
+  },
+  scrollBehavior: 'smooth',
+  '-webkit-overflow-scrolling': 'touch',
+}));
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -25,6 +43,9 @@ function App() {
         palette: {
           mode: isDarkMode ? 'dark' : 'light',
         },
+        typography: {
+          fontSize: 16
+        }
       }),
     [isDarkMode],
   );
@@ -35,10 +56,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {shouldShowHeader && (
-        <Header onToggleTheme={handleThemeToggle} isDarkMode={isDarkMode} systemStatus='ok' />
-      )}
-      <AppRoutes />
+      <ScrollablePage>
+        {shouldShowHeader && (
+          <Header onToggleTheme={handleThemeToggle} isDarkMode={isDarkMode} systemStatus='ok' />
+        )}
+        <AppRoutes />
+      </ScrollablePage>
     </ThemeProvider>
   );
 }

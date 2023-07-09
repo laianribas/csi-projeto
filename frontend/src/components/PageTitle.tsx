@@ -7,7 +7,7 @@ interface PageTitleProps {
 
 const PageTitle: React.FC<PageTitleProps> = ({ text }) => {
   return (
-    <Typography variant="h4" component="h1" align="center" sx={{ my: 4 }}>
+    <Typography variant="h4" component="h1" align="center" sx={{ mt: 3, mb: 4, pt: 8 }}>
       {text}
     </Typography>
   );

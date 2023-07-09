@@ -9,6 +9,7 @@ import CustomModal from "../components/CustomModal";
 import CustomSnackbar from "../components/CustomSnackbar";
 import CustomTableContainer from "../components/CustomTableContainer";
 import CallForm from "../components/Forms/CallForm";
+import EditCallForm from "../components/Forms/EditCallForm";
 import PageTitle from "../components/PageTitle";
 import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
@@ -26,8 +27,8 @@ import { CallInterface } from "../helpers/Interfaces";
 import api from "../helpers/api";
 
 export default function Calls() {
-  const [order, setOrder] = React.useState<Order>("desc");
-  const [orderBy, setOrderBy] = React.useState<string>("created_at");
+  const [order, setOrder] = React.useState<Order>("asc");
+  const [orderBy, setOrderBy] = React.useState<string>("id");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -48,7 +49,6 @@ export default function Calls() {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property as string);
-    console.log(order, orderBy)
   };
 
   const handleChangePage = (
@@ -66,7 +66,6 @@ export default function Calls() {
   };
 
   const filteredData = React.useMemo(() => {
-    console.log('calls', calls.map(call => call.details));
     return filterRows(calls, searchText);
   }, [calls, searchText]);
 
@@ -113,17 +112,23 @@ export default function Calls() {
 
         const transformedData = data.map((call: CallInterface) => ({
           data: {
-            id: call.id.substring(0, 5),
+            id: call.id.substring(0, 5).concat('...'),
             created_at: format(new Date(call.created_at), 'dd/MM/yyyy'),
+            // created_at: call.created_at,
             requester: call.employee.name,
             department: call.department.name,
             area: call.area,
             status: call.status && call.status.length > 0 ? call.status[0].description : '',
           },
           details: {
-            responsible: call.recipient,
+            id: call.id,
+            responsible: call.responsible ? call.responsible.name : '',
             description: call.description,
-            evaluation: call.evaluation
+            evaluation: call.evaluation,
+            department: call.department.name,
+            assetTag: call.asset_tag,
+            area: call.area,
+            status: call.status && call.status.length > 0 ? call.status[0].description : ''
           },
         }));
 
@@ -135,7 +140,6 @@ export default function Calls() {
 
     fetchCalls();
   }, []);
-
   return (
     <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
       <PageTitle text="Chamados" />
@@ -158,6 +162,7 @@ export default function Calls() {
         page={page}
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
+        form={EditCallForm}
       />
       <CustomSnackbar
         open={showSnackbar}

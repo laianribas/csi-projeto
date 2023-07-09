@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
           null;
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <ClickAwayListener onClickAway={handleMenuClickAway}>
         <Toolbar>
           <IconButton

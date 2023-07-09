@@ -26,7 +26,7 @@ export default class UpdatePositionService {
     // Atualiza as permissões do cargo com base nos IDs fornecidos
     if (data.permissionIds) {
       const permissions = await Permission.query().whereIn('id', data.permissionIds).exec();
-      console.log(position.$attributes)
+
       await position.related('permissions').sync(permissions.map((permission) => permission.id));
     } else {
       // Remove todas as permissões existentes do cargo

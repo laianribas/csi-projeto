@@ -20,6 +20,7 @@ export default class CallsController {
         .where('active', true)
         .preload('department')
         .preload('employee', query => query.preload('position'))
+        .preload('responsible')
         .preload('status', query => query.orderBy('updated_at', 'desc'))
         .orderBy('createdAt', 'desc');
 

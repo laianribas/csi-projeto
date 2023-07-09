@@ -27,7 +27,7 @@ export default function TableHeadComponent(props: TableHeadProps) {
     };
 
   return (
-    <TableHead>
+    <TableHead style={{ position: "static" }}>
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -52,7 +52,7 @@ export default function TableHeadComponent(props: TableHeadProps) {
             </TableSortLabel>
           </TableCell>
         ))}
-        {showActions && <TableCell align="center">Ações</TableCell>}
+        {showActions && <TableCell align="center" >Ações</TableCell>}
       </TableRow>
     </TableHead>
   );

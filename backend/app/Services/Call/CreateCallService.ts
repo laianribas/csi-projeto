@@ -15,7 +15,6 @@ export default class CreateCallService {
   public async execute(request: HttpContextContract['request'], employeeId: string): Promise<Call> {
     // Define o esquema de validação dos dados do chamado
     const validatedData = await schema.create({
-      recipient: schema.string({}, [rules.trim()]),
       area: schema.string({}, [rules.trim()]),
       description: schema.string({}, [rules.trim()]),
       assetTag: schema.string({}, [rules.trim()]),
@@ -32,10 +31,9 @@ export default class CreateCallService {
     const call = new Call();
 
     // Atribui os valores validados aos campos do chamado
-    call.recipient = data.recipient;
     call.area = data.area;
     call.description = data.description;
-    call.asset_tag = data.assetTag;
+    call.assetTag = data.assetTag;
     call.departmentId = data.departmentId;
     call.employeeId = employeeId;
     call.campusId = employee.campusId;

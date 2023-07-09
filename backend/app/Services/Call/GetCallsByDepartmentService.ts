@@ -23,6 +23,7 @@ export default class GetCallsByEmployeeService {
     const calls = await Call.query()
       .whereIn('departmentId', departmentIds)
       .preload('employee')
+      .preload('responsible')
       .preload('department')
       .preload('status')
       .orderBy('createdAt', 'desc')

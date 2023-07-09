@@ -11,9 +11,14 @@ export interface CallData {
     status: string;
   };
   details: {
+    id: string;
     responsible: string;
     description: string;
     evaluation: string;
+    department: string;
+    assetTag?: string;
+    area: string;
+    status: string;
   };
 }
 
@@ -90,21 +95,6 @@ export const callsHeadCells: CallsHeadCell[] = [
   },
 ];
 
-export function filterRows<T extends { [key: string]: unknown }>(
-  rows: T[],
-  searchText: string
-): T[] {
-  if (searchText === '') {
-    return rows;
-  }
-  const lowercasedValue = searchText.toLowerCase();
-  return rows.filter((row) => {
-    const { data } = row; // Extrai a propriedade `data` de cada objeto
-    return Object.values(data as string).some((value) =>
-      String(value).toLowerCase().includes(lowercasedValue)
-    );
-  });
-}
 
 
 export function calculateEmptyRows(
@@ -279,6 +269,21 @@ export const departmentHeadCells: DepartmentHeadCell[] = [
     label: "Qtd. Chamados"
   },
 ];
+export function filterRows<T extends { [key: string]: unknown }>(
+  rows: T[],
+  searchText: string
+): T[] {
+  if (searchText === '') {
+    return rows;
+  }
+  const lowercasedValue = searchText.toLowerCase();
+  return rows.filter((row) => {
+    const { data } = row;
+    return Object.values(data as string).some((value) =>
+      String(value).toLowerCase().includes(lowercasedValue)
+    );
+  });
+}
 
 export function getVisibleRows<T extends CallData | DepartmentData | EmployeeData>(
   filteredData: readonly T[],
@@ -313,7 +318,9 @@ export function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) =
   return order === 'desc'
     ? (a, b) => descendingComparator(a[orderBy], b[orderBy])
     : (a, b) => -descendingComparator(a[orderBy], b[orderBy]);
-} function descendingComparator<T>(a: T, b: T) {
+}
+
+function descendingComparator<T>(a: T, b: T) {
   if (b < a) {
     return -1;
   }

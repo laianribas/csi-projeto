@@ -5,6 +5,7 @@ import DeleteEmployeeService from 'App/Services/Employee/DeleteEmployeeService';
 import LoginEmployeeService from 'App/Services/Employee/LoginEmployeeService';
 import LogoutService from 'App/Services/Employee/LogoutService';
 import UpdateEmployeeService from 'App/Services/Employee/UpdateEmployeeService';
+import GetSupportEmployeesService from 'App/Services/Employee/getSupportEmployeesService';
 
 export default class EmployeesController {
   /**
@@ -99,6 +100,7 @@ export default class EmployeesController {
     }
   }
 
+
   /**
    * Realiza o login do funcionário com base nas credenciais fornecidas.
    *
@@ -154,6 +156,24 @@ export default class EmployeesController {
     } catch (error) {
       console.error(error);
       return response.status(500).json({ message: 'Erro ao obter informações do usuário' });
+    }
+  }
+
+  /**
+   * Retorna os funcionários que possuem os cargos de "Suporte", "Redes" ou "Manutenção".
+   *
+   * @param response - A resposta HTTP.
+   * @returns Uma lista de funcionários.
+   */
+  public async supportEmployees({ response }: HttpContextContract) {
+    try {
+      const getSupportEmployeesService = new GetSupportEmployeesService();
+      const employees = await getSupportEmployeesService.execute();
+
+      return response.ok(employees);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ error: 'Internal server error' });
     }
   }
 }
