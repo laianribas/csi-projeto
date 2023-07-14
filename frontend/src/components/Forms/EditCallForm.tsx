@@ -82,11 +82,11 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
   };
 
   return (
-    <Box sx={{ width: '100%', p: 3 }}>
-      <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid item xs={12}>
-          <Typography variant="h6">Editar Chamado - {id}</Typography>
-        </Grid>
+    <Box sx={{ width: '100%', p: 4 }}>
+      <Grid container spacing={2}>
+        <Typography variant="h6">
+          Editar Chamado - <Typography component="span" sx={{ fontStyle: 'italic', fontWeight: 'bold' }}>{id}</Typography>
+        </Typography>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="responsible-label">Funcionário Responsável</InputLabel>

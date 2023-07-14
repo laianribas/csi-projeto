@@ -105,8 +105,8 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
             </TableRow>
             <TableRow>
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={Object.keys(row.data).length + 1}>
-                <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                  <Grid container spacing={2}>
+                <Collapse in={isExpanded} timeout="auto" unmountOnExit >
+                  <Grid container sx={{ margin: '0 auto' }}>
                     <FormComponent rowDetails={row.details} handleChange={handleChange} />
                   </Grid>
                 </Collapse>

@@ -72,7 +72,7 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
           .then(response => {
             const createdCall = {
               data: {
-                id: response.data.id.substring(0, 5),
+                id: response.data.id.substring(0, 5).concat('...'),
                 created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
                 requester: response.data.employee.name,
                 department: response.data.department.name,

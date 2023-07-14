@@ -269,6 +269,7 @@ export const departmentHeadCells: DepartmentHeadCell[] = [
     label: "Qtd. Chamados"
   },
 ];
+
 export function filterRows<T extends { [key: string]: unknown }>(
   rows: T[],
   searchText: string
@@ -321,6 +322,19 @@ export function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) =
 }
 
 function descendingComparator<T>(a: T, b: T) {
+  if (typeof a === 'string' && typeof b === 'string') {
+    const dateA = new Date(a);
+    const dateB = new Date(b);
+
+    if (dateB < dateA) {
+      return -1;
+    }
+    if (dateB > dateA) {
+      return 1;
+    }
+    return 0;
+  }
+
   if (b < a) {
     return -1;
   }
