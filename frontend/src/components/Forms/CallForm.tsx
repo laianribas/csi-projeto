@@ -1,5 +1,4 @@
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { ModalContext } from '../../context/ModalProvider';
 import { CallData, getAuthToken } from '../../helpers';
@@ -73,7 +72,7 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
             const createdCall = {
               data: {
                 id: response.data.id.substring(0, 5).concat('...'),
-                created_at: format(new Date(response.data.created_at), 'dd/MM/yyyy'),
+                created_at: response.data.created_at,
                 requester: response.data.employee.name,
                 department: response.data.department.name,
                 area: response.data.area,

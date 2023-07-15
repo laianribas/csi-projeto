@@ -2,7 +2,6 @@ import {
   Box,
   Container
 } from "@mui/material";
-import { format } from "date-fns";
 import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
@@ -113,8 +112,7 @@ export default function Calls() {
         const transformedData = data.map((call: CallInterface) => ({
           data: {
             id: call.id.substring(0, 5).concat('...'),
-            created_at: format(new Date(call.created_at), 'dd/MM/yyyy'),
-            // created_at: call.created_at,
+            created_at: call.created_at,
             requester: call.employee.name,
             department: call.department.name,
             area: call.area,

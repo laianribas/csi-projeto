@@ -8,10 +8,9 @@ import {
   TableRow,
   useTheme
 } from '@mui/material';
-import React, { useContext, useState } from 'react';
-import { ModalContext } from '../context/ModalProvider';
+import { format } from 'date-fns';
+import React, { useState } from 'react';
 import CallStatusChip from './CallStatusChip';
-
 interface CustomTableBodyProps {
   visibleRows: { data: any; details: any }[];
   emptyRows: number;
@@ -20,7 +19,6 @@ interface CustomTableBodyProps {
 
 const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRows, form: FormComponent }) => {
   const theme = useTheme();
-  const { openModal } = useContext(ModalContext);
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
   const [editingRows, setEditingRows] = useState<number[]>([]);
   const [editedDetails, setEditedDetails] = useState<any>({});
@@ -34,31 +32,6 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
     }
   };
 
-  const handleEditDetails = (index: number) => {
-    if (editingRows.includes(index)) {
-      // Lógica para confirmar a edição
-      console.log('Confirmar edição:', editedDetails);
-    } else {
-      // Lógica para iniciar a edição
-      setEditingRows([...editingRows, index]);
-    }
-  };
-
-  const handleCancelEdit = (index: number) => {
-    setEditingRows(editingRows.filter((rowIndex) => rowIndex !== index));
-    setExpandedRows(expandedRows.filter((rowIndex) => rowIndex !== index));
-    setEditedDetails((prevState: any) => {
-      const updatedDetails = { ...prevState };
-      delete updatedDetails[index];
-      return updatedDetails;
-    });
-  };
-
-  const handleDeleteDetails = (index: number) => {
-    // Lógica para excluir os detalhes da linha aqui
-    console.log('Excluir detalhes:', visibleRows[index]);
-  };
-
   const handleChange = (index: number, key: string, value: string) => {
     setEditedDetails({
       ...editedDetails,
@@ -68,12 +41,18 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
       }
     });
   };
+
+  const formatDate = (date: Date | string): string => {
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
+    return format(date, 'dd/MM/yyyy');
+  };
+
   return (
     <TableBody>
       {visibleRows.map((row, index) => {
         const isExpanded = expandedRows.includes(index);
-        const isEditing = editingRows.includes(index);
-        const editedRowDetails = editedDetails[index] || {};
 
         return (
           <React.Fragment key={index}>
@@ -92,6 +71,8 @@ const CustomTableBody: React.FC<CustomTableBodyProps> = ({ visibleRows, emptyRow
                     <CallStatusChip status={value as string} />
                   ) : key === 'active' ? (
                     <CallStatusChip status={value ? 'Ativo' : 'Inativo'} />
+                  ) : key === 'created_at' ? (
+                    formatDate(value as string)
                   ) : (
                     value as string
                   )}
