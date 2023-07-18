@@ -7,7 +7,7 @@ const api = axios.create({
 
 export default api;
 
-export async function makeRequest(method: 'get' | 'post' | 'put' | 'delete', path: string, data: any) {
+export async function makeRequest(method: 'get' | 'post' | 'patch' | 'delete', path: string, data: any) {
   const token = getAuthToken();
   const headers = {
     'Content-Type': 'application/json',

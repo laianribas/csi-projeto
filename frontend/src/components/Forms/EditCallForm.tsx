@@ -2,6 +2,7 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEv
 import { Box } from '@mui/system';
 import { Department, Employee } from 'helpers/Interfaces';
 import React, { useEffect, useState } from 'react';
+import CustomSnackbar from '../../components/CustomSnackbar';
 import { makeRequest } from '../../helpers/api';
 
 interface EditCallFormProps {
@@ -18,15 +19,19 @@ interface EditCallFormProps {
 
 const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
   const { description, evaluation, id, area, assetTag, department } = rowDetails!;
-  console.log(evaluation)
 
   const [supportEmployees, setSupportEmployees] = useState<Employee[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [selectedEmployee, setSelectedEmployee] = useState<string>(rowDetails?.responsible || '');
   const [selectedDepartment, setSelectedDepartment] = useState<string>('');
   const [isEditing, setIsEditing] = useState(false);
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = React.useState<
+    'error' | 'success' | 'info' | 'warning'
+  >('success');
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
 
-
+  console.log(rowDetails?.responsible)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -64,16 +69,40 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
     setIsEditing(true);
   };
 
-  const handleConfirmClick = () => {
+
+  const handleConfirmClick = async () => {
     setIsEditing(false);
-    // Lógica para confirmar a edição
-    console.log('Confirmar edição');
+    try {
+      const updatedData = {
+        description,
+        evaluation,
+        id,
+        responsibleId: selectedEmployee,
+        area,
+        assetTag,
+        departmentId: selectedDepartment,
+        statusId: selectedEmployee ? 2 : undefined
+      };
+
+      const response = await makeRequest('patch', `/calls/${id}`, updatedData);
+      console.log('Dados atualizados:', response);
+      setSnackbarSeverity('success');
+      setSnackbarMessage('Chamado alterado com sucesso!');
+      setShowSnackbar(true);
+    } catch (error) {
+      console.error('Erro ao atualizar os dados:', error);
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Ocorreu um erro ao alterar chamado!');
+      setShowSnackbar(true);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
-    // Lógica para cancelar a edição
-    console.log('Cancelar edição');
   };
 
   const handleDeleteClick = () => {
@@ -193,7 +222,14 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
             </>
           )}
         </Grid>
+        <CustomSnackbar
+          open={showSnackbar}
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          message={snackbarMessage}
+        />
       </Grid>
+
     </Box>
   );
 };

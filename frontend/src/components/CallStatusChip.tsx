@@ -2,14 +2,14 @@ import { Chip } from '@mui/material';
 import React from 'react';
 
 const CallStatusChip: React.FC<{ status: string }> = ({ status }) => {
-  let color: 'default' | 'primary' | 'success' | 'error' = 'default';
+  let color: 'default' | 'primary' | 'success' | 'error' | 'secondary' | 'warning' = 'default';
 
   switch (status) {
-    case 'Em Aberto':
-      color = 'default';
-      break;
-    case 'Em Andamento':
+    case 'Em aberto':
       color = 'primary';
+      break;
+    case 'Em andamento':
+      color = 'warning';
       break;
     case 'Concluído':
     case 'Ativo':
@@ -23,7 +23,7 @@ const CallStatusChip: React.FC<{ status: string }> = ({ status }) => {
       color = 'default';
   }
 
-  return <Chip label={status} color={color} />;
+  return <Chip label={status} color={color} variant="filled" size="small" />;
 };
 
 export default CallStatusChip;

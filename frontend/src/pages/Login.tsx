@@ -130,7 +130,7 @@ export default function Login() {
                 </Grid>
                 <Grid item xs={12}>
                   <Button type="submit" variant="contained" fullWidth disabled={loading}>
-                    {loading ? <CircularProgress color="inherit" size={24} /> : 'Login'}
+                    {loading ? <CircularProgress color="inherit" size={24} /> : 'Entrar'}
                   </Button>
                 </Grid>
               </Grid>

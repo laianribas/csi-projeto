@@ -20,7 +20,7 @@ export default class UpdateCallService {
       assetTag: schema.string.optional({}, [rules.trim()]),
       evaluation: schema.string.optional({}, [rules.trim()]),
       departmentId: schema.number.optional(),
-      statusIds: schema.number.optional(),
+      statusId: schema.number.optional(),
     });
 
     // Valida os dados recebidos na requisição
@@ -50,9 +50,9 @@ export default class UpdateCallService {
     }
 
     // Verifica se foram fornecidos os IDs de status
-    if (data.statusIds) {
+    if (data.statusId) {
       // Busca os status pelo ID
-      const status = await Status.findByOrFail('id', data.statusIds);
+      const status = await Status.findByOrFail('id', data.statusId);
 
       // Associa o chamado aos novos status
       await call.related('status').save(status);

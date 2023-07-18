@@ -120,7 +120,7 @@ export default function Calls() {
           },
           details: {
             id: call.id,
-            responsible: call.responsible ? call.responsible.name : '',
+            responsible: call.responsible ? call.responsible.id : '',
             description: call.description,
             evaluation: call.evaluation,
             department: call.department.name,
