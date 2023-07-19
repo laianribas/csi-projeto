@@ -13,9 +13,9 @@ import Badge from '@mui/material/Badge';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/images/vector/isolated-monochrome-white.svg';
 import api from '../helpers/api';
 import SideMenu from './SideMenu';
 
@@ -117,12 +117,16 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
             color="inherit"
             aria-label="menu"
             onClick={toggleMenu}
+
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Logo
-          </Typography>
+          </Typography> */}
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }} >
+            <img src={Logo} alt="Logo" style={{ height: '20px' }} />
+          </Box>
           <IconButton color="inherit">
             {statusIcon}
           </IconButton>
