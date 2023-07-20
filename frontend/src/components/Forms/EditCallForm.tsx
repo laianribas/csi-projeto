@@ -1,4 +1,5 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Slide, TextField, Typography } from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
 import { Box } from '@mui/system';
 import { Department, Employee } from 'helpers/Interfaces';
 import React, { useEffect, useState } from 'react';
@@ -17,6 +18,15 @@ interface EditCallFormProps {
   };
 }
 
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
   const { description, evaluation, id, area, assetTag, department } = rowDetails!;
 
@@ -30,8 +40,8 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
     'error' | 'success' | 'info' | 'warning'
   >('success');
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  console.log(rowDetails?.responsible)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -49,6 +59,15 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (showSnackbar) {
+      // Atualiza a página quando o Snackbar for exibido após a exclusão ou edição
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000); // Espera 3 segundos antes de recarregar a página
+    }
+  }, [showSnackbar]);
 
   const findDepartmentIdByName = (departments: Department[], departmentName: string) => {
     const foundDepartment = departments.find((dep) => dep.name === departmentName);
@@ -104,10 +123,18 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
-
   const handleDeleteClick = () => {
-    // Lógica para excluir o chamado
+    setShowDeleteDialog(true); // Abre o diálogo de exclusão
+  };
+
+  const handleDeleteConfirm = () => {
+    // Lógica para excluir o chamado aqui
     console.log('Excluir chamado');
+    setShowDeleteDialog(false); // Fecha o diálogo de exclusão
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteDialog(false); // Fecha o diálogo de exclusão
   };
 
   return (
@@ -229,7 +256,21 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
           message={snackbarMessage}
         />
       </Grid>
-
+      <Dialog open={showDeleteDialog} onClose={handleDeleteCancel} TransitionComponent={Transition}
+        keepMounted>
+        <DialogTitle>Confirmar Exclusão</DialogTitle>
+        <DialogContent>
+          Tem certeza de que deseja excluir este chamado?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteConfirm} color="error">
+            Excluir
+          </Button>
+          <Button onClick={handleDeleteCancel} color="warning">
+            Cancelar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

@@ -117,13 +117,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
             color="inherit"
             aria-label="menu"
             onClick={toggleMenu}
-
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Logo
-          </Typography> */}
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }} >
             <img src={Logo} alt="Logo" style={{ height: '20px' }} />
           </Box>
