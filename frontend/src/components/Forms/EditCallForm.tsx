@@ -127,14 +127,18 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
     setShowDeleteDialog(true); // Abre o diálogo de exclusão
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     // Lógica para excluir o chamado aqui
     console.log('Excluir chamado');
     setShowDeleteDialog(false); // Fecha o diálogo de exclusão
+    await makeRequest('delete', `/calls/${id}`, null);
+    setSnackbarSeverity('success');
+    setSnackbarMessage('Chamado excluído com sucesso!');
+    setShowSnackbar(true);
   };
 
   const handleDeleteCancel = () => {
-    setShowDeleteDialog(false); // Fecha o diálogo de exclusão
+    setShowDeleteDialog(false);
   };
 
   return (
