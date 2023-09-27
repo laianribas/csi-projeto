@@ -1,0 +1,13 @@
+{
+  "name": "seu-projeto",
+  "version": "1.0.0",
+  "description": "Descrição do seu projeto",
+  "scripts": {
+    "start": "concurrently \"npm run start-front\" \"npm run start-back\"",
+    "start-front": "cd frontend && npm start",
+    "start-back": "cd backend && node ace serve --watch"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

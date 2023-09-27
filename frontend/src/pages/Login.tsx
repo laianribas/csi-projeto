@@ -6,7 +6,7 @@ import LogoDark from '../assets/images/vector/default-monochrome-white.svg';
 import LogoLight from '../assets/images/vector/default-monochrome.svg';
 import CustomSnackbar from '../components/CustomSnackbar';
 import { UserContext } from '../context/UserProvider';
-import api from '../helpers/api';
+import { makeRequest } from '../helpers/api';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,44 +28,77 @@ export default function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+
+  //   setLoading(true);
+
+  //   api
+  //     .post('login', { login, password })
+  //     .then((response) => {
+  //       const token = response.data.token.token;
+
+  //       localStorage.setItem('token', token);
+
+  //       api
+  //         .get('currentuser', {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         })
+  //         .then((response) => {
+  //           const user = response.data;
+  //           updateUser(user);
+  //           navigate('/home');
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //           setLoading(false);
+  //           setSnackbarSeverity('error');
+  //           setSnackbarMessage('Não foi possível obter os dados do usuário.');
+  //           setShowSnackbar(true);
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setLoading(false);
+  //       setSnackbarSeverity('error');
+  //       setSnackbarMessage('Credenciais inválidas.');
+  //       setShowSnackbar(true);
+  //     });
+  //   setLogin('');
+  //   setPassword('');
+  // };
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     setLoading(true);
 
-    api
-      .post('login', { login, password })
-      .then((response) => {
-        const token = response.data.token.token;
+    const requestData = {
+      login,
+      password,
+    };
 
-        localStorage.setItem('token', token);
+    try {
+      const response = await makeRequest('post', 'login', requestData);
 
-        api
-          .get('currentuser', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            const user = response.data;
-            updateUser(user);
-            navigate('/home');
-          })
-          .catch((error) => {
-            console.error(error);
-            setLoading(false);
-            setSnackbarSeverity('error');
-            setSnackbarMessage('Não foi possível obter os dados do usuário.');
-            setShowSnackbar(true);
-          });
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-        setSnackbarSeverity('error');
-        setSnackbarMessage('Credenciais inválidas.');
-        setShowSnackbar(true);
-      });
+      const token = response.token.token;
+      localStorage.setItem('token', token);
+
+      const userResponse = await makeRequest('get', 'currentuser', null);
+
+      const user = userResponse.data;
+      updateUser(user);
+      navigate('/home');
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Credenciais inválidas.');
+      setShowSnackbar(true);
+    }
+
     setLogin('');
     setPassword('');
   };

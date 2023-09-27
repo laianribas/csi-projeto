@@ -16,7 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/images/vector/isolated-monochrome-white.svg';
-import api from '../helpers/api';
+import { makeRequest } from '../helpers/api';
 import SideMenu from './SideMenu';
 
 const ScrollableList = styled(List)(({ theme }) => ({
@@ -70,11 +70,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleTheme, isDarkMode, systemStatus
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem('token');
-    api.post('logout').then((response) => {
-      return response.data
-    })
+    await makeRequest('post', 'logout', null)
 
     navigate('/');
     window.location.reload();

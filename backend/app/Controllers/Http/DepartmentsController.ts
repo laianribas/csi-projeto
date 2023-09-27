@@ -1,8 +1,8 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Department from 'App/Models/Department';
 import CreateDepartmentService from 'App/Services/Department/CreateDepartmentService';
-import UpdateDepartmentService from 'App/Services/Department/UpdateDepartmentService';
 import DeleteDepartmentService from 'App/Services/Department/DeleteDepartmentService';
+import UpdateDepartmentService from 'App/Services/Department/UpdateDepartmentService';
 
 export default class DepartmentsController {
   /**
@@ -13,7 +13,9 @@ export default class DepartmentsController {
    */
   public async index({ response }: HttpContextContract) {
     try {
-      const departments = await Department.all();
+      const departments = await Department.query()
+        .preload('employees')
+        .preload('calls');
 
       return response.ok(departments);
     } catch (error) {

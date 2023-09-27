@@ -37,6 +37,7 @@ export default class LoginEmployeeService {
       throw new Error('Invalid login credentials');
     }
 
+
     // Verifica se a senha fornecida corresponde à senha do funcionário
     const passwordMatched = await Hash.verify(employee.password, password);
 
@@ -44,7 +45,6 @@ export default class LoginEmployeeService {
     if (!passwordMatched) {
       throw new Error('Invalid login credentials');
     }
-
     // Gera um token de autenticação para o funcionário
     const token = await this.auth.use('api').attempt(login, password);
 

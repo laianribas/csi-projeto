@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ModalContext } from '../../context/ModalProvider';
 import { CallData, getAuthToken } from '../../helpers';
 import { Department } from '../../helpers/Interfaces';
-import api from '../../helpers/api';
+import { makeRequest } from '../../helpers/api';
 
 interface CallFormProps {
   updateCalls: (newCall: CallData) => void;
@@ -19,16 +19,22 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
   const { closeModal } = React.useContext(ModalContext);
 
   React.useEffect(() => {
-    const token = getAuthToken();
-    api.get('departments', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-      .then(response => {
-        setDepartments(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    // const token = getAuthToken();
+    // api.get('departments', {
+    //   headers: { 'Authorization': `Bearer ${token}` }
+    // })
+    //   .then(response => {
+    //     setDepartments(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+    const fetchDepartments = async () => {
+      const response = await makeRequest('get', 'departments', null)
+      setDepartments(response);
+    }
+
+    fetchDepartments();
   }, []);
 
   const handleResponsibleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,39 +71,34 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
     const token = getAuthToken();
     const createCall = async () => {
       try {
-        api.post('calls', JSON.stringify(newCallData), {
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
-        })
-          .then(response => {
-            const createdCall = {
-              data: {
-                id: response.data.id.substring(0, 5).concat('...'),
-                created_at: response.data.created_at,
-                requester: response.data.employee.name,
-                department: response.data.department.name,
-                area: response.data.area,
-                status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : '',
-              },
-              details: {
-                id: response.data.id,
-                responsible: response.data.responsible ? response.data.responsible.name : '',
-                description: response.data.description,
-                evaluation: response.data.evaluation,
-                department: response.data.department.name,
-                area: response.data.area,
-                status: response.data.status && response.data.status.length > 0 ? response.data.status[0].description : ''
-              },
-            };
+        const response = await makeRequest('post', 'calls', JSON.stringify(newCallData))
+        const createdCall = {
+          data: {
+            id: response.id.substring(0, 5).concat('...'),
+            created_at: response.created_at,
+            requester: response.employee.name,
+            department: response.department.name,
+            area: response.area,
+            status: response.status && response.status.length > 0 ? response.status[0].description : '',
+          },
+          details: {
+            id: response.id,
+            responsible: response.responsible ? response.responsible.name : '',
+            description: response.description,
+            evaluation: response.evaluation,
+            department: response.department.name,
+            area: response.area,
+            status: response.status && response.status.length > 0 ? response.status[0].description : ''
+          }
+        }
+        setResponsible('');
+        setArea('');
+        setDescription('');
+        setAssetNumber('');
+        setDepartment('');
 
-            setResponsible('');
-            setArea('');
-            setDescription('');
-            setAssetNumber('');
-            setDepartment('');
-
-            closeModal()
-            updateCalls(createdCall);
-          });
+        closeModal()
+        updateCalls(createdCall);
       } catch (error) {
         console.error(error);
       }

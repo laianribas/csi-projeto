@@ -6,6 +6,8 @@ export interface Department {
   active: boolean;
   created_at: string;
   updated_at: string;
+  employees: Employee[]
+  calls: CallInterface[]
 }
 
 export interface Status {

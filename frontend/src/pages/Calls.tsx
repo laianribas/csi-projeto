@@ -19,11 +19,10 @@ import {
   calculateEmptyRows,
   callsHeadCells,
   filterRows,
-  getAuthToken,
   getVisibleRows
 } from "../helpers";
 import { CallInterface } from "../helpers/Interfaces";
-import api from "../helpers/api";
+import { makeRequest } from "../helpers/api";
 
 export default function Calls() {
   const [order, setOrder] = React.useState<Order>("desc");
@@ -99,17 +98,11 @@ export default function Calls() {
 
 
   React.useEffect(() => {
-    const token = getAuthToken();
     const fetchCalls = async () => {
       try {
-        const response = await api.get('calls', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        const data = response.data;
+        const response = await makeRequest('get', 'calls', null)
 
-        const transformedData = data.map((call: CallInterface) => ({
+        const transformedData = response.map((call: CallInterface) => ({
           data: {
             id: call.id.substring(0, 5).concat('...'),
             created_at: call.created_at,
