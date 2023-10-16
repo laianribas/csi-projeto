@@ -1,16 +1,18 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
+import { DepartmentData } from 'helpers';
 import React, { useState } from 'react';
+import { ModalContext } from '../../context/ModalProvider';
+import { makeRequest } from '../../helpers/api';
 
-interface DepartmentFormData {
-  name: string;
-  extension: string;
-  description: string;
+interface DeparmentFormProps {
+  updateDepartments: (newDeparment: DepartmentData) => void;
 }
 
-const DepartmentForm: React.FC = () => {
+const DepartmentForm: React.FC<DeparmentFormProps> = ({ updateDepartments }) => {
   const [name, setName] = useState('');
   const [extension, setExtension] = useState('');
   const [description, setDescription] = useState('');
+  const { closeModal } = React.useContext(ModalContext);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -26,9 +28,39 @@ const DepartmentForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setName('');
-    setExtension('');
-    setDescription('');
+
+    const newDepartmentData = {
+      name,
+      extension,
+      description
+    }
+
+    const createDepartment = async () => {
+      try {
+        const response = await makeRequest('post', 'departments', JSON.stringify(newDepartmentData));
+        const createdDepartment: DepartmentData = {
+          data: {
+            id: response.id,
+            name: response.name,
+            extension: response.extension,
+            active: response.extension,
+            employees: 0,
+            calls: 0
+          },
+          details: {
+            id: response.id,
+            name: response.name,
+            extension: response.extension,
+            description: response.description
+          }
+        };
+        closeModal();
+        updateDepartments(createdDepartment);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    createDepartment()
   };
 
   return (

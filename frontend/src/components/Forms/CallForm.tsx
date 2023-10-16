@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { ModalContext } from '../../context/ModalProvider';
-import { CallData, getAuthToken } from '../../helpers';
+import { CallData } from '../../helpers';
 import { Department } from '../../helpers/Interfaces';
 import { makeRequest } from '../../helpers/api';
 
@@ -19,16 +19,6 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
   const { closeModal } = React.useContext(ModalContext);
 
   React.useEffect(() => {
-    // const token = getAuthToken();
-    // api.get('departments', {
-    //   headers: { 'Authorization': `Bearer ${token}` }
-    // })
-    //   .then(response => {
-    //     setDepartments(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
     const fetchDepartments = async () => {
       const response = await makeRequest('get', 'departments', null)
       setDepartments(response);
@@ -37,9 +27,6 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
     fetchDepartments();
   }, []);
 
-  const handleResponsibleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setResponsible(event.target.value);
-  };
 
   const handleAreaChange = (event: SelectChangeEvent<string>) => {
     setArea(event.target.value as string);
@@ -61,14 +48,12 @@ const CallForm: React.FC<CallFormProps> = ({ updateCalls }) => {
     event.preventDefault();
 
     const newCallData = {
-      recipient: responsible,
       area,
       description,
       assetTag: assetNumber,
       departmentId: department,
     };
 
-    const token = getAuthToken();
     const createCall = async () => {
       try {
         const response = await makeRequest('post', 'calls', JSON.stringify(newCallData))

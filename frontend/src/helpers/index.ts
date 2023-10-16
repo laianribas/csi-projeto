@@ -1,3 +1,4 @@
+import { Department } from "./Interfaces";
 import api from "./api";
 
 export interface CallData {
@@ -201,38 +202,21 @@ export interface DepartmentData {
     name: string;
     extension: string;
     active: boolean;
-    employeeCount: number;
-    callCount: number;
-  }
-}
-
-const departmentNames = ["RH", "Financeiro", "Tecnologia", "Vendas", "Marketing"];
-
-export const departmentRows: DepartmentData[] = departmentNames.map((name, index) => ({
-  data: {
-    id: index + 1,
-    name,
-    extension: getRandomExtension(),
-    active: getRandomBoolean(),
-    employeeCount: getRandomCount(),
-    callCount: getRandomCount(),
-  }
-}));
-
-function getRandomExtension() {
-  const min = 1000;
-  const max = 9999;
-  return String(Math.floor(Math.random() * (max - min + 1) + min));
-}
-
-function getRandomCount() {
-  const min = 0;
-  const max = 100;
-  return Math.floor(Math.random() * (max - min + 1) + min);
+    // employees: EmployeeData[];
+    // calls: CallData[];
+    employees: number;
+    calls: number;
+  };
+  details: {
+    id: number;
+    name: string;
+    extension: string;
+    description: string;
+  };
 }
 
 export interface DepartmentHeadCell {
-  id: keyof DepartmentData;
+  id: keyof Department;
   disablePadding: boolean;
   label: string;
 }
@@ -259,12 +243,12 @@ export const departmentHeadCells: DepartmentHeadCell[] = [
     label: "Ativo"
   },
   {
-    id: "employeeCount",
+    id: "employees",
     disablePadding: false,
     label: "Qtd. Funcionários"
   },
   {
-    id: "callCount",
+    id: "calls",
     disablePadding: false,
     label: "Qtd. Chamados"
   },

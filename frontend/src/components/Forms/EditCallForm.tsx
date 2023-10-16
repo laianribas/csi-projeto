@@ -62,10 +62,9 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
 
   useEffect(() => {
     if (showSnackbar) {
-      // Atualiza a página quando o Snackbar for exibido após a exclusão ou edição
       setTimeout(() => {
         window.location.reload();
-      }, 3000); // Espera 3 segundos antes de recarregar a página
+      }, 3000);
     }
   }, [showSnackbar]);
 
@@ -124,13 +123,11 @@ const EditCallForm: React.FC<EditCallFormProps> = ({ rowDetails }) => {
     setIsEditing(false);
   };
   const handleDeleteClick = () => {
-    setShowDeleteDialog(true); // Abre o diálogo de exclusão
+    setShowDeleteDialog(true);
   };
 
   const handleDeleteConfirm = async () => {
-    // Lógica para excluir o chamado aqui
-    console.log('Excluir chamado');
-    setShowDeleteDialog(false); // Fecha o diálogo de exclusão
+    setShowDeleteDialog(false);
     await makeRequest('delete', `/calls/${id}`, null);
     setSnackbarSeverity('success');
     setSnackbarMessage('Chamado excluído com sucesso!');

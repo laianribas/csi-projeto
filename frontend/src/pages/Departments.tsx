@@ -24,8 +24,8 @@ import { Department } from "../helpers/Interfaces"; // Create this interface
 import { makeRequest } from "../helpers/api";
 
 export default function Departments() {
-  const [order, setOrder] = useState<Order>("desc");
-  const [orderBy, setOrderBy] = useState<string>("id");
+  const [order, setOrder] = useState<Order>("asc");
+  const [orderBy, setOrderBy] = useState<string>("name");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,14 +63,14 @@ export default function Departments() {
   };
 
   const filteredData = useMemo(() => {
-    return filterRows(departments, searchText);
+    return filterRows<DepartmentData>(departments, searchText);
   }, [departments, searchText]);
 
   const visibleRows = useMemo(() => {
     return getVisibleRows(
-      filteredData as readonly DepartmentData[], // Define DepartmentData based on your data structure
+      filteredData as readonly DepartmentData[],
       order,
-      orderBy as "id" | "name" | "extension" | "active" | "employeeCount" | "callCount", // Define DepartmentData keys based on your data structure
+      orderBy as "id" | "name" | "extension" | "active" | "employees" | "calls",
       page,
       rowsPerPage
     );
@@ -106,7 +106,6 @@ export default function Departments() {
         const response = await makeRequest('get', 'departments', null);
 
         const transformedData = response.map((department: Department) => ({
-          // Define the structure of 'data' and 'details' based on your data
           data: {
             id: department.id,
             name: department.name,
@@ -114,11 +113,9 @@ export default function Departments() {
             active: department.active,
             employeeCount: department.employees.length,
             callCount: department.calls.length
-
           },
           details: {
-            // Define details properties based on your data
-            // For example: name, description, etc.
+
           },
         }));
 
@@ -140,7 +137,7 @@ export default function Departments() {
         <CreateButton onClick={handleCreate} buttonName={'Novo Setor'} />
       </Box>
       <CustomModal title="Cadastro Setor" onClose={handleCloseModal} open={isModalOpen}>
-        <DepartmentForm />
+        <DepartmentForm updateDepartments={handleUpdateDepartments} />
       </CustomModal>
       <CustomTableContainer
         headCells={departmentHeadCells}
