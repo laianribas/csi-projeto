@@ -202,8 +202,6 @@ export interface DepartmentData {
     name: string;
     extension: string;
     active: boolean;
-    // employees: EmployeeData[];
-    // calls: CallData[];
     employees: number;
     calls: number;
   };

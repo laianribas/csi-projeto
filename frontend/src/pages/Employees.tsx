@@ -6,7 +6,7 @@ import * as React from "react";
 import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
 import CustomTableContainer from "../components/CustomTableContainer";
-import EmployeeForm from "../components/Forms/EmployeeForm";
+import EmployeeForm from "../components/Forms/create/EmployeeForm";
 import PageTitle from "../components/PageTitle";
 import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';

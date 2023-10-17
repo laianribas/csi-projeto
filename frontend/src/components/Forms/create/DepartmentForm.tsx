@@ -1,8 +1,8 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
 import { DepartmentData } from 'helpers';
 import React, { useState } from 'react';
-import { ModalContext } from '../../context/ModalProvider';
-import { makeRequest } from '../../helpers/api';
+import { ModalContext } from '../../../context/ModalProvider';
+import { makeRequest } from '../../../helpers/api';
 
 interface DeparmentFormProps {
   updateDepartments: (newDeparment: DepartmentData) => void;

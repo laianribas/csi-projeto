@@ -3,8 +3,8 @@ import { TransitionProps } from '@mui/material/transitions';
 import { Box } from '@mui/system';
 import { Department, Employee } from 'helpers/Interfaces';
 import React, { useEffect, useState } from 'react';
-import CustomSnackbar from '../../components/CustomSnackbar';
-import { makeRequest } from '../../helpers/api';
+import { makeRequest } from '../../../helpers/api';
+import CustomSnackbar from '../../CustomSnackbar';
 
 interface EditCallFormProps {
   rowDetails?: {

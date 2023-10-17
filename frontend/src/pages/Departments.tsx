@@ -7,7 +7,8 @@ import CreateButton from "../components/CreateButton";
 import CustomModal from "../components/CustomModal";
 import CustomSnackbar from "../components/CustomSnackbar";
 import CustomTableContainer from "../components/CustomTableContainer";
-import DepartmentForm from "../components/Forms/DepartmentForm"; // Create this component
+import DepartmentForm from "../components/Forms/create/DepartmentForm"; // Create this component
+import EditDepartmentForm from "../components/Forms/edit/EditDepartmentForm";
 import PageTitle from "../components/PageTitle";
 import SearchBar from "../components/SearchBar";
 import { ModalContext } from '../context/ModalProvider';
@@ -115,7 +116,10 @@ export default function Departments() {
             callCount: department.calls.length
           },
           details: {
-
+            id: department.id,
+            name: department.name,
+            extension: department.extension,
+            description: department.description
           },
         }));
 
@@ -151,7 +155,7 @@ export default function Departments() {
         page={page}
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
-        form={DepartmentForm}
+        form={EditDepartmentForm}
       />
       <CustomSnackbar
         open={showSnackbar}
